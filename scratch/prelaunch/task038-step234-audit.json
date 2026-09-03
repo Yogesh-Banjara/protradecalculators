@@ -1,0 +1,811 @@
+{
+  "step2_html_domain": {
+    "routesChecked": 27,
+    "forbiddenStringMatches": [],
+    "pages": [
+      {
+        "route": "/",
+        "title": "ProTrade Calculators | Jobsite &amp; Material Calculators",
+        "metaDescription": "Free estimating calculators and material takeoff tools for construction contractors, tradespeople, and builders.",
+        "canonical": "https://protradecalculators.com",
+        "ogUrl": "https://protradecalculators.com",
+        "robots": "index, follow",
+        "h1List": [
+          "Tell us what you&#x27;re building."
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 50,
+        "schemasCount": 2,
+        "schemaTypes": [
+          "WebSite",
+          "Organization"
+        ],
+        "contentLengthBytes": 72598,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/about",
+        "title": "About &amp; Calculation Standards | ProTrade Calculators",
+        "metaDescription": "Learn about our engineering philosophy, calculation accuracy standards, unit models, and transparency methodology.",
+        "canonical": "https://protradecalculators.com/about",
+        "ogUrl": "https://protradecalculators.com/about",
+        "robots": "index, follow",
+        "h1List": [
+          "About &amp; Calculation Standards"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 20,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 47062,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/contact",
+        "title": "Contact &amp; Feedback | ProTrade Calculators",
+        "metaDescription": "Get in touch with the ProTrade Calculators team for tool suggestions, formula corrections, or inquiries.",
+        "canonical": "https://protradecalculators.com/contact",
+        "ogUrl": "https://protradecalculators.com/contact",
+        "robots": "index, follow",
+        "h1List": [
+          "Contact &amp; Feedback"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 20,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 43216,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/terms",
+        "title": "Terms of Service | ProTrade Calculators",
+        "metaDescription": "Terms and conditions governing the use of ProTrade Calculators.",
+        "canonical": "https://protradecalculators.com/terms",
+        "ogUrl": "https://protradecalculators.com/terms",
+        "robots": "index, follow",
+        "h1List": [
+          "Terms of Service"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 20,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 38950,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/privacy",
+        "title": "Privacy Policy | ProTrade Calculators",
+        "metaDescription": "Read our privacy policy regarding data handling, cookies, and website usage.",
+        "canonical": "https://protradecalculators.com/privacy",
+        "ogUrl": "https://protradecalculators.com/privacy",
+        "robots": "index, follow",
+        "h1List": [
+          "Privacy Policy"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 21,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 38630,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/tools",
+        "title": "Trade Tools &amp; Calculators Directory | ProTrade Calculators",
+        "metaDescription": "Comprehensive directory of professional construction, electrical, HVAC, plumbing, and material takeoff calculators.",
+        "canonical": "https://protradecalculators.com/tools",
+        "ogUrl": "https://protradecalculators.com/tools",
+        "robots": "index, follow",
+        "h1List": [
+          "Trade Tools &amp; Calculators Directory"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 35,
+        "schemasCount": 2,
+        "schemaTypes": [
+          "WebSite",
+          "Organization"
+        ],
+        "contentLengthBytes": 78550,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/guides/subpanel-feeder-sizing",
+        "title": "Subpanel Feeder Conductor Sizing by Distance | ProTrade Calculators",
+        "metaDescription": "Technical electrical guide for sizing subpanel feeder conductors across distance. Learn how continuous load, NEC Table 310.16 ampacity, and 3% voltage drop limits interact.",
+        "canonical": "https://protradecalculators.com/guides/subpanel-feeder-sizing",
+        "ogUrl": "https://protradecalculators.com/guides/subpanel-feeder-sizing",
+        "robots": "index, follow",
+        "h1List": [
+          "Subpanel Feeder Conductor Sizing by Distance"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 104264,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/categories/construction",
+        "title": "Construction &amp; Framing Calculators | ProTrade Calculators",
+        "metaDescription": "Calculators for concrete slabs, footings, lumber framing, roof pitch, rafters, stairs, and decks.",
+        "canonical": "https://protradecalculators.com/categories/construction",
+        "ogUrl": "https://protradecalculators.com/categories/construction",
+        "robots": "index, follow",
+        "h1List": [
+          "Construction &amp; Framing"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 31,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 80144,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/categories/materials",
+        "title": "Materials &amp; Takeoff Calculators | ProTrade Calculators",
+        "metaDescription": "Estimating bulk aggregate, gravel tonnage, crushed stone, drywall sheets, joint compound, sand, topsoil, and waste allowances.",
+        "canonical": "https://protradecalculators.com/categories/materials",
+        "ogUrl": "https://protradecalculators.com/categories/materials",
+        "robots": "index, follow",
+        "h1List": [
+          "Materials &amp; Takeoff"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 28,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 62726,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/categories/electrical",
+        "title": "Electrical &amp; Conduit Calculators | ProTrade Calculators",
+        "metaDescription": "Wire gauge sizing, voltage drop, conduit fill, and electrical box fill calculations.",
+        "canonical": "https://protradecalculators.com/categories/electrical",
+        "ogUrl": "https://protradecalculators.com/categories/electrical",
+        "robots": "index, follow",
+        "h1List": [
+          "Electrical &amp; Conduit"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 30,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 74004,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/categories/plumbing",
+        "title": "Plumbing &amp; Drainage Calculators | ProTrade Calculators",
+        "metaDescription": "Drainage fixture units (DFU), sanitary drain pipe sizing, soil stacks, building drains, and venting calculators.",
+        "canonical": "https://protradecalculators.com/categories/plumbing",
+        "ogUrl": "https://protradecalculators.com/categories/plumbing",
+        "robots": "index, follow",
+        "h1List": [
+          "Plumbing &amp; Drainage"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 28,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 62569,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/categories/hvac",
+        "title": "HVAC &amp; Airflow Calculators | ProTrade Calculators",
+        "metaDescription": "BTU sizing, heating &amp; cooling loads, AC tonnage, duct sizing, CFM airflow, and ventilation calculators.",
+        "canonical": "https://protradecalculators.com/categories/hvac",
+        "ogUrl": "https://protradecalculators.com/categories/hvac",
+        "robots": "index, follow",
+        "h1List": [
+          "HVAC &amp; Airflow"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 28,
+        "schemasCount": 3,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage"
+        ],
+        "contentLengthBytes": 62026,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/construction/concrete-calculator",
+        "title": "Concrete Calculator - Slabs &amp; Footings | ProTrade Calculators",
+        "metaDescription": "Free concrete calculator to calculate cubic yards, cubic feet, and bags for slabs, footings, and round piers with multi-section takeoff and waste factors.",
+        "canonical": "https://protradecalculators.com/construction/concrete-calculator",
+        "ogUrl": "https://protradecalculators.com/construction/concrete-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Concrete Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 22,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 122533,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/construction/deck-calculator",
+        "title": "Deck Calculator - Boards, Joists &amp; Footings | ProTrade Calculators",
+        "metaDescription": "Free deck material calculator to estimate composite and wood deck boards, 12&quot;/16&quot; OC joists, beams, concrete sonotube footings, and hardware fasteners.",
+        "canonical": "https://protradecalculators.com/construction/deck-calculator",
+        "ogUrl": "https://protradecalculators.com/construction/deck-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Deck Material &amp; Framing Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 127380,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/construction/framing-calculator",
+        "title": "Wall Framing &amp; Stud Calculator | ProTrade Calculators",
+        "metaDescription": "Free wall framing calculator to estimate 16&quot; and 24&quot; on-center studs, top and bottom plates, door/window headers, cripples, linear feet, and board feet.",
+        "canonical": "https://protradecalculators.com/construction/framing-calculator",
+        "ogUrl": "https://protradecalculators.com/construction/framing-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Wall Framing &amp; Stud Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 133510,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/construction/roof-pitch-calculator",
+        "title": "Roof Pitch &amp; Rafter Calculator | ProTrade Calculators",
+        "metaDescription": "Free roof pitch and rafter calculator to calculate pitch angles, common rafter lengths, birdsmouth cuts, roof surface area, and shingle squares.",
+        "canonical": "https://protradecalculators.com/construction/roof-pitch-calculator",
+        "ogUrl": "https://protradecalculators.com/construction/roof-pitch-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Roof Pitch &amp; Rafter Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 119547,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/construction/stair-calculator",
+        "title": "Stair Calculator - Rise &amp; Run Layout | ProTrade Calculators",
+        "metaDescription": "Free stair calculator to calculate exact riser height, tread depth, total run, stringer cut layout, bottom riser drop, headroom, and IRC code rules.",
+        "canonical": "https://protradecalculators.com/construction/stair-calculator",
+        "ogUrl": "https://protradecalculators.com/construction/stair-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Stair Stringer &amp; Riser Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 117438,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/electrical/box-fill-calculator",
+        "title": "Electrical Box Fill Calculator - NEC 314.16 | ProTrade Calculators",
+        "metaDescription": "Free electrical box fill calculator per NEC 314.16 volume tables. Calculate cubic inch capacity for mixed wire sizes, devices, clamps, and grounds in standard boxes.",
+        "canonical": "https://protradecalculators.com/electrical/box-fill-calculator",
+        "ogUrl": "https://protradecalculators.com/electrical/box-fill-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Electrical Box Fill Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 138209,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/electrical/conduit-fill-calculator",
+        "title": "Conduit Fill Calculator - NEC Sizing | ProTrade Calculators",
+        "metaDescription": "Free electrical conduit fill calculator for mixed wire sizes in EMT, PVC Sch 40/80, RMC, FMC, and LFMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
+        "canonical": "https://protradecalculators.com/electrical/conduit-fill-calculator",
+        "ogUrl": "https://protradecalculators.com/electrical/conduit-fill-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Electrical Conduit Fill Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 107208,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/electrical/residential-load-calculator",
+        "title": "Residential Electrical Load Calculator | ProTrade Calculators",
+        "metaDescription": "Free NEC 220.82 residential electrical load calculator. Estimate service panel capacity in amps and VA for 100A to 200A/400A upgrades, EV chargers, and heat pumps.",
+        "canonical": "https://protradecalculators.com/electrical/residential-load-calculator",
+        "ogUrl": "https://protradecalculators.com/electrical/residential-load-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Residential Electrical Service Load Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 131707,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/electrical/voltage-drop-calculator",
+        "title": "Voltage Drop &amp; Wire Size Calculator | ProTrade Calculators",
+        "metaDescription": "Free wire size and voltage drop calculator for single-phase, 3-phase, and DC circuits. Features NEC Table 310.16 ampacity, copper vs aluminum, and derating.",
+        "canonical": "https://protradecalculators.com/electrical/voltage-drop-calculator",
+        "ogUrl": "https://protradecalculators.com/electrical/voltage-drop-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Electrical Wire Size &amp; Voltage Drop Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 145093,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/hvac/btu-calculator",
+        "title": "HVAC BTU Heating &amp; Cooling Calculator | ProTrade Calculators",
+        "metaDescription": "Free HVAC BTU calculator for sizing air conditioners, heat pumps, and furnaces. Calculate heating and cooling loads and AC tonnage (1.5 to 5 tons) by climate zone.",
+        "canonical": "https://protradecalculators.com/hvac/btu-calculator",
+        "ogUrl": "https://protradecalculators.com/hvac/btu-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "HVAC BTU Heating &amp; Cooling Load Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 117219,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/hvac/duct-sizing-calculator",
+        "title": "HVAC Duct Sizing Calculator - CFM | ProTrade Calculators",
+        "metaDescription": "Free HVAC duct sizing calculator. Calculate round duct diameters, rectangular equivalents (Huebscher), air velocity (FPM), friction loss, and room branch CFM schedules.",
+        "canonical": "https://protradecalculators.com/hvac/duct-sizing-calculator",
+        "ogUrl": "https://protradecalculators.com/hvac/duct-sizing-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "HVAC Duct Sizing &amp; CFM Airflow Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 114182,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/materials/drywall-calculator",
+        "title": "Drywall &amp; Sheet Goods Calculator | ProTrade Calculators",
+        "metaDescription": "Free drywall calculator to estimate 4x8, 4x10, and 4x12 sheets, joint compound buckets, joint tape rolls, and drywall screws with room and opening deductions.",
+        "canonical": "https://protradecalculators.com/materials/drywall-calculator",
+        "ogUrl": "https://protradecalculators.com/materials/drywall-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Drywall &amp; Sheet Goods Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 143458,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/materials/gravel-calculator",
+        "title": "Gravel &amp; Aggregate Calculator - Tons | ProTrade Calculators",
+        "metaDescription": "Free gravel and aggregate calculator to calculate tons, cubic yards, and dump truckloads for driveways, paths, and sub-bases with compaction and waste allowances.",
+        "canonical": "https://protradecalculators.com/materials/gravel-calculator",
+        "ogUrl": "https://protradecalculators.com/materials/gravel-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Gravel &amp; Aggregate Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 22,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 143092,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/plumbing/dfu-calculator",
+        "title": "Plumbing DFU &amp; Pipe Sizing Calculator | ProTrade Calculators",
+        "metaDescription": "Free plumbing DFU and drain pipe sizing calculator. Calculate fixture units and size horizontal branches, vertical stacks, and building drains per IPC &amp; UPC.",
+        "canonical": "https://protradecalculators.com/plumbing/dfu-calculator",
+        "ogUrl": "https://protradecalculators.com/plumbing/dfu-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Plumbing Drainage Fixture Unit (DFU) &amp; Pipe Sizing Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 24,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "HowTo",
+          "FAQPage"
+        ],
+        "contentLengthBytes": 125380,
+        "hasSupportingGuideContent": true
+      },
+      {
+        "route": "/plumbing/wsfu-calculator",
+        "title": "WSFU &amp; Potable Pipe Sizing Calculator | ProTrade Calculators",
+        "metaDescription": "Free Water Supply Fixture Unit (WSFU) and potable pipe sizing calculator. Calculate fixture units, peak flow (GPM) via Hunter&#x27;s Curve, and size supply lines.",
+        "canonical": "https://protradecalculators.com/plumbing/wsfu-calculator",
+        "ogUrl": "https://protradecalculators.com/plumbing/wsfu-calculator",
+        "robots": "index, follow",
+        "h1List": [
+          "Water Supply Fixture Unit (WSFU) &amp; Potable Pipe Sizing Calculator"
+        ],
+        "h1Count": 1,
+        "internalLinksCount": 25,
+        "schemasCount": 6,
+        "schemaTypes": [
+          "WebSite",
+          "Organization",
+          "WebPage",
+          "SoftwareApplication",
+          "FAQPage",
+          "HowTo"
+        ],
+        "contentLengthBytes": 147778,
+        "hasSupportingGuideContent": true
+      }
+    ]
+  },
+  "step3_sitemap_robots": {
+    "sitemapUrlsCount": 27,
+    "indexableRoutesCount": 27,
+    "sitemapUrls": [
+      "https://protradecalculators.com",
+      "https://protradecalculators.com/tools",
+      "https://protradecalculators.com/about",
+      "https://protradecalculators.com/contact",
+      "https://protradecalculators.com/privacy",
+      "https://protradecalculators.com/terms",
+      "https://protradecalculators.com/guides/subpanel-feeder-sizing",
+      "https://protradecalculators.com/categories/construction",
+      "https://protradecalculators.com/categories/materials",
+      "https://protradecalculators.com/categories/electrical",
+      "https://protradecalculators.com/categories/hvac",
+      "https://protradecalculators.com/categories/plumbing",
+      "https://protradecalculators.com/construction/concrete-calculator",
+      "https://protradecalculators.com/materials/gravel-calculator",
+      "https://protradecalculators.com/construction/framing-calculator",
+      "https://protradecalculators.com/materials/drywall-calculator",
+      "https://protradecalculators.com/construction/roof-pitch-calculator",
+      "https://protradecalculators.com/construction/stair-calculator",
+      "https://protradecalculators.com/construction/deck-calculator",
+      "https://protradecalculators.com/electrical/voltage-drop-calculator",
+      "https://protradecalculators.com/electrical/conduit-fill-calculator",
+      "https://protradecalculators.com/electrical/box-fill-calculator",
+      "https://protradecalculators.com/hvac/btu-calculator",
+      "https://protradecalculators.com/hvac/duct-sizing-calculator",
+      "https://protradecalculators.com/electrical/residential-load-calculator",
+      "https://protradecalculators.com/plumbing/dfu-calculator",
+      "https://protradecalculators.com/plumbing/wsfu-calculator"
+    ],
+    "robotsTxt": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /_next/\n\nSitemap: https://protradecalculators.com/sitemap.xml\n",
+    "sitemapDiscrepancies": []
+  },
+  "step4_representative_indexability": [
+    {
+      "route": "/",
+      "h1Count": 1,
+      "h1Text": "Tell us what you&#x27;re building.",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com",
+      "internalLinksCount": 50,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/construction/concrete-calculator",
+      "h1Count": 1,
+      "h1Text": "Concrete Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/construction/concrete-calculator",
+      "internalLinksCount": 22,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/construction/deck-calculator",
+      "h1Count": 1,
+      "h1Text": "Deck Material &amp; Framing Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/construction/deck-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/construction/framing-calculator",
+      "h1Count": 1,
+      "h1Text": "Wall Framing &amp; Stud Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/construction/framing-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/construction/roof-pitch-calculator",
+      "h1Count": 1,
+      "h1Text": "Roof Pitch &amp; Rafter Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/construction/roof-pitch-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/electrical/conduit-fill-calculator",
+      "h1Count": 1,
+      "h1Text": "Electrical Conduit Fill Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/electrical/conduit-fill-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/electrical/residential-load-calculator",
+      "h1Count": 1,
+      "h1Text": "Residential Electrical Service Load Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/electrical/residential-load-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/electrical/voltage-drop-calculator",
+      "h1Count": 1,
+      "h1Text": "Electrical Wire Size &amp; Voltage Drop Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/electrical/voltage-drop-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/hvac/btu-calculator",
+      "h1Count": 1,
+      "h1Text": "HVAC BTU Heating &amp; Cooling Load Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/hvac/btu-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/hvac/duct-sizing-calculator",
+      "h1Count": 1,
+      "h1Text": "HVAC Duct Sizing &amp; CFM Airflow Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/hvac/duct-sizing-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/plumbing/dfu-calculator",
+      "h1Count": 1,
+      "h1Text": "Plumbing Drainage Fixture Unit (DFU) &amp; Pipe Sizing Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/plumbing/dfu-calculator",
+      "internalLinksCount": 24,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    },
+    {
+      "route": "/plumbing/wsfu-calculator",
+      "h1Count": 1,
+      "h1Text": "Water Supply Fixture Unit (WSFU) &amp; Potable Pipe Sizing Calculator",
+      "hasTitle": true,
+      "hasMetaDesc": true,
+      "hasCanonical": true,
+      "canonical": "https://protradecalculators.com/plumbing/wsfu-calculator",
+      "internalLinksCount": 25,
+      "hasInitialContent": true,
+      "hasSupportingContent": true,
+      "verdict": "PASS"
+    }
+  ]
+}

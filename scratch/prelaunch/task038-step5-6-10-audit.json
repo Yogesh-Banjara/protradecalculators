@@ -1,0 +1,243 @@
+{
+  "accessibility": {
+    "totalFormsTested": 7,
+    "viewportsTested": [
+      "320x844",
+      "360x800",
+      "390x844",
+      "430x932"
+    ],
+    "results": [
+      {
+        "tool": "Concrete",
+        "totalFormControls": 29,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 27,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "Conduit Fill",
+        "totalFormControls": 23,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 21,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "Deck",
+        "totalFormControls": 29,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 22,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "DFU Plumbing",
+        "totalFormControls": 29,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 20,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "Roof Pitch",
+        "totalFormControls": 20,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 25,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "HVAC BTU",
+        "totalFormControls": 21,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 27,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      },
+      {
+        "tool": "Voltage Drop",
+        "totalFormControls": 29,
+        "missingAccessibleName": 0,
+        "h1Count": 1,
+        "headingsCount": 25,
+        "issues": [],
+        "mobileViewports": {
+          "320x844": "PASS",
+          "360x800": "PASS",
+          "390x844": "PASS",
+          "430x932": "PASS"
+        }
+      }
+    ]
+  },
+  "interactionStress": [
+    {
+      "tool": "Concrete",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "Conduit Fill",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "Deck",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "DFU Plumbing",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "Roof Pitch",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "HVAC BTU",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    },
+    {
+      "tool": "Voltage Drop",
+      "tests": {
+        "normalTyping": "PASS",
+        "rapidTyping": "PASS",
+        "extremeLarge": "PASS",
+        "zeroInput": "PASS",
+        "negativeInput": "PASS",
+        "decimalInput": "PASS",
+        "dropdownMutation": "PASS",
+        "malformedUrlParams": "PASS"
+      },
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "overallStatus": "PASS"
+    }
+  ],
+  "securityExtremeInputs": [],
+  "engineIntegrityVerification": {
+    "conduit": {
+      "testedCount": 100,
+      "totalConductorCount": 100,
+      "totalConductorAreaSqIn": 3.59,
+      "recommendedTradeSize": "3-1/2",
+      "actualFillPercentage": 31.1,
+      "engineMathIntact": true
+    },
+    "deck": {
+      "testedLength": 100,
+      "supportPostsCount": 14,
+      "deckSurfaceAreaSqFt": 2000,
+      "totalStockBoardsRequired": 419,
+      "engineMathIntact": true
+    }
+  }
+}

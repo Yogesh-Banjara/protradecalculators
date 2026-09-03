@@ -1,0 +1,1838 @@
+[
+  {
+    "name": "Homepage",
+    "path": "/",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 10,
+          "min": 9,
+          "max": 12
+        },
+        "fcp": {
+          "median": 256,
+          "min": 0,
+          "max": 296
+        },
+        "lcp": {
+          "median": 296,
+          "min": 256,
+          "max": 456
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 0.7,
+          "min": 0.7,
+          "max": 0.9
+        },
+        "interactionProxy": {
+          "median": 17.5,
+          "min": 13.8,
+          "max": 113.2
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 5
+        },
+        "fcp": {
+          "median": 196,
+          "min": 180,
+          "max": 200
+        },
+        "lcp": {
+          "median": 196,
+          "min": 180,
+          "max": 200
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 0.7,
+          "min": 0.6,
+          "max": 15.5
+        },
+        "interactionProxy": {
+          "median": 22,
+          "min": 19.2,
+          "max": 30.1
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 5,
+          "min": 4,
+          "max": 6
+        },
+        "fcp": {
+          "median": 196,
+          "min": 0,
+          "max": 196
+        },
+        "lcp": {
+          "median": 196,
+          "min": 196,
+          "max": 252
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 0.9,
+          "min": 0.6,
+          "max": 37.4
+        },
+        "interactionProxy": {
+          "median": 17,
+          "min": 11.8,
+          "max": 41.9
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Concrete Calculator",
+    "path": "/construction/concrete-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 12
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 304
+        },
+        "lcp": {
+          "median": 48,
+          "min": 35,
+          "max": 304
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 3.8,
+          "min": 0.6,
+          "max": 45.7
+        },
+        "interactionProxy": {
+          "median": 30.5,
+          "min": 14.7,
+          "max": 59.2
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 7
+        },
+        "fcp": {
+          "median": 212,
+          "min": 0,
+          "max": 216
+        },
+        "lcp": {
+          "median": 212,
+          "min": 37,
+          "max": 216
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 13,
+          "min": 4.1,
+          "max": 53.3
+        },
+        "interactionProxy": {
+          "median": 23.2,
+          "min": 22.5,
+          "max": 59.5
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 5,
+          "min": 4,
+          "max": 5
+        },
+        "fcp": {
+          "median": 212,
+          "min": 0,
+          "max": 232
+        },
+        "lcp": {
+          "median": 212,
+          "min": 37,
+          "max": 232
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 3.8,
+          "min": 1,
+          "max": 24.5
+        },
+        "interactionProxy": {
+          "median": 16.6,
+          "min": 14.7,
+          "max": 32.1
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Roof Pitch Calculator",
+    "path": "/construction/roof-pitch-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 5,
+          "min": 4,
+          "max": 8
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 348
+        },
+        "lcp": {
+          "median": 34,
+          "min": 33,
+          "max": 348
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 0,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 43.3,
+          "min": 0.9,
+          "max": 44.1
+        },
+        "interactionProxy": {
+          "median": 50.2,
+          "min": 17.1,
+          "max": 60.2
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 4
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lcp": {
+          "median": 36,
+          "min": 34,
+          "max": 220
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 35.7,
+          "min": 0.3,
+          "max": 39.5
+        },
+        "interactionProxy": {
+          "median": 45.4,
+          "min": 44.7,
+          "max": 51.6
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 4
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 252
+        },
+        "lcp": {
+          "median": 35,
+          "min": 35,
+          "max": 252
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 2.8,
+          "min": 0.6,
+          "max": 44
+        },
+        "interactionProxy": {
+          "median": 25,
+          "min": 11.7,
+          "max": 52.3
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Wall Framing Calculator",
+    "path": "/construction/framing-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 7,
+          "min": 7,
+          "max": 10
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 236
+        },
+        "lcp": {
+          "median": 41,
+          "min": 35,
+          "max": 236
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 35.4,
+          "min": 4.4,
+          "max": 46.7
+        },
+        "interactionProxy": {
+          "median": 41.6,
+          "min": 14.9,
+          "max": 55.4
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 4
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lcp": {
+          "median": 34,
+          "min": 33,
+          "max": 38
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 2.9,
+          "min": 0.2,
+          "max": 50.8
+        },
+        "interactionProxy": {
+          "median": 38.2,
+          "min": 25.6,
+          "max": 61.1
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 5,
+          "min": 3,
+          "max": 5
+        },
+        "fcp": {
+          "median": 212,
+          "min": 0,
+          "max": 236
+        },
+        "lcp": {
+          "median": 220,
+          "min": 212,
+          "max": 236
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 19.9,
+          "min": 0.4,
+          "max": 37.2
+        },
+        "interactionProxy": {
+          "median": 30.8,
+          "min": 2.2,
+          "max": 47.7
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Deck Calculator",
+    "path": "/construction/deck-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 5,
+          "min": 2,
+          "max": 14
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 224
+        },
+        "lcp": {
+          "median": 49,
+          "min": 34,
+          "max": 224
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 37.3,
+          "min": 3.1,
+          "max": 49.4
+        },
+        "interactionProxy": {
+          "median": 42.8,
+          "min": 24.2,
+          "max": 63.7
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 5
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 212
+        },
+        "lcp": {
+          "median": 212,
+          "min": 34,
+          "max": 220
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 32.8,
+          "min": 3.8,
+          "max": 35.7
+        },
+        "interactionProxy": {
+          "median": 37.6,
+          "min": 23.9,
+          "max": 43.3
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 6,
+          "min": 4,
+          "max": 8
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 268
+        },
+        "lcp": {
+          "median": 220,
+          "min": 40,
+          "max": 268
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 35.9,
+          "min": 0.4,
+          "max": 37.5
+        },
+        "interactionProxy": {
+          "median": 41.5,
+          "min": 12.1,
+          "max": 44.3
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Voltage Drop Calculator",
+    "path": "/electrical/voltage-drop-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 6,
+          "min": 2,
+          "max": 10
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 308
+        },
+        "lcp": {
+          "median": 43,
+          "min": 33,
+          "max": 308
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 2.5,
+          "min": 1,
+          "max": 4.5
+        },
+        "interactionProxy": {
+          "median": 14.3,
+          "min": 8.6,
+          "max": 41.4
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 4,
+          "min": 4,
+          "max": 4
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 216
+        },
+        "lcp": {
+          "median": 216,
+          "min": 36,
+          "max": 232
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 42.2,
+          "min": 35.4,
+          "max": 52.7
+        },
+        "interactionProxy": {
+          "median": 46.3,
+          "min": 39.5,
+          "max": 64.6
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 6,
+          "min": 3,
+          "max": 6
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 220
+        },
+        "lcp": {
+          "median": 37,
+          "min": 36,
+          "max": 220
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 44.4,
+          "min": 2.7,
+          "max": 56.5
+        },
+        "interactionProxy": {
+          "median": 48.4,
+          "min": 10.7,
+          "max": 65
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Conduit Fill Calculator",
+    "path": "/electrical/conduit-fill-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 9
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lcp": {
+          "median": 38,
+          "min": 35,
+          "max": 40
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 4.1,
+          "min": 2.8,
+          "max": 54
+        },
+        "interactionProxy": {
+          "median": 24.4,
+          "min": 14.5,
+          "max": 67.2
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        },
+        "fcp": {
+          "median": 192,
+          "min": 188,
+          "max": 200
+        },
+        "lcp": {
+          "median": 192,
+          "min": 188,
+          "max": 200
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 0.6,
+          "min": 0.6,
+          "max": 11.1
+        },
+        "interactionProxy": {
+          "median": 20.2,
+          "min": 19.5,
+          "max": 20.8
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 4
+        },
+        "fcp": {
+          "median": 196,
+          "min": 196,
+          "max": 212
+        },
+        "lcp": {
+          "median": 196,
+          "min": 196,
+          "max": 212
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 13.1,
+          "min": 1,
+          "max": 16.3
+        },
+        "interactionProxy": {
+          "median": 21.7,
+          "min": 20,
+          "max": 27.6
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Residential Load Calculator",
+    "path": "/electrical/residential-load-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 8
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 320
+        },
+        "lcp": {
+          "median": 36,
+          "min": 35,
+          "max": 320
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 4.3,
+          "min": 0.6,
+          "max": 4.4
+        },
+        "interactionProxy": {
+          "median": 26.5,
+          "min": 14.5,
+          "max": 27.4
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 5
+        },
+        "fcp": {
+          "median": 232,
+          "min": 228,
+          "max": 292
+        },
+        "lcp": {
+          "median": 232,
+          "min": 228,
+          "max": 292
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 28.2,
+          "min": 1.1,
+          "max": 42.9
+        },
+        "interactionProxy": {
+          "median": 34.6,
+          "min": 4.9,
+          "max": 48.6
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 5,
+          "min": 3,
+          "max": 5
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 272
+        },
+        "lcp": {
+          "median": 36,
+          "min": 32,
+          "max": 272
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 46.9,
+          "min": 0.6,
+          "max": 47.6
+        },
+        "interactionProxy": {
+          "median": 53.6,
+          "min": 8.7,
+          "max": 58.5
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Plumbing DFU Calculator",
+    "path": "/plumbing/dfu-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 4,
+          "min": 4,
+          "max": 9
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 232
+        },
+        "lcp": {
+          "median": 40,
+          "min": 40,
+          "max": 232
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 2,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 52.6,
+          "min": 32.3,
+          "max": 55.5
+        },
+        "interactionProxy": {
+          "median": 63.6,
+          "min": 37.7,
+          "max": 67.6
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 3,
+          "min": 3,
+          "max": 6
+        },
+        "fcp": {
+          "median": 212,
+          "min": 0,
+          "max": 224
+        },
+        "lcp": {
+          "median": 212,
+          "min": 35,
+          "max": 224
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 14.6,
+          "min": 2.6,
+          "max": 16.7
+        },
+        "interactionProxy": {
+          "median": 20.8,
+          "min": 19.4,
+          "max": 23.1
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 4
+        },
+        "fcp": {
+          "median": 220,
+          "min": 208,
+          "max": 224
+        },
+        "lcp": {
+          "median": 220,
+          "min": 208,
+          "max": 224
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 30.2,
+          "min": 13.6,
+          "max": 51.2
+        },
+        "interactionProxy": {
+          "median": 35.4,
+          "min": 18.8,
+          "max": 58
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "Plumbing WSFU Calculator",
+    "path": "/plumbing/wsfu-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 6,
+          "min": 6,
+          "max": 14
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 292
+        },
+        "lcp": {
+          "median": 41,
+          "min": 40,
+          "max": 292
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 1.4,
+          "min": 0.3,
+          "max": 2.5
+        },
+        "interactionProxy": {
+          "median": 25.1,
+          "min": 14.1,
+          "max": 59.2
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 7,
+          "min": 6,
+          "max": 7
+        },
+        "fcp": {
+          "median": 220,
+          "min": 0,
+          "max": 224
+        },
+        "lcp": {
+          "median": 220,
+          "min": 40,
+          "max": 224
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 22.6,
+          "min": 1.9,
+          "max": 44.3
+        },
+        "interactionProxy": {
+          "median": 27.4,
+          "min": 10.5,
+          "max": 52
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 5,
+          "min": 5,
+          "max": 7
+        },
+        "fcp": {
+          "median": 220,
+          "min": 0,
+          "max": 240
+        },
+        "lcp": {
+          "median": 220,
+          "min": 46,
+          "max": 240
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 23.6,
+          "min": 21.4,
+          "max": 32.5
+        },
+        "interactionProxy": {
+          "median": 30.3,
+          "min": 26.2,
+          "max": 43.8
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "HVAC BTU Calculator",
+    "path": "/hvac/btu-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 4,
+          "min": 4,
+          "max": 7
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 232
+        },
+        "lcp": {
+          "median": 35,
+          "min": 33,
+          "max": 232
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 37.6,
+          "min": 3.6,
+          "max": 54.3
+        },
+        "interactionProxy": {
+          "median": 43.6,
+          "min": 24.4,
+          "max": 66.9
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 5,
+          "min": 4,
+          "max": 5
+        },
+        "fcp": {
+          "median": 208,
+          "min": 204,
+          "max": 216
+        },
+        "lcp": {
+          "median": 208,
+          "min": 204,
+          "max": 216
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 15.4,
+          "min": 14.8,
+          "max": 22.5
+        },
+        "interactionProxy": {
+          "median": 20.4,
+          "min": 19.2,
+          "max": 29.5
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 6,
+          "min": 4,
+          "max": 6
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 220
+        },
+        "lcp": {
+          "median": 220,
+          "min": 35,
+          "max": 236
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 2,
+          "min": 1,
+          "max": 2
+        },
+        "calcLatency": {
+          "median": 57.8,
+          "min": 40.5,
+          "max": 66.3
+        },
+        "interactionProxy": {
+          "median": 66.6,
+          "min": 45.4,
+          "max": 73.3
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  },
+  {
+    "name": "HVAC Duct Sizing Calculator",
+    "path": "/hvac/duct-sizing-calculator",
+    "viewports": {
+      "Desktop 1440": {
+        "viewport": "1440x900",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 8
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lcp": {
+          "median": 37,
+          "min": 36,
+          "max": 40
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 0.4,
+          "min": 0.3,
+          "max": 4.1
+        },
+        "interactionProxy": {
+          "median": 57.7,
+          "min": 25.2,
+          "max": 63.8
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 390": {
+        "viewport": "390x844",
+        "ttfb": {
+          "median": 4,
+          "min": 3,
+          "max": 7
+        },
+        "fcp": {
+          "median": 0,
+          "min": 0,
+          "max": 204
+        },
+        "lcp": {
+          "median": 35,
+          "min": 34,
+          "max": 204
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 3.7,
+          "min": 0.9,
+          "max": 4.1
+        },
+        "interactionProxy": {
+          "median": 21.8,
+          "min": 15.1,
+          "max": 28
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      },
+      "Mobile 320": {
+        "viewport": "320x844",
+        "ttfb": {
+          "median": 4,
+          "min": 4,
+          "max": 6
+        },
+        "fcp": {
+          "median": 200,
+          "min": 0,
+          "max": 220
+        },
+        "lcp": {
+          "median": 200,
+          "min": 48,
+          "max": 220
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "longTasks": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "calcLatency": {
+          "median": 16.9,
+          "min": 3.7,
+          "max": 17.2
+        },
+        "interactionProxy": {
+          "median": 22.4,
+          "min": 12.3,
+          "max": 22.5
+        },
+        "jsKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "totalTransferredKb": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "horizontalOverflow": false
+      }
+    }
+  }
+]

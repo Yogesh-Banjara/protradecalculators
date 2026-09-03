@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Workbench Color System */
+    --workbench-bg: 222.2 84% 4.9%; /* #020617 (slate-950) */
+    --workbench-surface: 222.2 47.4% 11.2%; /* #0f172a (slate-900) */
+    --workbench-surface-elevated: 217.2 32.6% 17.5%; /* #1e293b (slate-800) */
+    --workbench-border: 217.2 32.6% 17.5%; /* #1e293b (slate-800) */
+    --workbench-border-subtle: 215 25% 26.7%; /* #334155 (slate-700) */
+    --workbench-text-primary: 210 40% 98%; /* #f8fafc (slate-50) */
+    --workbench-text-secondary: 215 20.2% 65.1%; /* #94a3b8 (slate-400) */
+    --workbench-text-muted: 215.4 16.3% 46.9%; /* #64748b (slate-500) */
+    
+    /* Semantic Instrument Highlights */
+    --brand-amber: 37.7 92.1% 50.2%; /* #f59e0b */
+    --brand-amber-hover: 45.4 93.4% 47.5%; /* #d97706 */
+    --brand-cyan: 188.7 94.5% 42.7%; /* #06b6d4 */
+    --brand-emerald: 158.1 64.4% 51.6%; /* #10b981 */
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950;
+  }
+
+  /* Professional Trade Workbench Typography (Clean & Predictable) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-bold text-inherit;
+  }
+
+  /* High-contrast accessible focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber-400 ring-offset-2 ring-offset-slate-950;
+  }
+
+  /* Cross-browser Number Input Spinner Removal */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+/* Professional Architectural Blueprint Grid (Clean, Non-Glowing) */
+.bg-blueprint-grid {
+  background-color: #020617;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+    linear-gradient(to right, rgba(51, 65, 85, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+}
+
+/* Standardized Instrument Docks */
+.instrument-dock {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 1rem;
+}
+
+.instrument-canvas {
+  background: #090e1a;
+  border: 1px solid #1e293b;
+  border-radius: 1rem;
+}
+
+/* Motion System: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  /* Reusable Interaction States */
+  .state-interactive {
+    @apply transition-all duration-150 ease-out active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2;
+  }
+
+  .state-hover-card {
+    @apply transition-all duration-150 ease-out hover:border-amber-400 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20;
+  }
+
+  .state-pill-selected {
+    @apply bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-2xs;
+  }
+
+  .state-pill-default {
+    @apply bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white transition-colors cursor-pointer;
+  }
+
+  .state-input-base {
+    @apply transition-all duration-150 ease-out focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none;
+  }
+
+  .state-input-error {
+    @apply border-red-500 text-red-400 focus:border-red-600 focus:ring-2 focus:ring-red-500/20;
+  }
+
+  .state-success-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs animate-in fade-in duration-150;
+  }
+}
+
+/* Print / Jobsite Worksheet Optimization */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .card,
+  table,
+  tr,
+  td,
+  th {
+    break-inside: avoid;
+    box-shadow: none !important;
+    color: #000000 !important;
+  }
+}

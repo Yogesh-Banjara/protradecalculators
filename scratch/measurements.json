@@ -1,0 +1,44 @@
+{
+  "01_homepage": {
+    "docBytes": 0,
+    "jsBytes": 953,
+    "imgBytes": 0,
+    "totalBytes": 953,
+    "consoleErrorsCount": 1
+  },
+  "02_construction_suite": {
+    "docBytes": 0,
+    "jsBytes": 1134,
+    "imgBytes": 0,
+    "totalBytes": 1134,
+    "consoleErrorsCount": 1
+  },
+  "03_electrical_suite": {
+    "docBytes": 0,
+    "jsBytes": 1134,
+    "imgBytes": 0,
+    "totalBytes": 1134,
+    "consoleErrorsCount": 1
+  },
+  "04_plumbing_suite": {
+    "docBytes": 0,
+    "jsBytes": 1134,
+    "imgBytes": 0,
+    "totalBytes": 1134,
+    "consoleErrorsCount": 1
+  },
+  "05_materials_suite": {
+    "docBytes": 0,
+    "jsBytes": 1134,
+    "imgBytes": 0,
+    "totalBytes": 1134,
+    "consoleErrorsCount": 1
+  },
+  "06_tools_directory": {
+    "docBytes": 0,
+    "jsBytes": 755,
+    "imgBytes": 0,
+    "totalBytes": 755,
+    "consoleErrorsCount": 1
+  }
+}
