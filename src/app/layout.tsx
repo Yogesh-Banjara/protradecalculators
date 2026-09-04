@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo/schema";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -71,6 +72,7 @@ export default function RootLayout({
         <JsonLd schema={[websiteSchema, organizationSchema]} />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-500 selection:text-slate-950">
+        <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
