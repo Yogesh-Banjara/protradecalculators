@@ -70,6 +70,9 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <head>
         <JsonLd schema={[websiteSchema, organizationSchema]} />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7986712897197037"
+        crossorigin="anonymous"></script>
+        
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-500 selection:text-slate-950">
         <GoogleAnalytics />
