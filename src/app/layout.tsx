@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo/schema";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import Script from "next/script";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -70,9 +71,11 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <head>
         <JsonLd schema={[websiteSchema, organizationSchema]} />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7986712897197037"
-        crossorigin="anonymous"></script>
-        
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7986712897197037"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-500 selection:text-slate-950">
         <GoogleAnalytics />
