@@ -8,7 +8,6 @@ import type {
 } from "@/types/roof";
 import {
   STANDARD_PITCHES,
-  RAFTER_LUMBER_SIZES,
 } from "@/data/materials/roofing-types";
 import { calculateRoofProject } from "@/lib/calculations/roof";
 import { RoofDiagram } from "./roof-diagram";
@@ -28,6 +27,8 @@ import {
   ChevronDown,
   ChevronUp,
   Save,
+  ArrowRight,
+  Info,
 } from "lucide-react";
 
 const WASTE_PRESETS = [
@@ -38,6 +39,9 @@ const WASTE_PRESETS = [
 ];
 
 export function RoofCalculatorForm() {
+  const [activeTab, setActiveTab] = useState<"calculate" | "diagrams" | "reference" | "guide">("calculate");
+  const [unitSystem, setUnitSystem] = useState<"imperial" | "metric">("imperial");
+
   const [buildingWidthFt, setBuildingWidthFt] = useState<number>(24);
   const [buildingLengthFt, setBuildingLengthFt] = useState<number>(36);
   const [pitchIn12, setPitchIn12] = useState<number>(6);
@@ -122,9 +126,9 @@ export function RoofCalculatorForm() {
   };
 
   const handleCustomWasteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setCustomWasteInput(val);
-    const num = parseFloat(val);
+    const valStr = e.target.value;
+    setCustomWasteInput(valStr);
+    const num = parseFloat(valStr);
     if (!isNaN(num) && num >= 0 && num <= 100) {
       setWastePercent(num);
     }
@@ -132,116 +136,170 @@ export function RoofCalculatorForm() {
 
   const copySummaryToClipboard = () => {
     if (!calculationResult.result) return;
-    const { geometry, materials, costEstimate } = calculationResult.result;
+    const r = calculationResult.result;
+    const summary = [
+      `=== PROTRADE ROOF PITCH & RAFTER TAKEOFF ===`,
+      `Pitch: ${r.geometry.pitchIn12}:12 (${r.geometry.pitchAngleDegrees}°)`,
+      `Building Span: ${buildingWidthFt} ft | Horizontal Run: ${r.geometry.runFt} ft (${r.geometry.runInches} in)`,
+      `Building Length: ${buildingLengthFt} ft (Ridge Length: ${r.materials.ridgeLengthFt} ft)`,
+      `Common Rafter Line Length: ${r.geometry.rafterLineLengthFormatted} (${r.geometry.rafterLineLengthFt} ft)`,
+      `Total Cut Rafter Length: ${r.geometry.totalCutRafterLengthFormatted} (${r.geometry.totalCutRafterLengthFt} ft)`,
+      `Plumb Cut: ${r.geometry.cutAngles.plumbCutAngleDegrees}° | Level/Seat Cut: ${r.geometry.cutAngles.seatCutAngleDegrees}°`,
+      `Seat Cut Bearing: ${r.geometry.birdsmouth.seatCutLengthInches} in | HAP Stand: ${r.geometry.birdsmouth.heightAbovePlateInches} in`,
+      `Roof Surface Area: ${r.materials.adjustedAreaSqFt} sq ft (${r.materials.adjustedSquares} SQ including ${r.materials.wastePercent}% waste)`,
+      `Shingle Bundles (3/sq): ${r.materials.shingleBundlesCount} bundles`,
+      `Underlayment: ${r.materials.underlaymentRollsSynthetic} rolls (4-sq rolls)`,
+      `Drip Edge: ${r.materials.dripEdgePieces10Ft} pcs (10 ft lengths)`,
+      `Calculated with ProTrade Calculators: https://protradecalculators.com`,
+    ].join("\n");
 
-    const summaryLines = [
-      "ROOF PITCH & RAFTER GEOMETRY TAKEOFF",
-      "====================================",
-      `Building Dimensions: ${geometry.buildingSpanFt}' Span (${geometry.runFt}' Run) x ${materials.ridgeLengthFt}' Length`,
-      `Roof Pitch: ${geometry.pitchIn12}:12 (${geometry.pitchAngleDegrees}° angle, ${geometry.slopeFactor}x slope multiplier)`,
-      `Rise & Run: ${geometry.riseFt}' Rise (${geometry.riseInches}") / ${geometry.runFt}' Run (${geometry.runInches}")`,
-      `Common Rafter Line Length: ${geometry.rafterLineLengthFormatted} (${geometry.rafterLineLengthFt} ft)`,
-      `Total Practical Cut Length: ${geometry.totalCutRafterLengthFormatted} (${geometry.totalCutRafterLengthFt} ft)`,
-      `Rafter Cut Angles: Plumb Cut ${geometry.cutAngles.plumbCutAngleDegrees}° / Seat Cut ${geometry.cutAngles.seatCutAngleDegrees}°`,
-      `Birdsmouth Geometry: ${geometry.birdsmouth.seatCutLengthInches}" Seat Bearing, ${geometry.birdsmouth.plumbCutDepthInches}" Plumb Depth, ${geometry.birdsmouth.heightAbovePlateInches}" HAP Stand`,
-      "",
-      "ROOFING SURFACE & MATERIALS:",
-      `Sloped Roof Surface Area: ${materials.roofSurfaceAreaSqFt} sq ft (${materials.roofingSquares} squares)`,
-      `Adjusted Squares (+${materials.wastePercent}% waste): ${materials.adjustedSquares} SQ (${materials.adjustedAreaSqFt} sq ft)`,
-      `Shingle Bundles (3/sq): ${materials.shingleBundlesCount} bundles`,
-      `Synthetic Underlayment: ${materials.underlaymentRollsSynthetic} rolls (4-sq rolls)`,
-      `Drip Edge Flashing: ${materials.dripEdgePieces10Ft} pieces (10' lengths / ${materials.dripEdgeLinearFt} linear ft)`,
-      `Ridge Cap Shingles: ${materials.ridgeCapBundlesCount} bundles (${materials.ridgeLengthFt} linear ft)`,
-      ...(costEstimate
-        ? [`Estimated Material Cost: $${costEstimate.totalEstimatedCost.toFixed(2)}`]
-        : []),
-      "",
-      "Reference: International Residential Code (IRC R802 / R905 Prescriptive Geometry)",
-    ];
-
-    navigator.clipboard.writeText(summaryLines.join("\n"));
+    navigator.clipboard.writeText(summary);
     setCopied(true);
-    trackCopyResult("roof-pitch-calculator", "construction", "projectSummary");
+    trackCopyResult("roof-pitch-calculator", "construction", "takeoff_summary");
     setTimeout(() => setCopied(false), 2000);
   };
 
   const saveConfiguration = () => {
     try {
-      localStorage.setItem(
-        "saved_roof_config",
-        JSON.stringify({
-          buildingWidthFt,
-          buildingLengthFt,
-          pitchIn12,
-          eaveOverhangInches,
-          gableOverhangInches,
-          ridgeBoardThicknessInches,
-          rafterDepthNominal,
-          seatCutBearingInches,
-          wastePercent,
-        })
-      );
+      const config = {
+        buildingWidthFt,
+        buildingLengthFt,
+        pitchIn12,
+        eaveOverhangInches,
+        gableOverhangInches,
+        ridgeBoardThicknessInches,
+        rafterDepthNominal,
+        seatCutBearingInches,
+        wastePercent,
+        savedAt: new Date().toISOString(),
+      };
+      localStorage.setItem("saved_roof_config", JSON.stringify(config));
       setSaved(true);
-      setTimeout(() => setSaved(false), 2000);
+      setTimeout(() => setSaved(false), 2500);
     } catch {
-      // Ignore
+      // Local storage unavailable
     }
   };
 
   const { result, error } = calculationResult;
 
+  // Run in inches for showcase alignment
+  const horizontalRunInches = Math.round((buildingWidthFt / 2) * 12);
+  const verticalRiseInches = result ? Math.round(result.geometry.riseInches) : Math.round(horizontalRunInches * (pitchIn12 / 12));
+
   return (
     <div className="space-y-6">
       <JobsitePrintHeader
-        title="Roof Pitch & Rafter Geometry Worksheet"
+        title="Roof Pitch & Rafter Takeoff Worksheet"
         category="Construction & Framing"
       />
 
-      {/* 2-PANE SPLIT VISUAL WORKSPACE */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* LEFT PANE: Dynamic Roof Layout Visualizer (7 Cols on Desktop / 58%) */}
-        <div className="lg:col-span-7 space-y-4">
-          {result && <RoofDiagram geometry={result.geometry} />}
+      {/* Tabs & Unit Switcher Header matching Showcase */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setActiveTab("calculate")}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              activeTab === "calculate"
+                ? "bg-slate-900 text-white shadow-xs"
+                : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
+            }`}
+          >
+            Calculate
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("diagrams")}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              activeTab === "diagrams"
+                ? "bg-slate-900 text-white shadow-xs"
+                : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
+            }`}
+          >
+            Diagrams
+          </button>
+          <a
+            href="#reference-table"
+            className="px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all"
+          >
+            Reference Table
+          </a>
+          <a
+            href="#framing-guide"
+            className="px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all"
+          >
+            Guide
+          </a>
         </div>
 
-        {/* RIGHT PANE: Variable Controls & Primary Results (5 Cols on Desktop / 42%) */}
-        <div className="lg:col-span-5 space-y-4">
-          {/* 1. Essential Geometry Inputs */}
-          <div className="instrument-dock p-5 shadow-xl space-y-4 text-white">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2">
-                <div className="h-7 w-7 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-mono font-bold text-xs">
-                  01
-                </div>
-                <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                  Roof Dimensions &amp; Pitch
-                </h2>
-              </div>
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-full text-xs font-semibold self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => setUnitSystem("imperial")}
+            className={`px-3 py-1 rounded-full text-[11px] transition-all cursor-pointer ${
+              unitSystem === "imperial"
+                ? "bg-slate-900 text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            Imperial
+          </button>
+          <button
+            type="button"
+            onClick={() => setUnitSystem("metric")}
+            className={`px-3 py-1 rounded-full text-[11px] transition-all cursor-pointer ${
+              unitSystem === "metric"
+                ? "bg-slate-900 text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            Metric
+          </button>
+        </div>
+      </div>
+
+      {/* 2-COLUMN WORKBENCH: Left = Inputs, Right = Live Diagram & Results */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* LEFT COLUMN: Inputs & Controls (5 Cols on Desktop) */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h2 className="text-base font-bold text-slate-900">
+                Roof Inputs
+              </h2>
               <button
                 type="button"
                 onClick={resetAll}
-                className="text-xs text-slate-400 hover:text-slate-200 font-mono inline-flex items-center gap-1 cursor-pointer"
+                className="text-xs text-slate-500 hover:text-slate-800 inline-flex items-center gap-1 cursor-pointer font-medium"
               >
                 <RotateCcw className="h-3 w-3" />
                 Reset
               </button>
             </div>
 
+            {error && (
+              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2">
+                <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
+                <span>{error}</span>
+              </div>
+            )}
+
             {/* Quick Pitch Presets */}
-            <div className="space-y-1">
-              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+            <div className="space-y-1.5">
+              <span className="text-xs font-semibold text-slate-500 block">
                 Standard Pitch Presets:
               </span>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1.5">
                 {STANDARD_PITCHES.slice(1, 6).map((p) => (
                   <button
                     key={p.pitchIn12}
                     type="button"
                     onClick={() => setPitchIn12(p.pitchIn12)}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono border transition-all cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                       pitchIn12 === p.pitchIn12
-                        ? "bg-amber-500 text-slate-950 font-bold border-amber-500"
-                        : "bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-700"
+                        ? "bg-amber-400 text-slate-950 font-bold border-amber-400 shadow-2xs"
+                        : "bg-slate-50 text-slate-700 hover:bg-slate-100 border-slate-200"
                     }`}
                   >
                     {p.pitchIn12}:12 ({p.angleDegrees}°)
@@ -250,110 +308,142 @@ export function RoofCalculatorForm() {
               </div>
             </div>
 
-            {/* Core Dimension Inputs Grid */}
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              {/* Building Span */}
+            {/* Inputs Grid */}
+            <div className="space-y-4 text-xs">
+              {/* Horizontal Run */}
               <div>
-                <label htmlFor="roof-span" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                  Building Span / Width:
+                <label htmlFor="roof-run" className="text-xs font-semibold text-slate-700 block mb-1">
+                  Horizontal Run (Half Span):
                 </label>
-                <div className="flex items-center rounded-lg border border-slate-700 bg-slate-950 px-3 h-10 focus-within:border-amber-500">
+                <div className="flex items-center rounded-xl border border-slate-200 bg-white px-3 h-11 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20">
                   <input
-                    id="roof-span"
+                    id="roof-run"
                     type="number"
-                    min="2"
-                    step="0.5"
-                    value={buildingWidthFt || ""}
-                    onChange={(e) => setBuildingWidthFt(parseFloat(e.target.value) || 0)}
-                    aria-label="Building Span Width in Feet"
-                    className="w-full bg-transparent text-sm font-mono font-bold text-white outline-none"
-                    placeholder="24"
+                    min="12"
+                    step="1"
+                    value={horizontalRunInches}
+                    onChange={(e) => {
+                      const inches = parseFloat(e.target.value) || 0;
+                      setBuildingWidthFt((inches * 2) / 12);
+                    }}
+                    aria-label="Horizontal Run in inches"
+                    className="w-full bg-transparent text-sm font-bold text-slate-900 outline-none"
+                    placeholder="144"
                   />
-                  <span className="text-xs font-mono font-bold text-slate-400 ml-1">ft</span>
+                  <span className="text-xs font-bold text-slate-500 ml-1">in</span>
                 </div>
-                <span className="text-[10px] text-slate-500 font-mono block mt-0.5">
-                  Run: {(buildingWidthFt / 2).toFixed(1)} ft
+                <span className="text-[11px] text-slate-400 block mt-1">
+                  Building Span: {buildingWidthFt} ft ({(buildingWidthFt / 2).toFixed(1)} ft run)
                 </span>
               </div>
 
-              {/* Building Length */}
+              {/* Vertical Rise */}
               <div>
-                <label htmlFor="roof-length" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                  Building Length:
+                <label htmlFor="roof-rise" className="text-xs font-semibold text-slate-700 block mb-1">
+                  Vertical Rise:
                 </label>
-                <div className="flex items-center rounded-lg border border-slate-700 bg-slate-950 px-3 h-10 focus-within:border-amber-500">
+                <div className="flex items-center rounded-xl border border-slate-200 bg-white px-3 h-11 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20">
                   <input
-                    id="roof-length"
+                    id="roof-rise"
                     type="number"
-                    min="2"
-                    step="0.5"
-                    value={buildingLengthFt || ""}
-                    onChange={(e) => setBuildingLengthFt(parseFloat(e.target.value) || 0)}
-                    aria-label="Building Length in Feet"
-                    className="w-full bg-transparent text-sm font-mono font-bold text-white outline-none"
-                    placeholder="36"
+                    min="1"
+                    step="1"
+                    value={verticalRiseInches}
+                    onChange={(e) => {
+                      const riseIn = parseFloat(e.target.value) || 0;
+                      if (horizontalRunInches > 0) {
+                        const calculatedPitch = (riseIn / horizontalRunInches) * 12;
+                        setPitchIn12(Math.round(calculatedPitch * 10) / 10);
+                      }
+                    }}
+                    aria-label="Vertical Rise in inches"
+                    className="w-full bg-transparent text-sm font-bold text-slate-900 outline-none"
+                    placeholder="72"
                   />
-                  <span className="text-xs font-mono font-bold text-slate-400 ml-1">ft</span>
+                  <span className="text-xs font-bold text-slate-500 ml-1">in</span>
                 </div>
-                <span className="text-[10px] text-slate-500 font-mono block mt-0.5">
-                  Ridge: {buildingLengthFt} ft
+                <span className="text-[11px] text-slate-400 block mt-1">
+                  Pitch Ratio: {pitchIn12}:12 ({result?.geometry.pitchAngleDegrees ?? 26.6}°)
                 </span>
               </div>
 
-              {/* Roof Pitch Rise */}
+              {/* Rafter Overhang */}
               <div>
-                <label htmlFor="roof-pitch" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                  Roof Pitch (Rise / 12″):
+                <label htmlFor="roof-overhang" className="text-xs font-semibold text-slate-700 block mb-1">
+                  Rafter Overhang (Eave):
                 </label>
-                <div className="flex items-center rounded-lg border border-slate-700 bg-slate-950 px-3 h-10 focus-within:border-amber-500">
+                <div className="flex items-center rounded-xl border border-slate-200 bg-white px-3 h-11 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20">
                   <input
-                    id="roof-pitch"
+                    id="roof-overhang"
                     type="number"
-                    min="0.5"
-                    max="36"
-                    step="0.5"
-                    value={pitchIn12 || ""}
-                    onChange={(e) => setPitchIn12(parseFloat(e.target.value) || 6)}
-                    aria-label="Roof Pitch Rise in 12 inches"
-                    className="w-full bg-transparent text-sm font-mono font-bold text-amber-400 outline-none"
-                    placeholder="6"
+                    min="0"
+                    step="1"
+                    value={eaveOverhangInches}
+                    onChange={(e) => setEaveOverhangInches(parseFloat(e.target.value) || 0)}
+                    aria-label="Rafter Overhang in inches"
+                    className="w-full bg-transparent text-sm font-bold text-slate-900 outline-none"
+                    placeholder="12"
                   />
-                  <span className="text-xs font-mono font-bold text-slate-400 ml-1">: 12</span>
+                  <span className="text-xs font-bold text-slate-500 ml-1">in</span>
                 </div>
               </div>
 
-              {/* Rafter Stock Lumber */}
+              {/* Calculate For Dropdown */}
               <div>
-                <label htmlFor="rafter-lumber" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                  Rafter Lumber Stock:
+                <label htmlFor="calculate-for" className="text-xs font-semibold text-slate-700 block mb-1">
+                  Calculate For:
                 </label>
                 <select
-                  id="rafter-lumber"
+                  id="calculate-for"
                   value={rafterDepthNominal}
                   onChange={(e) => setRafterDepthNominal(e.target.value as RafterNominalDepth)}
-                  aria-label="Rafter Lumber Stock Size"
-                  className="w-full h-10 rounded-lg border border-slate-700 bg-slate-950 px-2.5 text-xs font-mono font-bold text-white focus:outline-none"
+                  className="w-full h-11 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
                 >
-                  {RAFTER_LUMBER_SIZES.map((r) => (
-                    <option key={r.nominal} value={r.nominal}>
-                      {r.nominal} ({r.actualDepthInches}″ depth)
-                    </option>
-                  ))}
+                  <option value="2x4">Common Rafter Length (2x4 Lumber)</option>
+                  <option value="2x6">Common Rafter Length (2x6 Lumber)</option>
+                  <option value="2x8">Common Rafter Length (2x8 Lumber)</option>
+                  <option value="2x10">Common Rafter Length (2x10 Lumber)</option>
+                  <option value="2x12">Common Rafter Length (2x12 Lumber)</option>
                 </select>
+              </div>
+
+              {/* Action Buttons: Reset + Solid Amber Calculate Button */}
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={resetAll}
+                  className="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+                >
+                  Reset
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Trigger calculate action / scroll to results if on mobile
+                    const el = document.getElementById("diagram-results-dock");
+                    if (el && window.innerWidth < 1024) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold py-2.5 px-5 rounded-xl text-xs sm:text-sm shadow-xs transition-all active:scale-[0.98] cursor-pointer"
+                >
+                  <span>Calculate</span>
+                  <ArrowRight className="h-4 w-4" />
+                </button>
               </div>
             </div>
           </div>
 
-          {/* 2. Progressive Disclosure: Overhangs, Birdsmouth & Waste */}
-          <div className="instrument-dock overflow-hidden shadow-xl text-white">
+          {/* Progressive Disclosure: Advanced Settings */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs">
             <button
               type="button"
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="w-full px-5 py-3 text-xs font-bold text-slate-300 hover:text-white flex items-center justify-between bg-slate-900/60 hover:bg-slate-900 transition-colors cursor-pointer"
+              className="w-full px-5 py-3 text-xs font-bold text-slate-700 hover:text-slate-900 flex items-center justify-between bg-slate-50/70 hover:bg-slate-100 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <Sliders className="h-3.5 w-3.5 text-amber-400" />
-                <span>Overhangs, Seat Cut Bearing &amp; Waste Factor ({wastePercent}%)</span>
+                <Sliders className="h-3.5 w-3.5 text-amber-600" />
+                <span>Advanced Overhangs, Bearing &amp; Waste ({wastePercent}%)</span>
               </div>
               {showAdvanced ? (
                 <ChevronUp className="h-4 w-4 text-slate-400" />
@@ -363,31 +453,13 @@ export function RoofCalculatorForm() {
             </button>
 
             {showAdvanced && (
-              <div className="p-4 space-y-4 border-t border-slate-800 text-xs bg-slate-950/80">
+              <div className="p-4 space-y-4 border-t border-slate-100 text-xs bg-white">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="eave-overhang" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                      Eave Overhang:
-                    </label>
-                    <div className="flex items-center rounded-lg border border-slate-700 bg-slate-900 px-2.5 h-9">
-                      <input
-                        id="eave-overhang"
-                        type="number"
-                        min="0"
-                        step="1"
-                        value={eaveOverhangInches}
-                        onChange={(e) => setEaveOverhangInches(parseFloat(e.target.value) || 0)}
-                        className="w-full bg-transparent font-mono text-white outline-none"
-                      />
-                      <span className="text-[10px] font-mono text-slate-400">in</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="gable-overhang" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                    <label htmlFor="gable-overhang" className="text-[11px] font-semibold text-slate-600 block mb-1">
                       Gable Rake Overhang:
                     </label>
-                    <div className="flex items-center rounded-lg border border-slate-700 bg-slate-900 px-2.5 h-9">
+                    <div className="flex items-center rounded-xl border border-slate-200 px-2.5 h-9">
                       <input
                         id="gable-overhang"
                         type="number"
@@ -395,17 +467,17 @@ export function RoofCalculatorForm() {
                         step="1"
                         value={gableOverhangInches}
                         onChange={(e) => setGableOverhangInches(parseFloat(e.target.value) || 0)}
-                        className="w-full bg-transparent font-mono text-white outline-none"
+                        className="w-full bg-transparent font-bold text-slate-900 outline-none"
                       />
-                      <span className="text-[10px] font-mono text-slate-400">in</span>
+                      <span className="text-[11px] font-bold text-slate-400">in</span>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="ridge-thick" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                    <label htmlFor="ridge-thick" className="text-[11px] font-semibold text-slate-600 block mb-1">
                       Ridge Board Thickness:
                     </label>
-                    <div className="flex items-center rounded-lg border border-slate-700 bg-slate-900 px-2.5 h-9">
+                    <div className="flex items-center rounded-xl border border-slate-200 px-2.5 h-9">
                       <input
                         id="ridge-thick"
                         type="number"
@@ -413,34 +485,16 @@ export function RoofCalculatorForm() {
                         step="0.25"
                         value={ridgeBoardThicknessInches}
                         onChange={(e) => setRidgeBoardThicknessInches(parseFloat(e.target.value) || 0)}
-                        className="w-full bg-transparent font-mono text-white outline-none"
+                        className="w-full bg-transparent font-bold text-slate-900 outline-none"
                       />
-                      <span className="text-[10px] font-mono text-slate-400">in</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="seat-bearing" className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                      Seat Cut Bearing:
-                    </label>
-                    <div className="flex items-center rounded-lg border border-slate-700 bg-slate-900 px-2.5 h-9">
-                      <input
-                        id="seat-bearing"
-                        type="number"
-                        min="1"
-                        step="0.5"
-                        value={seatCutBearingInches}
-                        onChange={(e) => setSeatCutBearingInches(parseFloat(e.target.value) || 3.5)}
-                        className="w-full bg-transparent font-mono text-white outline-none"
-                      />
-                      <span className="text-[10px] font-mono text-slate-400">in</span>
+                      <span className="text-[11px] font-bold text-slate-400">in</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Waste Presets */}
-                <div className="space-y-1.5 pt-2 border-t border-slate-800">
-                  <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                {/* Waste Factor Presets */}
+                <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                  <span className="text-[11px] font-semibold text-slate-600 block">
                     Roofing Waste Allowance:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
@@ -449,205 +503,189 @@ export function RoofCalculatorForm() {
                         key={preset.value}
                         type="button"
                         onClick={() => handleWastePresetChange(preset.value)}
-                        className={`px-2.5 py-1 rounded text-[11px] font-bold border transition-colors cursor-pointer ${
+                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
                           !isCustomWaste && wastePercent === preset.value
-                            ? "bg-amber-500 text-slate-950 border-amber-500"
-                            : "bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-700"
+                            ? "bg-amber-400 text-slate-950 border-amber-400 font-bold"
+                            : "bg-slate-50 text-slate-700 hover:bg-slate-100 border-slate-200"
                         }`}
                       >
                         {preset.label}
                       </button>
                     ))}
-                    <button
-                      type="button"
-                      onClick={() => setIsCustomWaste(true)}
-                      className={`px-2.5 py-1 rounded text-[11px] font-bold border transition-colors cursor-pointer ${
-                        isCustomWaste
-                          ? "bg-amber-500 text-slate-950 border-amber-500"
-                          : "bg-slate-900 text-slate-400 hover:bg-slate-800 border-slate-700"
-                      }`}
-                    >
-                      Custom %
-                    </button>
-                    {isCustomWaste && (
-                      <div className="flex items-center gap-1 w-20">
-                        <input
-                          type="number"
-                          min="0"
-                          max="100"
-                          value={customWasteInput}
-                          onChange={handleCustomWasteChange}
-                          aria-label="Custom Waste Percent"
-                          className="h-7 w-full rounded border border-slate-700 bg-slate-900 px-1 text-xs text-center font-mono font-bold text-white outline-none"
-                        />
-                        <span className="text-[10px] font-mono text-slate-400">%</span>
-                      </div>
-                    )}
+                  </div>
+                  <div className="flex items-center gap-2 pt-2">
+                    <input
+                      type="number"
+                      min="0"
+                      max="50"
+                      value={customWasteInput}
+                      onChange={(e) => {
+                        setIsCustomWaste(true);
+                        handleCustomWasteChange(e);
+                      }}
+                      aria-label="Custom waste percentage"
+                      className="w-16 h-8 rounded-lg border border-slate-200 px-2 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                      placeholder="10"
+                    />
+                    <span className="text-xs text-slate-500">% custom waste</span>
                   </div>
                 </div>
               </div>
             )}
           </div>
+        </div>
 
-          {/* Error Alert */}
-          {error && (
-            <div className="p-4 rounded-xl bg-red-950/60 border border-red-800/80 text-red-200 text-xs">
-              <span className="font-bold block">Input Invalid:</span>
-              {error}
-            </div>
-          )}
+        {/* RIGHT COLUMN: Live Diagram & Results (7 Cols on Desktop) */}
+        <div id="diagram-results-dock" className="lg:col-span-7 space-y-6">
+          {/* 1. Live 2D CAD Diagram */}
+          {result && <RoofDiagram geometry={result.geometry} />}
 
-          {/* 3. Primary Calculated Results & Takeoff Schedule */}
+          {/* 2. Key 3 Metrics Cards in a Row */}
           {result && (
-            <div className="rounded-2xl border-2 border-amber-500/40 bg-slate-950 shadow-2xl overflow-hidden text-white space-y-0">
-              {/* Header */}
-              <div className="bg-slate-900 px-5 py-3 border-b border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Compass className="h-4 w-4 text-amber-400" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                    Rafter Geometry &amp; Layout Schedule (Assumed Geometry)
-                  </span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Metric 1: Roof Pitch */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 p-4 text-center shadow-xs">
+                <div className="text-xs font-semibold text-slate-500 mb-1">
+                  Roof Pitch
                 </div>
-                <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
-                  {result.geometry.pitchIn12}:12 Pitch ({result.geometry.pitchAngleDegrees}°)
-                </span>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">
+                  {result.geometry.pitchIn12} / 12
+                </div>
+                <div className="text-xs text-slate-500 font-mono mt-0.5">
+                  ({result.geometry.pitchAngleDegrees}°)
+                </div>
               </div>
 
-              {/* Primary Calculated Answer */}
-              <div className="p-5 space-y-4">
-                <div>
-                  <span className="text-[10px] uppercase font-mono font-bold text-amber-400 block tracking-wider">
-                    Common Rafter Line Length (Theoretical Ridge Center to Wall Line)
-                  </span>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-4xl sm:text-5xl font-black text-amber-400 font-mono tracking-tight">
-                      {result.geometry.rafterLineLengthFormatted}
-                    </span>
-                    <span className="text-sm font-mono text-slate-300">
-                      ({result.geometry.rafterLineLengthFt} ft)
-                    </span>
-                  </div>
-                  <span className="text-[11px] text-slate-400 font-mono block mt-0.5">
-                    Estimated Rafter Cut Length (under stated ridge &amp; overhang assumptions):{" "}
-                    <strong className="text-white">{result.geometry.totalCutRafterLengthFormatted}</strong> ({result.geometry.totalCutRafterLengthFt} ft)
-                  </span>
+              {/* Metric 2: Rafter Length */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 p-4 text-center shadow-xs">
+                <div className="text-xs font-semibold text-slate-500 mb-1">
+                  Rafter Length
                 </div>
-
-                {/* Cut Geometry Schedule */}
-                <div className="space-y-2 pt-2 border-t border-slate-800 text-xs font-mono">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
-                    Rafter Cutting Angles &amp; Birdsmouth
-                  </span>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Plumb Cut (Top Ridge):</span>
-                    <span className="font-bold text-cyan-400">{result.geometry.cutAngles.plumbCutAngleDegrees}° ({result.geometry.cutAngles.plumbCutPitchString})</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Seat Cut (Birdsmouth):</span>
-                    <span className="font-bold text-emerald-400">{result.geometry.cutAngles.seatCutAngleDegrees}° ({result.geometry.cutAngles.seatCutPitchString})</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Seat Bearing &bull; HAP Stand:</span>
-                    <span className="font-bold text-white">{result.geometry.birdsmouth.seatCutLengthInches}″ bearing &bull; {result.geometry.birdsmouth.heightAbovePlateInches}″ HAP</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Total Vertical Rise:</span>
-                    <span className="font-bold text-white">{result.geometry.riseFt} ft ({result.geometry.riseInches}″)</span>
-                  </div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">
+                  {result.geometry.rafterLineLengthFormatted}
                 </div>
-
-                {/* Roofing Material Takeoff Breakdown */}
-                <div className="space-y-2 pt-2 border-t border-slate-800 text-xs font-mono">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                      Roofing Squares &amp; Materials
-                    </span>
-                    <span className="text-[10px] font-bold text-amber-400">
-                      +{result.materials.wastePercent}% Waste
-                    </span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Roofing Squares:</span>
-                    <span className="font-bold text-amber-400">{result.materials.adjustedSquares} SQ ({result.materials.adjustedAreaSqFt} sq ft)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Shingle Bundles (3/sq):</span>
-                    <span className="font-bold text-white">{result.materials.shingleBundlesCount} bundles</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Synthetic Underlayment:</span>
-                    <span className="font-bold text-white">{result.materials.underlaymentRollsSynthetic} rolls (4-sq rolls)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Drip Edge Perimeter:</span>
-                    <span className="font-bold text-white">{result.materials.dripEdgePieces10Ft} pcs ({result.materials.dripEdgeLinearFt} ft)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
-                    <span className="text-slate-300">Ridge Cap Shingles:</span>
-                    <span className="font-bold text-white">{result.materials.ridgeCapBundlesCount} bundles ({result.materials.ridgeLengthFt} ft)</span>
-                  </div>
+                <div className="text-xs text-slate-500 font-mono mt-0.5">
+                  ({result.geometry.rafterLineLengthFt} ft)
                 </div>
+              </div>
 
-                {/* Warnings / IRC Notes */}
-                {result.warnings.length > 0 && (
-                  <div className="space-y-1.5 pt-1">
-                    {result.warnings.map((w, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-1.5 bg-amber-950/50 border border-amber-800/60 p-2.5 rounded-lg text-[11px] text-amber-200 leading-snug"
-                      >
-                        <AlertTriangle className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
-                        <span>{w.message}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Actions */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 no-print">
-                  <button
-                    type="button"
-                    onClick={copySummaryToClipboard}
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all cursor-pointer active:scale-[0.98]"
-                  >
-                    {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                    <span>{copied ? "Copied Takeoff!" : "Copy Takeoff"}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={saveConfiguration}
-                    className={`inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer active:scale-[0.98] border ${
-                      saved
-                        ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/50 font-bold"
-                        : "bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700"
-                    }`}
-                  >
-                    {saved ? (
-                      <>
-                        <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span>Saved on this device ✓</span>
-                      </>
-                    ) : (
-                      <>
-                        <Save className="h-3.5 w-3.5 text-amber-400" />
-                        <span>Save on This Device</span>
-                      </>
-                    )}
-                  </button>
-
-                  <PrintButton
-                    toolSlug="roof-pitch-calculator"
-                    category="construction"
-                    label="Print Worksheet"
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer active:scale-[0.98]"
-                  />
+              {/* Metric 3: Total Run */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 p-4 text-center shadow-xs">
+                <div className="text-xs font-semibold text-slate-500 mb-1">
+                  Total Run
+                </div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">
+                  {Math.floor((horizontalRunInches + eaveOverhangInches) / 12)}′ {(horizontalRunInches + eaveOverhangInches) % 12}″
+                </div>
+                <div className="text-xs text-slate-500 font-mono mt-0.5">
+                  ({horizontalRunInches + eaveOverhangInches} in)
                 </div>
               </div>
             </div>
           )}
+
+          {/* 3. Blue/Slate Formula Callout Banner */}
+          <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200/70 flex items-start gap-3 text-xs sm:text-sm text-slate-800">
+            <Info className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <span className="font-bold text-blue-950 block">
+                Formula: Rafter Length = √(Run² + Rise²)
+              </span>
+              <p className="text-slate-600 text-xs">
+                Example: √({horizontalRunInches}² + {verticalRiseInches}²) = {result ? Math.round(result.geometry.rafterLineLengthInches) : 161} in = {result ? result.geometry.rafterLineLengthFormatted : '13\' 5"'}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* FULL BILL OF MATERIALS & TAKEOFF SCHEDULE (Clean White Surface) */}
+      {result && (
+        <div className="mt-8 bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
+          <div className="bg-slate-50 px-5 sm:px-6 py-4 border-b border-slate-200 flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-2">
+              <Compass className="h-4 w-4 text-amber-600" />
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
+                Comprehensive Takeoff Schedule &amp; Materials
+              </h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={copySummaryToClipboard}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+              >
+                {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                <span>{copied ? "Copied!" : "Copy Takeoff"}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={saveConfiguration}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+              >
+                {saved ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Save className="h-3.5 w-3.5" />}
+                <span>{saved ? "Saved ✓" : "Save"}</span>
+              </button>
+
+              <PrintButton
+                toolSlug="roof-pitch-calculator"
+                category="construction"
+                label="Print Worksheet"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+              />
+            </div>
+          </div>
+
+          <div className="p-5 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+            {/* Column 1: Material Quantities */}
+            <div className="space-y-3">
+              <h4 className="font-bold text-slate-900 border-b border-slate-100 pb-2">
+                Roofing Squares &amp; Coverings
+              </h4>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Total Sloped Area:</span>
+                <span className="font-bold text-slate-900">{result.materials.adjustedAreaSqFt} sq ft</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Roofing Squares (+{result.materials.wastePercent}% waste):</span>
+                <span className="font-bold text-amber-600">{result.materials.adjustedSquares} SQ</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Shingle Bundles (3 per SQ):</span>
+                <span className="font-bold text-slate-900">{result.materials.shingleBundlesCount} bundles</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Synthetic Underlayment (4 SQ rolls):</span>
+                <span className="font-bold text-slate-900">{result.materials.underlaymentRollsSynthetic} rolls</span>
+              </div>
+            </div>
+
+            {/* Column 2: Framing & Perimeter */}
+            <div className="space-y-3">
+              <h4 className="font-bold text-slate-900 border-b border-slate-100 pb-2">
+                Framing &amp; Perimeter Trim
+              </h4>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Total Cut Rafter Length:</span>
+                <span className="font-bold text-slate-900">{result.geometry.totalCutRafterLengthFormatted}</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Plumb Cut / Seat Cut:</span>
+                <span className="font-bold text-slate-900">{result.geometry.cutAngles.plumbCutAngleDegrees}° / {result.geometry.cutAngles.seatCutAngleDegrees}°</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Ridge Board Length:</span>
+                <span className="font-bold text-slate-900">{result.materials.ridgeLengthFt} ft</span>
+              </div>
+              <div className="flex justify-between py-1.5 border-b border-slate-50 font-mono">
+                <span className="text-slate-600">Drip Edge Perimeter (10 ft pcs):</span>
+                <span className="font-bold text-slate-900">{result.materials.dripEdgePieces10Ft} pcs ({result.materials.dripEdgeLinearFt} ft)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/config/site";
 import { Container } from "../ui/container";
 import { QuickSearchModal } from "./quick-search-modal";
 import { BrandLogo } from "@/components/brand/brand-logo";
@@ -17,7 +16,7 @@ import {
   Wind,
   Droplets,
   ChevronDown,
-  BookOpen,
+  ArrowRight,
 } from "lucide-react";
 
 export function Header() {
@@ -68,6 +67,13 @@ export function Header() {
     return null;
   }
 
+  const primaryNavItems = [
+    { title: "Tools Directory", href: "/tools" },
+    { title: "NEC Solutions", href: "/solutions" },
+    { title: "Guides", href: "/guides" },
+    { title: "About", href: "/about" },
+  ];
+
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 transition-shadow">
@@ -78,38 +84,16 @@ export function Header() {
               href="/"
               className="inline-flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-xl p-1 shrink-0 active:scale-[0.98] transition-transform"
             >
-              <BrandLogo variant="brand" size="md" showSubtitle={true} />
+              <BrandLogo variant="brand" size="md" showSubtitle={false} />
             </Link>
 
-            {/* Center Global Search Trigger */}
-            <div className="hidden md:flex items-center flex-1 max-w-md mx-4">
-              <button
-                type="button"
-                onClick={() => setIsSearchOpen(true)}
-                className="w-full flex items-center justify-between px-3.5 py-2 text-sm text-slate-500 bg-slate-100/80 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/80 hover:border-slate-300 rounded-xl transition-all shadow-2xs group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 active:scale-[0.99]"
-              >
-                <div className="flex items-center gap-2">
-                  <Search className="h-4 w-4 text-slate-400 group-hover:text-amber-600 transition-colors" />
-                  <span className="font-normal text-slate-500 group-hover:text-slate-700">
-                    Search tools, calculations, and guides...
-                  </span>
-                </div>
-                <kbd className="inline-flex items-center gap-0.5 text-[11px] font-mono font-bold bg-white text-slate-600 px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
-                  <span className="text-xs">⌘</span>K
-                </kbd>
-              </button>
-            </div>
-
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation Links */}
             <nav
               aria-label="Main Navigation"
-              className="hidden lg:flex items-center gap-1"
+              className="hidden lg:flex items-center gap-1 xl:gap-2"
             >
               {/* Category Dropdown */}
-              <div
-                ref={categoryMenuRef}
-                className="relative"
-              >
+              <div ref={categoryMenuRef} className="relative">
                 <button
                   type="button"
                   onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
@@ -133,7 +117,7 @@ export function Header() {
                   <div className="absolute top-full left-0 w-72 pt-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                     <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 space-y-1">
                       <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100">
-                        Select Specialized Suite
+                        Specialized Trade Suites
                       </div>
                       <Link
                         href="/categories/construction"
@@ -146,7 +130,7 @@ export function Header() {
                           </div>
                           <div>
                             <div className="font-bold text-slate-900 group-hover:text-amber-950">Construction &amp; Framing</div>
-                            <div className="text-[10px] text-slate-400 font-normal">Concrete, Framing, Stairs, Roof, Deck</div>
+                            <div className="text-[10px] text-slate-400 font-normal">Concrete, Stairs, Roofs, Studs</div>
                           </div>
                         </div>
                         <span className="text-[10px] font-mono font-bold text-amber-700 bg-amber-100/60 px-1.5 py-0.5 rounded">
@@ -157,18 +141,18 @@ export function Header() {
                       <Link
                         href="/categories/electrical"
                         onClick={() => setIsCategoryMenuOpen(false)}
-                        className="flex items-center justify-between p-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-900 group transition-all active:scale-[0.99]"
+                        className="flex items-center justify-between p-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-900 group transition-all active:scale-[0.99]"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="h-7 w-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                          <div className="h-7 w-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
                             <Zap className="h-4 w-4" />
                           </div>
                           <div>
-                            <div className="font-bold text-slate-900 group-hover:text-amber-950">Electrical &amp; Conduit</div>
-                            <div className="text-[10px] text-slate-400 font-normal">Voltage Drop, Conduit, Box Fill</div>
+                            <div className="font-bold text-slate-900 group-hover:text-blue-950">Electrical &amp; Conduit</div>
+                            <div className="text-[10px] text-slate-400 font-normal">NEC Conduit, Drop, Box, Load</div>
                           </div>
                         </div>
-                        <span className="text-[10px] font-mono font-bold text-amber-700 bg-amber-100/60 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-mono font-bold text-blue-700 bg-blue-100/60 px-1.5 py-0.5 rounded">
                           4
                         </span>
                       </Link>
@@ -184,7 +168,7 @@ export function Header() {
                           </div>
                           <div>
                             <div className="font-bold text-slate-900 group-hover:text-cyan-950">Plumbing &amp; Piping</div>
-                            <div className="text-[10px] text-slate-400 font-normal">DFU Drainage, WSFU Potable Supply</div>
+                            <div className="text-[10px] text-slate-400 font-normal">DFU, WSFU, Drainage &amp; Sizing</div>
                           </div>
                         </div>
                         <span className="text-[10px] font-mono font-bold text-cyan-700 bg-cyan-100/60 px-1.5 py-0.5 rounded">
@@ -195,18 +179,18 @@ export function Header() {
                       <Link
                         href="/categories/hvac"
                         onClick={() => setIsCategoryMenuOpen(false)}
-                        className="flex items-center justify-between p-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-900 group transition-all active:scale-[0.99]"
+                        className="flex items-center justify-between p-2 rounded-xl text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 group transition-all active:scale-[0.99]"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="h-7 w-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                          <div className="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                             <Wind className="h-4 w-4" />
                           </div>
                           <div>
-                            <div className="font-bold text-slate-900 group-hover:text-amber-950">HVAC &amp; Airflow</div>
+                            <div className="font-bold text-slate-900 group-hover:text-emerald-950">HVAC &amp; Airflow</div>
                             <div className="text-[10px] text-slate-400 font-normal">BTU Loads, Duct Sizing &amp; CFM</div>
                           </div>
                         </div>
-                        <span className="text-[10px] font-mono font-bold text-amber-700 bg-amber-100/60 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/60 px-1.5 py-0.5 rounded">
                           2
                         </span>
                       </Link>
@@ -221,7 +205,7 @@ export function Header() {
                             <Layers className="h-4 w-4" />
                           </div>
                           <div>
-                            <div className="font-bold text-slate-900 group-hover:text-amber-950">Materials &amp; Earthwork</div>
+                            <div className="font-bold text-slate-900 group-hover:text-amber-950">Materials &amp; Takeoff</div>
                             <div className="text-[10px] text-slate-400 font-normal">Drywall Takeoff, Aggregate Tonnage</div>
                           </div>
                         </div>
@@ -234,16 +218,41 @@ export function Header() {
                 )}
               </div>
 
-              {siteConfig.navItems.map((item) => (
+              {primaryNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-semibold text-slate-700 hover:text-slate-950 px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 active:scale-[0.98]"
+                  className={`text-sm font-semibold px-3 py-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 active:scale-[0.98] ${
+                    pathname === item.href
+                      ? "text-slate-950 font-bold bg-slate-100/80"
+                      : "text-slate-700 hover:text-slate-950 hover:bg-slate-100"
+                  }`}
                 >
                   {item.title}
                 </Link>
               ))}
             </nav>
+
+            {/* Desktop Right Action Bar: Search Icon + Browse Tools Button */}
+            <div className="hidden md:flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                aria-label="Search tools and guides"
+                title="Search (⌘K)"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+
+              <Link
+                href="/tools"
+                className="inline-flex items-center gap-1.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-semibold px-4 py-2 rounded-xl text-sm transition-all shadow-xs hover:shadow active:scale-[0.98]"
+              >
+                <span>Browse Tools</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
             {/* Mobile Controls */}
             <div className="flex items-center gap-1.5 md:hidden">
@@ -284,102 +293,89 @@ export function Header() {
             >
               <div className="flex items-center gap-2">
                 <Search className="h-4 w-4 text-slate-400" />
-                <span>Search tools, calculations, and guides...</span>
+                <span>Search calculators &amp; guides...</span>
               </div>
-              <span className="text-[10px] font-mono font-bold bg-white px-2 py-0.5 rounded border border-slate-200">
+              <kbd className="text-[10px] font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">
                 ⌘K
-              </span>
+              </kbd>
             </button>
 
             <div className="space-y-1">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1">
                 Trade Suites
               </div>
-              <Link
-                href="/categories/construction"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                <HardHat className="h-4 w-4 text-amber-500" />
-                <span>Construction &amp; Framing (5 tools)</span>
-              </Link>
-              <Link
-                href="/categories/electrical"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                <Zap className="h-4 w-4 text-amber-500" />
-                <span>Electrical &amp; Conduit (4 tools)</span>
-              </Link>
-              <Link
-                href="/categories/plumbing"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                <Droplets className="h-4 w-4 text-cyan-500" />
-                <span>Plumbing &amp; Piping (2 tools)</span>
-              </Link>
-              <Link
-                href="/categories/hvac"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                <Wind className="h-4 w-4 text-amber-500" />
-                <span>HVAC &amp; Airflow (2 tools)</span>
-              </Link>
-              <Link
-                href="/categories/materials"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                <Layers className="h-4 w-4 text-amber-500" />
-                <span>Materials &amp; Aggregate (2 tools)</span>
-              </Link>
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  href="/categories/construction"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-amber-50 text-xs font-semibold text-slate-800"
+                >
+                  <HardHat className="h-4 w-4 text-amber-600" />
+                  <span>Construction</span>
+                </Link>
+                <Link
+                  href="/categories/electrical"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-xs font-semibold text-slate-800"
+                >
+                  <Zap className="h-4 w-4 text-blue-600" />
+                  <span>Electrical</span>
+                </Link>
+                <Link
+                  href="/categories/plumbing"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-cyan-50 text-xs font-semibold text-slate-800"
+                >
+                  <Droplets className="h-4 w-4 text-cyan-600" />
+                  <span>Plumbing</span>
+                </Link>
+                <Link
+                  href="/categories/hvac"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-xs font-semibold text-slate-800"
+                >
+                  <Wind className="h-4 w-4 text-emerald-600" />
+                  <span>HVAC</span>
+                </Link>
+                <Link
+                  href="/categories/materials"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-amber-50 text-xs font-semibold text-slate-800 col-span-2"
+                >
+                  <Layers className="h-4 w-4 text-amber-600" />
+                  <span>Materials &amp; Aggregate</span>
+                </Link>
+              </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-100 space-y-1">
+            <div className="border-t border-slate-100 pt-3 space-y-1">
+              {primaryNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-950 hover:bg-slate-50 rounded-lg"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+
+            <div className="pt-2">
               <Link
                 href="/tools"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-bold text-slate-900 bg-amber-50 hover:bg-amber-100"
+                className="w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-semibold py-2.5 rounded-xl text-sm shadow-xs"
               >
-                Tools Directory (15 Calculators) →
-              </Link>
-              <Link
-                href="/solutions"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-amber-900 bg-amber-100/70 hover:bg-amber-100"
-              >
-                <BookOpen className="h-4 w-4 text-amber-700" />
-                <span>NEC Solutions (20 Worked Problems)</span>
-              </Link>
-              <Link
-                href="/guides/subpanel-feeder-sizing"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                Technical Guides
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100"
-              >
-                About &amp; Methodology
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100"
-              >
-                Contact &amp; Feedback
+                <span>Browse All 15 Tools</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
         )}
       </header>
 
-      {/* Global Search Modal */}
+      {/* Global Quick Search Modal */}
       <QuickSearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

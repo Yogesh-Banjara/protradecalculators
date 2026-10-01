@@ -29,7 +29,6 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
   const svgWidth = 600;
   const svgHeight = 320;
 
-  // Geometry math for responsive SVG slope
   // Constrain visual angle between 14° and 44° for optimal rendering within canvas
   const visualAngleRad = Math.max(0.24, Math.min(0.77, (pitchAngleDegrees * Math.PI) / 180));
   const plateX = 120;
@@ -56,32 +55,32 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
   const triHeight = Math.round(triBase * (pitchIn12 / 12));
 
   return (
-    <div className="instrument-canvas p-5 shadow-xl text-white space-y-4">
+    <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs text-slate-900 space-y-4">
       {/* Top Header & View Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+          <div className="h-8 w-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
             <Triangle className="h-4 w-4" />
           </div>
           <div>
-            <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-amber-400">
-              Roof Profile &amp; Rafter Geometry Layout
+            <h3 className="font-bold text-xs uppercase tracking-wider text-slate-900">
+              Roof Profile &amp; Rafter Layout
             </h3>
-            <p className="text-xs text-slate-400 font-mono">
+            <p className="text-xs text-slate-500">
               Pitch {pitchIn12}:12 &bull; {pitchAngleDegrees}° Angle &bull; {geometry.buildingSpanFt}′ Span ({runFt}′ Run)
             </p>
           </div>
         </div>
 
         {/* View Switcher */}
-        <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 text-xs font-mono">
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs">
           <button
             type="button"
             onClick={() => setViewMode("profile")}
-            className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all cursor-pointer ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               viewMode === "profile"
-                ? "bg-amber-500 text-slate-950 font-bold"
-                : "text-slate-400 hover:text-white"
+                ? "bg-slate-900 text-white shadow-2xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             Full Profile
@@ -89,10 +88,10 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
           <button
             type="button"
             onClick={() => setViewMode("birdsmouth")}
-            className={`px-2.5 py-1 rounded text-[11px] font-bold transition-all cursor-pointer ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               viewMode === "birdsmouth"
-                ? "bg-amber-500 text-slate-950 font-bold"
-                : "text-slate-400 hover:text-white"
+                ? "bg-slate-900 text-white shadow-2xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             Birdsmouth Detail
@@ -101,7 +100,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
       </div>
 
       {/* SVG Canvas */}
-      <div className="relative w-full aspect-[16/9] max-h-[340px] bg-slate-950/95 rounded-xl border border-slate-800 flex items-center justify-center p-2 overflow-hidden bg-blueprint-grid">
+      <div className="relative w-full aspect-[16/9] max-h-[340px] bg-slate-50/80 rounded-xl border border-slate-200/90 flex items-center justify-center p-2 overflow-hidden">
         {viewMode === "profile" ? (
           <svg
             viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -114,7 +113,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={20}
               x2={ridgeX}
               y2={plateY + 40}
-              stroke="#334155"
+              stroke="#94a3b8"
               strokeWidth="1.5"
               strokeDasharray="4 4"
             />
@@ -136,26 +135,26 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY}
               x2={ridgeX + 40}
               y2={plateY}
-              stroke="#334155"
+              stroke="#cbd5e1"
               strokeWidth="1"
               strokeDasharray="3 3"
             />
 
-            {/* Wall Top Plate Box */}
+            {/* Wall Top Plate Box (Natural Timber Tone) */}
             <rect
               x={plateX - 35}
               y={plateY}
               width={35}
               height={45}
-              fill="#1e293b"
-              stroke="#64748b"
+              fill="#e2b36c"
+              stroke="#a16207"
               strokeWidth="1.5"
               rx="2"
             />
             <text
               x={plateX - 17.5}
               y={plateY + 26}
-              fill="#94a3b8"
+              fill="#78350f"
               fontSize="9"
               fontFamily="monospace"
               fontWeight="bold"
@@ -170,15 +169,15 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y={ridgeY - perpDy - 10}
               width={12}
               height={perpDy + 40}
-              fill="#1e293b"
-              stroke="#64748b"
+              fill="#e2b36c"
+              stroke="#a16207"
               strokeWidth="1.5"
               rx="2"
             />
             <text
               x={ridgeX - 6}
               y={ridgeY - perpDy - 16}
-              fill="#94a3b8"
+              fill="#78350f"
               fontSize="9"
               fontFamily="monospace"
               fontWeight="bold"
@@ -187,9 +186,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               RIDGE
             </text>
 
-            {/* Common Rafter Polygon */}
-            {/* Bottom edge: Tail -> Plate Notch -> Ridge */}
-            {/* Top edge: Ridge top -> Tail top */}
+            {/* Common Rafter Polygon (Natural Pine Lumber Tone) */}
             <polygon
               points={`
                 ${tailX},${tailY} 
@@ -199,9 +196,8 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
                 ${ridgeX - 12},${ridgeY - perpDy} 
                 ${tailX - perpDx},${tailY - perpDy}
               `}
-              fill="#f59e0b"
-              fillOpacity="0.2"
-              stroke="#f59e0b"
+              fill="#fef3c7"
+              stroke="#d97706"
               strokeWidth="2.5"
               strokeLinejoin="round"
             />
@@ -220,21 +216,21 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={ridgeY - perpDy}
               x2={ridgeX - 12}
               y2={ridgeY}
-              stroke="#38bdf8"
+              stroke="#0284c7"
               strokeWidth="3"
             />
 
             {/* Slope Triangle */}
             <polygon
               points={`${triangleX},${triangleY} ${triangleX + triBase},${triangleY} ${triangleX + triBase},${triangleY - triHeight}`}
-              fill="#0f172a"
-              stroke="#f59e0b"
+              fill="#ffffff"
+              stroke="#d97706"
               strokeWidth="1.5"
             />
             <text
               x={triangleX + triBase / 2}
               y={triangleY + 11}
-              fill="#94a3b8"
+              fill="#475569"
               fontSize="9"
               fontFamily="monospace"
               fontWeight="bold"
@@ -245,7 +241,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
             <text
               x={triangleX + triBase + 6}
               y={triangleY - triHeight / 2 + 3}
-              fill="#f59e0b"
+              fill="#d97706"
               fontSize="9"
               fontFamily="monospace"
               fontWeight="bold"
@@ -261,14 +257,14 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
                 y1={plateY}
                 x2={ridgeX}
                 y2={ridgeY}
-                stroke="#fbbf24"
+                stroke="#b45309"
                 strokeWidth="1.5"
                 strokeDasharray="4 2"
               />
               <text
                 x={(plateX + ridgeX) / 2}
                 y={(plateY + ridgeY) / 2 - 8}
-                fill="#fbbf24"
+                fill="#92400e"
                 fontSize="11"
                 fontFamily="monospace"
                 fontWeight="bold"
@@ -285,7 +281,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY + 50}
               x2={ridgeX}
               y2={plateY + 50}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <line
@@ -293,7 +289,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY + 44}
               x2={plateX}
               y2={plateY + 56}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <line
@@ -301,13 +297,13 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY + 44}
               x2={ridgeX}
               y2={plateY + 56}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <text
               x={(plateX + ridgeX) / 2}
               y={plateY + 66}
-              fill="#f8fafc"
+              fill="#0f172a"
               fontSize="11"
               fontFamily="monospace"
               fontWeight="bold"
@@ -322,7 +318,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY}
               x2={ridgeX + 45}
               y2={ridgeY}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <line
@@ -330,7 +326,7 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={plateY}
               x2={ridgeX + 51}
               y2={plateY}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <line
@@ -338,13 +334,13 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               y1={ridgeY}
               x2={ridgeX + 51}
               y2={ridgeY}
-              stroke="#cbd5e1"
+              stroke="#64748b"
               strokeWidth="1.5"
             />
             <text
               x={ridgeX + 55}
               y={(plateY + ridgeY) / 2 + 4}
-              fill="#f8fafc"
+              fill="#0f172a"
               fontSize="11"
               fontFamily="monospace"
               fontWeight="bold"
@@ -361,13 +357,13 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
                   y1={plateY + 25}
                   x2={plateX}
                   y2={plateY + 25}
-                  stroke="#94a3b8"
+                  stroke="#64748b"
                   strokeWidth="1"
                 />
                 <text
                   x={(tailX + plateX) / 2}
                   y={plateY + 38}
-                  fill="#94a3b8"
+                  fill="#475569"
                   fontSize="9"
                   fontFamily="monospace"
                   textAnchor="middle"
@@ -376,43 +372,29 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
                 </text>
               </g>
             )}
-
-            {/* Pitch Angle Badge */}
-            <g transform={`translate(${plateX + 15}, ${plateY - 8})`}>
-              <text
-                x="0"
-                y="0"
-                fill="#34d399"
-                fontSize="10"
-                fontFamily="monospace"
-                fontWeight="bold"
-              >
-                ∠ {pitchAngleDegrees}°
-              </text>
-            </g>
           </svg>
         ) : (
-          /* Birdsmouth Notch Close-Up Detail */
+          /* Birdsmouth Notch View */
           <svg
-            viewBox="0 0 500 260"
+            viewBox="0 0 500 300"
             className="w-full h-full select-none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Top Plate Wall (Close Up) */}
+            {/* Top Plate 2x4 Lumber */}
             <rect
-              x="160"
-              y="150"
+              x="140"
+              y="160"
               width="140"
-              height="90"
-              fill="#1e293b"
-              stroke="#64748b"
+              height="110"
+              fill="#e2b36c"
+              stroke="#a16207"
               strokeWidth="2"
               rx="3"
             />
             <text
-              x="230"
-              y="205"
-              fill="#94a3b8"
+              x="210"
+              y="220"
+              fill="#78350f"
               fontSize="12"
               fontFamily="monospace"
               fontWeight="bold"
@@ -421,163 +403,86 @@ export function RoofDiagram({ geometry }: RoofDiagramProps) {
               WALL TOP PLATE
             </text>
             <text
-              x="230"
-              y="222"
-              fill="#64748b"
+              x="210"
+              y="238"
+              fill="#92400e"
               fontSize="10"
               fontFamily="monospace"
               textAnchor="middle"
             >
-              {birdsmouth.seatCutLengthInches}″ Nominal Bearing
+              Bearing: {birdsmouth.seatCutLengthInches}″
             </text>
 
-            {/* Enlarged Rafter with Birdsmouth Cut */}
-            <polygon
-              points="40,240 160,150 240,150 460,40 460,0 240,105 40,200"
-              fill="#f59e0b"
-              fillOpacity="0.2"
-              stroke="#f59e0b"
-              strokeWidth="3"
-              strokeLinejoin="round"
+            {/* Sloped Rafter Stock with Birdsmouth Notch */}
+            <path
+              d="M 40 230 L 140 190 L 140 160 L 280 160 L 460 70 L 440 25 L 260 115 L 120 115 L 20 185 Z"
+              fill="#fef3c7"
+              stroke="#d97706"
+              strokeWidth="2.5"
             />
 
-            {/* Seat Cut Highlight (Green) */}
+            {/* Horizontal Seat Cut Line (Green) */}
             <line
-              x1="160"
-              y1="150"
-              x2="240"
-              y2="150"
+              x1="140"
+              y1="160"
+              x2="280"
+              y2="160"
               stroke="#10b981"
               strokeWidth="4"
-              strokeLinecap="round"
             />
             <text
-              x="200"
-              y="142"
-              fill="#10b981"
-              fontSize="11"
+              x="210"
+              y="152"
+              fill="#065f46"
+              fontSize="10"
               fontFamily="monospace"
               fontWeight="bold"
               textAnchor="middle"
             >
-              Seat Cut: {birdsmouth.seatCutLengthInches}″ ({cutAngles.seatCutAngleDegrees}°)
+              Seat Cut (Bearing): {birdsmouth.seatCutLengthInches}″
             </text>
 
-            {/* Plumb Notch Cut Highlight (Cyan) */}
+            {/* Vertical Plumb Cut / Heel Line */}
             <line
-              x1="240"
-              y1="150"
-              x2="240"
-              y2="105"
-              stroke="#38bdf8"
-              strokeWidth="4"
-              strokeLinecap="round"
+              x1="140"
+              y1="160"
+              x2="140"
+              y2="190"
+              stroke="#0284c7"
+              strokeWidth="3"
             />
             <text
-              x="255"
-              y="130"
-              fill="#38bdf8"
-              fontSize="11"
+              x="132"
+              y="178"
+              fill="#0369a1"
+              fontSize="9"
               fontFamily="monospace"
               fontWeight="bold"
-              textAnchor="start"
+              textAnchor="end"
             >
-              Plumb Depth: {birdsmouth.plumbCutDepthInches}″ ({cutAngles.plumbCutAngleDegrees}°)
-            </text>
-
-            {/* Height Above Plate (HAP / Stand) Leader */}
-            <line
-              x1="240"
-              y1="105"
-              x2="240"
-              y2="0"
-              stroke="#fbbf24"
-              strokeWidth="2"
-              strokeDasharray="3 3"
-            />
-            <text
-              x="255"
-              y="55"
-              fill="#fbbf24"
-              fontSize="11"
-              fontFamily="monospace"
-              fontWeight="bold"
-              textAnchor="start"
-            >
-              HAP (Stand): {birdsmouth.heightAbovePlateInches}″
-            </text>
-
-            {/* Overhang Rafter Tail */}
-            <text
-              x="90"
-              y="225"
-              fill="#94a3b8"
-              fontSize="11"
-              fontFamily="monospace"
-              fontWeight="bold"
-              textAnchor="middle"
-            >
-              Tail to Eave →
+              Plumb Cut
             </text>
           </svg>
         )}
-
-        {/* Floating Pitch Badge */}
-        <div className="absolute top-2 right-2 flex items-center gap-1.5">
-          <span className="text-[10px] font-mono font-bold text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-lg border border-amber-800 backdrop-blur">
-            Slope Multiplier: {geometry.slopeFactor}x
-          </span>
-        </div>
       </div>
 
-      {/* Quick Geometry Telemetry Chips */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 font-mono">
-        <div className="bg-slate-900/90 rounded-xl p-2.5 border border-slate-800 flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
-            <Triangle className="h-4 w-4" />
-          </div>
-          <div>
-            <span className="text-[10px] text-slate-400 block">Pitch / Angle</span>
-            <span className="text-xs font-bold text-amber-300">
-              {pitchIn12}:12 ({pitchAngleDegrees}°)
-            </span>
-          </div>
+      {/* Birdsmouth & Cut Angle Specs Footer */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-100 text-xs">
+        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+          <span className="text-[10px] text-slate-500 font-semibold uppercase block">Plumb Cut</span>
+          <span className="font-bold font-mono text-slate-900">{cutAngles.plumbCutAngleDegrees}°</span>
         </div>
-
-        <div className="bg-slate-900/90 rounded-xl p-2.5 border border-slate-800 flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
-            <span className="font-bold text-xs text-cyan-400">∥</span>
-          </div>
-          <div>
-            <span className="text-[10px] text-slate-400 block">Line Length</span>
-            <span className="text-xs font-bold text-white">
-              {rafterLineLengthFormatted}
-            </span>
-          </div>
+        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+          <span className="text-[10px] text-slate-500 font-semibold uppercase block">Seat / Level Cut</span>
+          <span className="font-bold font-mono text-slate-900">{cutAngles.seatCutAngleDegrees}°</span>
         </div>
-
-        <div className="bg-slate-900/90 rounded-xl p-2.5 border border-slate-800 flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
-            <span className="font-bold text-xs text-emerald-400">✂</span>
-          </div>
-          <div>
-            <span className="text-[10px] text-slate-400 block">Plumb / Seat</span>
-            <span className="text-xs font-bold text-white">
-              {cutAngles.plumbCutAngleDegrees}° / {cutAngles.seatCutAngleDegrees}°
-            </span>
-          </div>
+        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+          <span className="text-[10px] text-slate-500 font-semibold uppercase block">HAP Stand</span>
+          <span className="font-bold font-mono text-slate-900">{birdsmouth.heightAbovePlateInches}″</span>
         </div>
-
-        <div className="bg-slate-900/90 rounded-xl p-2.5 border border-slate-800 flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
-            <span className="font-bold text-xs text-amber-400">▲</span>
-          </div>
-          <div>
-            <span className="text-[10px] text-slate-400 block">Total Rise</span>
-            <span className="text-xs font-bold text-white">
-              {riseFt}′ ({riseInches}″)
-            </span>
-          </div>
+        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+          <span className="text-[10px] text-slate-500 font-semibold uppercase block">Seat Bearing</span>
+          <span className="font-bold font-mono text-slate-900">{birdsmouth.seatCutLengthInches}″</span>
         </div>
       </div>
     </div>

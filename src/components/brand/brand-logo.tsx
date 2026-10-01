@@ -48,28 +48,39 @@ export function BrandMark({
       className={cn("shrink-0 select-none", className)}
       aria-hidden="true"
     >
-      {/* Precision Square Base Plate */}
+      {/* Toolbox Top Handle */}
+      <path
+        d="M11 6C11 4.89543 11.8954 4 13 4H19C20.1046 4 21 4.89543 21 6V8H11V6Z"
+        stroke={secondaryColor}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Toolbox Main Body */}
       <rect
-        x="2"
-        y="2"
-        width="28"
-        height="28"
-        rx="7"
+        x="3"
+        y="8"
+        width="26"
+        height="20"
+        rx="5"
         fill={primaryColor}
       />
-
-      {/* Structural Steel I-Core & Drafting Gauge Inset */}
+      {/* Toolbox Lid Seam */}
       <path
-        d="M8 8H24V13H18.5V19H24V24H8V19H13.5V13H8V8Z"
+        d="M3 14H29"
+        stroke={secondaryColor}
+        strokeWidth="1.5"
+      />
+      {/* Center Latch */}
+      <rect
+        x="13.5"
+        y="12"
+        width="5"
+        height="5"
+        rx="1.5"
         fill={secondaryColor}
       />
-
-      {/* Center Precision Caliper Tick / Alignment Crosshair */}
-      <circle cx="16" cy="16" r="2" fill={accentColor} />
-      <rect x="7" y="10" width="3" height="1.5" rx="0.5" fill={accentColor} />
-      <rect x="7" y="14" width="2" height="1.5" rx="0.5" fill={accentColor} />
-      <rect x="7" y="18" width="3" height="1.5" rx="0.5" fill={accentColor} />
-      <rect x="7" y="22" width="2" height="1.5" rx="0.5" fill={accentColor} />
+      <circle cx="16" cy="14.5" r="0.8" fill={accentColor} />
     </svg>
   );
 }

@@ -4,35 +4,37 @@
 
 @layer base {
   :root {
-    /* Workbench Color System */
-    --workbench-bg: 222.2 84% 4.9%; /* #020617 (slate-950) */
-    --workbench-surface: 222.2 47.4% 11.2%; /* #0f172a (slate-900) */
-    --workbench-surface-elevated: 217.2 32.6% 17.5%; /* #1e293b (slate-800) */
-    --workbench-border: 217.2 32.6% 17.5%; /* #1e293b (slate-800) */
-    --workbench-border-subtle: 215 25% 26.7%; /* #334155 (slate-700) */
-    --workbench-text-primary: 210 40% 98%; /* #f8fafc (slate-50) */
-    --workbench-text-secondary: 215 20.2% 65.1%; /* #94a3b8 (slate-400) */
-    --workbench-text-muted: 215.4 16.3% 46.9%; /* #64748b (slate-500) */
+    /* Brand Foundation: Clean Trade Workbench */
+    --surface-bg: #f8fafc;
+    --surface-card: #ffffff;
+    --border-subtle: #f1f5f9;
+    --border-card: #e2e8f0;
+    --border-strong: #cbd5e1;
     
-    /* Semantic Instrument Highlights */
-    --brand-amber: 37.7 92.1% 50.2%; /* #f59e0b */
-    --brand-amber-hover: 45.4 93.4% 47.5%; /* #d97706 */
-    --brand-cyan: 188.7 94.5% 42.7%; /* #06b6d4 */
-    --brand-emerald: 158.1 64.4% 51.6%; /* #10b981 */
+    /* Typography Inks */
+    --text-primary: #0f172a;   /* Deep slate/navy */
+    --text-secondary: #475569; /* Balanced slate */
+    --text-muted: #64748b;     /* Muted slate */
+    
+    /* Trade Brand Accents */
+    --brand-amber: #f59e0b;       /* Rich warm amber */
+    --brand-amber-hover: #d97706; /* Deep amber hover */
+    --brand-navy: #0b1528;        /* Feature showcase dark navy */
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950;
+    @apply bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col font-sans selection:bg-amber-400 selection:text-slate-950;
+    background-color: var(--surface-bg);
   }
 
-  /* Professional Trade Workbench Typography (Clean & Predictable) */
+  /* Editorial & Engineering Typography */
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-bold text-inherit;
+    @apply tracking-tight font-bold text-slate-900;
   }
 
   /* High-contrast accessible focus ring */
   :focus-visible {
-    @apply outline-none ring-2 ring-amber-400 ring-offset-2 ring-offset-slate-950;
+    @apply outline-none ring-2 ring-amber-500/30 ring-offset-2 ring-offset-white;
   }
 
   /* Cross-browser Number Input Spinner Removal */
@@ -47,27 +49,36 @@
   }
 }
 
-/* Professional Architectural Blueprint Grid (Clean, Non-Glowing) */
+/* Subtle Technical Drafting Grid */
 .bg-blueprint-grid {
-  background-color: #020617;
+  background-color: #ffffff;
   background-image: 
-    linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
-    linear-gradient(to right, rgba(51, 65, 85, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(203, 213, 225, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(203, 213, 225, 0.04) 1px, transparent 1px);
   background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
 }
 
-/* Standardized Instrument Docks */
+/* Dark Blueprint Grid for Technical CAD Viewports */
+.bg-cad-grid {
+  background-color: #0b1528;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Workbench Card Foundations */
 .instrument-dock {
-  background: #0f172a;
-  border: 1px solid #1e293b;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 1rem;
 }
 
 .instrument-canvas {
-  background: #090e1a;
-  border: 1px solid #1e293b;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 1rem;
 }
 
@@ -84,64 +95,20 @@
 }
 
 @layer utilities {
-  /* Reusable Interaction States */
+  /* Interactive Card States */
   .state-interactive {
     @apply transition-all duration-150 ease-out active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2;
   }
 
   .state-hover-card {
-    @apply transition-all duration-150 ease-out hover:border-amber-400 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20;
+    @apply transition-all duration-200 ease-out hover:border-slate-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20;
   }
 
   .state-pill-selected {
-    @apply bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-2xs;
+    @apply bg-slate-900 text-white font-semibold shadow-xs border-slate-900;
   }
 
   .state-pill-default {
-    @apply bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white transition-colors cursor-pointer;
-  }
-
-  .state-input-base {
-    @apply transition-all duration-150 ease-out focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none;
-  }
-
-  .state-input-error {
-    @apply border-red-500 text-red-400 focus:border-red-600 focus:ring-2 focus:ring-red-500/20;
-  }
-
-  .state-success-badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs animate-in fade-in duration-150;
-  }
-}
-
-/* Print / Jobsite Worksheet Optimization */
-@media print {
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  header,
-  footer,
-  nav,
-  .no-print,
-  .adsbygoogle,
-  ins.adsbygoogle {
-    display: none !important;
-  }
-
-  main {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .card,
-  table,
-  tr,
-  td,
-  th {
-    break-inside: avoid;
-    box-shadow: none !important;
-    color: #000000 !important;
+    @apply bg-white text-slate-700 font-medium border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 shadow-2xs;
   }
 }

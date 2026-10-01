@@ -1,12 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
-import { CategoryNav } from "@/components/layout/category-nav";
 import { JsonLd } from "@/components/seo/json-ld";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { buildWebPageSchema } from "@/lib/seo/schema";
@@ -20,11 +18,29 @@ import {
   Trees,
   Box,
   Axe,
-  CheckCircle2,
   Clock,
   ArrowRight,
+  Calculator,
 } from "lucide-react";
 import type { ToolCategoryId } from "@/types/tools";
+
+const TOOL_IMAGES: Record<string, string> = {
+  "concrete-calculator": "/images/trade/concrete-slab.jpg",
+  "gravel-calculator": "/images/trade/gravel-pile.jpg",
+  "framing-calculator": "/images/trade/framing-stud.jpg",
+  "drywall-calculator": "/images/trade/cinder-block.jpg",
+  "roof-pitch-calculator": "/images/trade/roof-truss.jpg",
+  "stair-calculator": "/images/trade/stairs-wood.jpg",
+  "deck-calculator": "/images/trade/deck-framing.jpg",
+  "voltage-drop-calculator": "/images/trade/electrical-wires.jpg",
+  "conduit-fill-calculator": "/images/trade/conduit-pipes.jpg",
+  "box-fill-calculator": "/images/trade/electrical-box.jpg",
+  "residential-load-calculator": "/images/trade/hero-modern-house.jpg",
+  "btu-calculator": "/images/trade/hvac-unit.jpg",
+  "duct-sizing-calculator": "/images/trade/conduit-pipes.jpg",
+  "dfu-calculator": "/images/trade/pvc-pipes.jpg",
+  "wsfu-calculator": "/images/trade/pvc-pipes.jpg",
+};
 
 export function generateStaticParams() {
   return TOOL_CATEGORIES.filter((category) => category.status === "active").map(
@@ -83,54 +99,51 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
   const tools = getToolsByCategory(category.id as ToolCategoryId);
 
   const categoryIcons: Record<string, React.ReactNode> = {
-    construction: <HardHat className="h-8 w-8 text-amber-500" />,
-    materials: <Layers className="h-8 w-8 text-amber-500" />,
-    electrical: <Zap className="h-8 w-8 text-amber-500" />,
-    hvac: <Wind className="h-8 w-8 text-amber-500" />,
-    plumbing: <Droplets className="h-8 w-8 text-cyan-500" />,
-    landscaping: <Trees className="h-8 w-8 text-amber-500" />,
-    "pallet-freight": <Box className="h-8 w-8 text-amber-500" />,
-    woodworking: <Axe className="h-8 w-8 text-amber-500" />,
+    construction: <HardHat className="h-6 w-6 text-amber-600" />,
+    materials: <Layers className="h-6 w-6 text-amber-600" />,
+    electrical: <Zap className="h-6 w-6 text-blue-600" />,
+    hvac: <Wind className="h-6 w-6 text-emerald-600" />,
+    plumbing: <Droplets className="h-6 w-6 text-cyan-600" />,
+    landscaping: <Trees className="h-6 w-6 text-amber-600" />,
+    "pallet-freight": <Box className="h-6 w-6 text-amber-600" />,
+    woodworking: <Axe className="h-6 w-6 text-amber-600" />,
   };
 
   return (
     <>
       <JsonLd schema={pageSchema} />
-      <div className="py-10 pb-20 space-y-8">
+      <div className="py-8 sm:py-12 pb-20 bg-slate-50 min-h-screen">
         <Container>
           <Breadcrumb items={breadcrumbs} />
-          <CategoryNav currentCategorySlug={category.slug} />
 
-          <div className="space-y-4 my-8">
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200 shrink-0">
-                {categoryIcons[category.slug] ?? <HardHat className="h-8 w-8 text-amber-500" />}
+          {/* Header */}
+          <div className="my-6 max-w-4xl space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="h-9 w-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-2xs">
+                {categoryIcons[category.id] ?? <Calculator className="h-5 w-5 text-amber-600" />}
               </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                    {category.name}
-                  </h1>
-                  <Badge variant={category.status === "active" ? "brand" : "outline"}>
-                    {tools.length} {tools.length === 1 ? "Calculator" : "Calculators"}
-                  </Badge>
-                </div>
-                <p className="text-base text-slate-600 max-w-3xl leading-relaxed">
-                  {category.description}
-                </p>
-              </div>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                Specialized Engineering Suite
+              </span>
             </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+              {category.name} Calculators
+            </h1>
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              {category.description}
+            </p>
           </div>
 
+          {/* Feature Callouts */}
           {category.slug === "plumbing" && (
-            <div className="p-6 rounded-2xl border border-cyan-200 bg-gradient-to-r from-cyan-50/80 via-white to-cyan-50/40 shadow-sm space-y-3">
+            <div className="p-5 sm:p-6 rounded-2xl border border-cyan-200/80 bg-white shadow-xs space-y-3 mb-8">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-800">
                 <Droplets className="h-4 w-4 text-cyan-600" />
-                <span>Sanitary Drainage &amp; Potable Supply Design</span>
+                <span>Plumbing &amp; Sanitary Engineering Architecture</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
                 <div className="space-y-1">
-                  <h3 className="font-bold text-slate-900 text-base">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
                     Sizing Sanitary Drainage Lines by Fixture Units
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -146,8 +159,8 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
                     </Link>
                   </div>
                 </div>
-                <div className="space-y-1 border-t md:border-t-0 md:border-l border-cyan-100 md:pl-4 pt-3 md:pt-0">
-                  <h3 className="font-bold text-slate-900 text-base">
+                <div className="space-y-1 border-t md:border-t-0 md:border-l border-slate-100 md:pl-5 pt-3 md:pt-0">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
                     Potable Water Supply &amp; Velocity Control
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -168,14 +181,14 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
           )}
 
           {category.slug === "construction" && (
-            <div className="p-6 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50/80 via-white to-amber-50/40 shadow-sm space-y-3">
+            <div className="p-5 sm:p-6 rounded-2xl border border-amber-200/80 bg-white shadow-xs space-y-3 mb-8">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800">
                 <HardHat className="h-4 w-4 text-amber-600" />
                 <span>Structural Framing &amp; Code Compliance</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
                 <div className="space-y-1">
-                  <h3 className="font-bold text-slate-900 text-base">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
                     Stair Stringer Cuts &amp; IRC Rise and Run Layout
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -191,8 +204,8 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
                     </Link>
                   </div>
                 </div>
-                <div className="space-y-1 border-t md:border-t-0 md:border-l border-amber-100 md:pl-4 pt-3 md:pt-0">
-                  <h3 className="font-bold text-slate-900 text-base">
+                <div className="space-y-1 border-t md:border-t-0 md:border-l border-slate-100 md:pl-5 pt-3 md:pt-0">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
                     Deck Framing, Joist Spans &amp; Pier Footings
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -212,70 +225,70 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
             </div>
           )}
 
-          <div className="space-y-8">
+          {/* Tools Grid */}
+          <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <h2 className="text-xl font-bold text-slate-900">Available Calculators in Suite</h2>
               <span className="text-xs text-slate-500 font-mono">
-                {tools.length} active
+                {tools.length} active tools
               </span>
             </div>
 
             {tools.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tools.map((tool) => (
-                  <Link
-                    key={tool.slug}
-                    href={tool.path ?? `/${tool.categoryId}/${tool.slug}`}
-                    className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-2xl active:scale-[0.99] transition-transform"
-                  >
-                    <Card interactive={true} className="h-full flex flex-col justify-between">
-                      <CardHeader className="space-y-2">
-                        <div className="flex items-center justify-between gap-2 mb-1">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">
-                            Deterministic Engine
+                {tools.map((tool) => {
+                  const imageSrc = TOOL_IMAGES[tool.slug] || "/images/trade/hero-modern-house.jpg";
+                  return (
+                    <Link
+                      key={tool.slug}
+                      href={tool.path ?? `/${tool.categoryId}/${tool.slug}`}
+                      className="group flex flex-col justify-between bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                            Code Verified
                           </span>
-                          <Badge variant="outline" className="text-[10px]">
-                            {tool.inputs?.length ?? 0} Inputs
-                          </Badge>
+                          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
                         </div>
-                        <CardTitle className="text-lg font-bold group-hover:text-amber-800 flex items-center justify-between transition-colors">
-                          <span>{tool.title}</span>
-                          <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all text-amber-600 group-hover:translate-x-1" />
-                        </CardTitle>
-                        <CardDescription className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+
+                        <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors leading-snug mb-1">
+                          {tool.title}
+                        </h3>
+
+                        <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
                           {tool.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                        <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-xs">
-                          <span className="flex items-center gap-1 text-slate-500">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                            SVG Visualizer
-                          </span>
-                          <span className="font-bold text-amber-700 group-hover:text-amber-800 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                            Launch Tool →
-                          </span>
+                        </p>
+
+                        <div className="relative h-32 w-full rounded-xl overflow-hidden bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-2">
+                          <Image
+                            src={imageSrc}
+                            alt={tool.title}
+                            width={260}
+                            height={160}
+                            className="object-contain max-h-28 w-auto group-hover:scale-105 transition-transform duration-200"
+                          />
                         </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-amber-600 pt-3 border-t border-slate-100 transition-colors">
+                        <span>Launch Calculator</span>
+                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             ) : (
-              <Card className="border-dashed border-2 border-slate-200 bg-slate-50/50 rounded-2xl">
-                <CardHeader>
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
-                    <Clock className="h-4 w-4 text-slate-500" />
-                    Roadmap Scheduled
-                  </div>
-                  <CardTitle className="text-lg">
-                    Trade Specification Under Design
-                  </CardTitle>
-                  <CardDescription>
-                    Standard formulas and requirements for {category.name.toLowerCase()} are currently being mapped.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <div className="border border-slate-200 bg-white rounded-2xl p-8 text-center text-slate-500">
+                <Clock className="h-8 w-8 text-slate-400 mx-auto mb-2" />
+                <h3 className="text-base font-bold text-slate-900 mb-1">
+                  Tools Under Development
+                </h3>
+                <p className="text-xs text-slate-500">
+                  Standard models and calculations for {category.name.toLowerCase()} are currently being mapped.
+                </p>
+              </div>
             )}
           </div>
         </Container>

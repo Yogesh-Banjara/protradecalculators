@@ -13,7 +13,6 @@ import {
 } from "@/lib/seo/schema";
 import { RoofCalculatorForm } from "@/components/tools/roof-calculator/roof-form";
 import {
-  Triangle,
   Ruler,
   HelpCircle,
   AlertTriangle,
@@ -135,15 +134,11 @@ export default function RoofPitchCalculatorPage() {
 
           {/* Above the Fold: Header & Intro */}
           <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Triangle className="h-3.5 w-3.5" />
-              Roofing Geometry &amp; Rafter Takeoff Utility
-            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Roof Pitch &amp; Rafter Calculator
             </h1>
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
-              Calculate roof pitch in <strong>rise/run</strong>, <strong>slope angles (degrees)</strong>, <strong>common rafter line lengths</strong>, <strong>birdsmouth seat cuts</strong>, <strong>roof surface area</strong>, and <strong>roofing squares (shingle bundles &amp; underlayment)</strong>.
+              Calculate roof pitch, rafter length, common rafter line length, roof area and roofing squares. Includes diagrams, formulas and code references.
             </p>
           </div>
 

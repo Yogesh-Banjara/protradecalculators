@@ -63,17 +63,17 @@ export function ResultPanel({
   return (
     <div
       className={cn(
-        "rounded-2xl border-2 border-amber-500/40 bg-slate-950 text-slate-100 shadow-xl overflow-hidden transition-all",
+        "rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-sm overflow-hidden transition-all",
         className
       )}
     >
       {/* Header Bar */}
-      <div className="bg-slate-900/90 px-5 sm:px-6 py-3.5 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2">
+      <div className="bg-slate-50/80 px-5 sm:px-6 py-3.5 border-b border-slate-100 flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+          <div className="h-7 w-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
             <Calculator className="h-4 w-4" />
           </div>
-          <h4 className="text-sm sm:text-base font-bold text-white tracking-wide uppercase">
+          <h4 className="text-xs sm:text-sm font-bold text-slate-900 tracking-wide uppercase">
             {title}
           </h4>
         </div>
@@ -83,12 +83,12 @@ export function ResultPanel({
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
           >
             {copied ? (
               <>
-                <Check className="h-3.5 w-3.5 text-emerald-400" />
-                <span className="text-emerald-300 font-bold">Copied!</span>
+                <Check className="h-3.5 w-3.5 text-emerald-600" />
+                <span className="text-emerald-700 font-bold">Copied!</span>
               </>
             ) : (
               <>
@@ -100,120 +100,121 @@ export function ResultPanel({
           <button
             type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer no-print"
           >
             <Printer className="h-3.5 w-3.5 text-slate-400" />
-            <span>Print Worksheet</span>
+            <span>Print</span>
           </button>
         </div>
       </div>
 
-      {/* Primary Hero Result Section */}
-      <div className="p-6 sm:p-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 space-y-4">
-        <div className="space-y-1">
-          <span className="text-xs uppercase tracking-wider text-amber-400 font-bold block">
-            {primaryResult.label ?? "Primary Calculated Result"}:
+      {/* Main Result Hero */}
+      <div className="p-5 sm:p-6 space-y-5">
+        <div className="bg-slate-50/60 rounded-xl p-5 border border-slate-100">
+          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+            {primaryResult.label ?? "Primary Output"}
           </span>
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <span className="text-5xl sm:text-6xl font-black text-amber-400 tracking-tight font-mono">
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <span className="text-4xl sm:text-5xl font-black font-mono tracking-tight text-slate-900">
               {primaryResult.value}
             </span>
-            <span className="text-2xl sm:text-3xl font-bold text-slate-200">
+            <span className="text-base sm:text-lg font-bold font-mono text-amber-600">
               {primaryResult.unit}
             </span>
           </div>
+          {takeawayText && (
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 pt-2 font-medium">
+              {takeawayText}
+            </p>
+          )}
         </div>
 
-        {/* Practical Jobsite Takeaway */}
-        {takeawayText && (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 text-xs sm:text-sm text-amber-200 flex items-start gap-2.5">
-            <div className="h-5 w-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 font-bold">
-              ℹ
-            </div>
-            <div className="leading-relaxed">
-              <strong className="text-amber-300 font-semibold">Jobsite Guidance: </strong>
-              {takeawayText}
-            </div>
-          </div>
-        )}
-
-        {/* Secondary Metrics Grid */}
+        {/* Secondary Parameter Metrics Grid */}
         {secondaryMetrics && secondaryMetrics.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-4 border-t border-slate-800">
-            {secondaryMetrics.map((m, idx) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {secondaryMetrics.map((metric) => (
               <div
-                key={idx}
-                className="bg-slate-900/80 rounded-xl p-3 border border-slate-800 hover:border-slate-700 transition-colors"
+                key={metric.label}
+                className="p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-slate-200 transition-colors"
               >
-                <span className="text-[11px] text-slate-400 block truncate">{m.label}</span>
-                <div className="text-base sm:text-lg font-bold text-white font-mono mt-0.5">
-                  {m.value}{" "}
-                  {m.unit && (
-                    <span className="text-xs font-sans text-slate-400 font-normal">
-                      {m.unit}
+                <div className="text-[11px] font-semibold text-slate-500 truncate mb-1">
+                  {metric.label}
+                </div>
+                <div className="text-sm sm:text-base font-bold font-mono text-slate-900 flex items-baseline gap-1">
+                  <span>{metric.value}</span>
+                  {metric.unit && (
+                    <span className="text-xs text-slate-500 font-normal">
+                      {metric.unit}
                     </span>
                   )}
                 </div>
-                {m.subtext && (
-                  <span className="text-[10px] text-slate-500 block truncate mt-0.5">
-                    {m.subtext}
-                  </span>
+                {metric.subtext && (
+                  <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                    {metric.subtext}
+                  </div>
                 )}
               </div>
             ))}
           </div>
         )}
-      </div>
 
-      {/* Warnings & Advisories */}
-      {warnings && warnings.length > 0 && (
-        <div className="bg-amber-950/40 border-t border-amber-900/50 p-4 space-y-2">
-          {warnings.map((w, i) => (
-            <div key={i} className="flex items-start gap-2.5 text-xs text-amber-200 leading-relaxed">
-              <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
-              <span>{w.message}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Progressive Disclosure: Step Breakdown */}
-      {steps && steps.length > 0 && (
-        <div className="border-t border-slate-800 bg-slate-950">
-          <button
-            type="button"
-            onClick={() => setShowSteps(!showSteps)}
-            className="w-full px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 flex items-center justify-between transition-colors"
-          >
-            <span>Calculation Methodology &amp; Formula Steps ({steps.length})</span>
-            {showSteps ? (
-              <ChevronUp className="h-4 w-4 text-slate-400" />
-            ) : (
-              <ChevronDown className="h-4 w-4 text-slate-400" />
-            )}
-          </button>
-
-          {showSteps && (
-            <div className="p-6 pt-0 space-y-2 border-t border-slate-900 animate-in fade-in duration-150">
-              {steps.map((step, idx) => (
-                <div
-                  key={idx}
-                  className="text-xs font-mono bg-slate-900 p-2.5 rounded-lg border border-slate-800/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
-                >
-                  <div className="text-slate-300">
-                    <span className="text-amber-500 font-bold mr-2">{idx + 1}.</span>
-                    <span className="font-sans font-medium text-slate-200">{step.label}:</span>{" "}
-                    <span className="text-slate-400">{step.values}</span>
-                  </div>
-                  <div className="text-amber-400 font-bold sm:text-right">
-                    = {step.result}
-                  </div>
+        {/* Calculation Warnings */}
+        {warnings && warnings.length > 0 && (
+          <div className="space-y-2">
+            {warnings.map((w, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded-xl flex items-start gap-2.5 text-xs font-medium border bg-amber-50 border-amber-200 text-amber-900"
+              >
+                <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-600" />
+                <div>
+                  <span className="font-bold mr-1">{w.code}:</span>
+                  <span>{w.message}</span>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Expandable Engineering Steps */}
+        {steps && steps.length > 0 && (
+          <div className="border-t border-slate-100 pt-3">
+            <button
+              type="button"
+              onClick={() => setShowSteps(!showSteps)}
+              className="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-slate-900 py-1 transition-colors cursor-pointer"
+            >
+              <span>Mathematical Calculation Steps ({steps.length})</span>
+              {showSteps ? (
+                <ChevronUp className="h-4 w-4 text-slate-400" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-slate-400" />
+              )}
+            </button>
+
+            {showSteps && (
+              <div className="mt-3 space-y-2 text-xs animate-in fade-in duration-150">
+                {steps.map((s, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1 font-mono"
+                  >
+                    <div className="flex items-center justify-between font-bold text-slate-800">
+                      <span>{s.label}</span>
+                      <span className="text-amber-600">{s.result}</span>
+                    </div>
+                    {s.formula && (
+                      <div className="text-[11px] text-slate-500">
+                        Formula: {s.formula}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
