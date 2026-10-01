@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "The Electrician's Guide to Voltage Drop: Formulas, Code Limits & Conductor Sizing",
+  title: "Electrician's Guide to Voltage Drop Formulas & Code Limits",
   description:
     "Understand AC/DC single-phase and 3-phase voltage drop formulas, NEC 210.19/215.2 recommendations (3% branch, 5% total), and circular mil resistance constants.",
   path: "/guides/electricians-guide-to-voltage-drop-calculations",

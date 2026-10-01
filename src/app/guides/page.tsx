@@ -9,7 +9,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema } from "@/lib/seo/schema";
 import { BookOpen, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Electrical & Trade Technical Master Guides | ProTradeCalculators",
+  title: "Electrical & Trade Technical Master Guides",
   description:
     "Comprehensive technical guides for electricians and estimators: NEC conduit fill tables, voltage drop derivations, and subpanel feeder sizing.",
   path: "/guides",

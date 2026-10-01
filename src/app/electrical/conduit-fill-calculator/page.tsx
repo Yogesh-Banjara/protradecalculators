@@ -294,16 +294,37 @@ export default function ConduitFillCalculatorPage() {
               </ul>
             </section>
 
+            {/* Technical Master Guide Callout */}
+            <div className="p-6 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <BookOpen className="h-4 w-4" /> Technical Master Reference
+                </span>
+                <h3 className="text-lg font-bold text-white">
+                  NEC Conduit Fill Rules, Chapter 9 Tables &amp; Jam Ratios
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+                  Deep-dive engineering guide covering Chapter 9 Table 1 percentage limits (53%, 31%, 40%), Table 4 raceway dimensions, Table 5 conductor areas, and the 3-wire jam ratio trap.
+                </p>
+              </div>
+              <Link
+                href="/guides/nec-conduit-fill-rules-and-tables"
+                className="shrink-0 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm inline-flex items-center gap-1.5 transition-colors shadow"
+              >
+                Read Master Guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
             {/* Section 5: Real-World NEC Calculation Scenarios */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <BookOpen className="h-6 w-6 text-amber-600" />
-                5. Real-World NEC Calculation Scenarios
+                5. Real-World NEC Raceway Calculation Scenarios
               </h2>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Explore step-by-step mathematical solutions and code citations for raceway fill problems:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Link
                   href="/solutions/conduit-fill-three-4awg-thhn-in-emt"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -319,11 +340,38 @@ export default function ConduitFillCalculatorPage() {
                       Three 4 AWG THHN in EMT
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate minimum EMT conduit trade size for three 4 AWG THHN copper conductors using NEC Chapter 9.
+                      Calculate minimum EMT trade size for three 4 AWG THHN copper conductors.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      1-inch EMT Conduit (0.2472 vs 0.346 sq. in.)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      1-inch EMT (0.2472 vs 0.346 sq. in.)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/conduit-fill-six-10awg-thhn-in-half-inch-emt"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 4 (1/2&quot; EMT)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Six 10 AWG THHN in 1/2&quot; EMT
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Determine if six 10 AWG THHN conductors fit within 1/2-inch EMT 40% fill limit.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      Fails: 0.1266 sq. in. &gt; 0.122 sq. in.
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
@@ -346,10 +394,10 @@ export default function ConduitFillCalculatorPage() {
                       Four 500 kcmil THHN in RMC
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Size Rigid Metal Conduit (RMC) for four 500 kcmil THHN copper conductors under NEC 40% fill limit.
+                      Size Rigid Metal Conduit (RMC) for four 500 kcmil THHN copper conductors.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
                       3-inch RMC (2.8292 vs 2.95 sq. in.)
                     </div>
                   </div>
@@ -359,25 +407,25 @@ export default function ConduitFillCalculatorPage() {
                 </Link>
 
                 <Link
-                  href="/solutions/box-fill-six-12awg-two-clamps-one-receptacle"
+                  href="/solutions/conduit-nipple-fill-exemption-60-percent"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        NEC 314.16(B)
+                        Ch 9 Note 4 (60% Fill)
                       </span>
                       <span className="text-xs font-mono text-slate-500">Solved</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Box Fill: Six 12 AWG &amp; Clamps
+                      Conduit Nipple 60% Fill
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate minimum metal device box cubic inch volume for conductors, internal clamps, and device.
+                      Apply the 24-inch or less conduit nipple exception permitting up to 60% fill.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      22.50 cu. in. Minimum Box Volume
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      3/4-inch EMT Nipple (0.320 sq. in.)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">

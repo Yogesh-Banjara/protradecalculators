@@ -9,7 +9,7 @@ import { buildWebPageSchema } from "@/lib/seo/schema";
 import { ShieldCheck, Lock, Eye, Cookie, FileText, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Privacy Policy | ProTradeCalculators",
+  title: "Privacy Policy & AdSense Disclosures",
   description:
     "Comprehensive privacy policy covering data handling, Google AdSense monetization, cookie usage, GDPR compliance, and CCPA privacy disclosures.",
   path: "/privacy-policy",

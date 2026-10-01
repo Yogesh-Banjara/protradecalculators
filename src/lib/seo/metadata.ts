@@ -29,9 +29,11 @@ export function generatePageMetadata(props: PageSeoProps): Metadata {
   } = props;
 
   const canonical = getCanonicalUrl(path);
-  const fullTitle = title.includes(siteConfig.name)
-    ? title
-    : `${title} | ${siteConfig.name}`;
+  const cleanedTitle = title
+    .replace(/\s*\|\s*ProTrade\s*Calculators\s*$/i, "")
+    .replace(/\s*\|\s*ProTradeCalculators\s*$/i, "")
+    .trim();
+  const fullTitle = `${cleanedTitle} | ${siteConfig.name}`;
 
   return {
     title: {

@@ -39,8 +39,10 @@ export async function generateMetadata({ params }: SolutionPageProps): Promise<M
     return { title: "Solution Not Found" };
   }
 
+  const seoTitle = (problem as { seoTitle?: string }).seoTitle || problem.title;
+
   return generatePageMetadata({
-    title: `${problem.title} | NEC Solution`,
+    title: seoTitle,
     description: problem.metaDescription,
     path: `/solutions/${problem.slug}`,
     keywords: [

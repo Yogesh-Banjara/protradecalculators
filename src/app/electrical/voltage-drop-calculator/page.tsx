@@ -429,6 +429,27 @@ export default function VoltageDropCalculatorPage() {
               </div>
             </section>
 
+            {/* Technical Master Guide Callout */}
+            <div className="p-6 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <BookOpen className="h-4 w-4" /> Technical Master Reference
+                </span>
+                <h3 className="text-lg font-bold text-white">
+                  The Electrician&apos;s Guide to Voltage Drop: Formulas &amp; Code Limits
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+                  In-depth reference covering single-phase and 3-phase voltage drop equations, NEC 210.19/215.2 recommendations (3% branch, 5% feeder), and circular mil resistance constants.
+                </p>
+              </div>
+              <Link
+                href="/guides/electricians-guide-to-voltage-drop-calculations"
+                className="shrink-0 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm inline-flex items-center gap-1.5 transition-colors shadow"
+              >
+                Read Master Guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
             {/* Section 8: Real-World NEC Calculation Scenarios */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -438,7 +459,7 @@ export default function VoltageDropCalculatorPage() {
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Step-by-step mathematical solutions and code citations for wire sizing and voltage drop problems:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Link
                   href="/solutions/voltage-drop-100ft-12awg-20a-120v"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -457,8 +478,8 @@ export default function VoltageDropCalculatorPage() {
                       Calculate single-phase voltage drop and percentage loss over 100 feet using 12 AWG copper under 3% limits.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      7.90 V Drop (6.58% Loss - Upsize to 10 AWG)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      7.90 V Drop (6.58% Loss - Upsize)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
@@ -484,8 +505,35 @@ export default function VoltageDropCalculatorPage() {
                       Calculate feeder voltage drop over 250 feet for a 50A 240V subpanel using 6 AWG copper.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      12.29 V Drop (5.12% Loss - Upsize to 4 AWG)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      12.29 V Drop (5.12% - Upsize to 4 AWG)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/voltage-drop-500ft-480v-3phase-100a-feeder"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 215.2(A)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      500ft 480V 3-Phase 100A
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate 3-phase feeder voltage drop over 500 feet for a 100A industrial distribution panel.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      13.56 V Drop (2.83% Loss - Compliant)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
@@ -511,8 +559,8 @@ export default function VoltageDropCalculatorPage() {
                       Calculate conductor ampacity and full-load current (FLC) for a 20 HP, 230V, 3-phase motor.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      67.5 A Conductor Ampacity (54 A FLC)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      67.5 A Ampacity (54 A FLC)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">

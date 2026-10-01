@@ -285,6 +285,27 @@ export default function ResidentialLoadCalculatorPage() {
               </div>
             </section>
 
+            {/* Technical Master Guide Callout */}
+            <div className="p-6 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <BookOpen className="h-4 w-4" /> Technical Master Reference
+                </span>
+                <h3 className="text-lg font-bold text-white">
+                  Subpanel Feeder Conductor Sizing by Distance &amp; Ampacity
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+                  Step-by-step sizing guide for 100A and 200A residential feeders. Compare copper vs aluminum conductors, 75°C terminal ratings, and voltage drop compensation.
+                </p>
+              </div>
+              <Link
+                href="/guides/subpanel-feeder-sizing"
+                className="shrink-0 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm inline-flex items-center gap-1.5 transition-colors shadow"
+              >
+                Read Master Guide <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
             {/* Section 5: Real-World NEC Calculation Scenarios */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -294,7 +315,34 @@ export default function ResidentialLoadCalculatorPage() {
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Step-by-step mathematical solutions and code citations for fixed heating and branch service loads:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Link
+                  href="/solutions/feeder-ampacity-single-family-dwelling-200a-service"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 310.12
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      200A Dwelling Feeder Sizing
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate minimum service conductor ampacity using 83% residential dwelling factor.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      166A (2/0 Cu or 4/0 Al)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
                 <Link
                   href="/solutions/baseboard-heater-7000w-240v-service-load"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -313,8 +361,8 @@ export default function ResidentialLoadCalculatorPage() {
                       Step-by-step NEC calculation for a 7,000W, 240V electric baseboard heater continuous load.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      36.46 A (40A Overcurrent Protection)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      36.46 A (40A Breaker)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
@@ -337,11 +385,11 @@ export default function ResidentialLoadCalculatorPage() {
                       12 kW Electric Range Demand
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate minimum service demand for a 12 kW household range using Table 220.55 Column C.
+                      Calculate minimum service demand for a 12 kW household range using Table 220.55.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      8 kW Demand / 33.33 A Load (Min 40A)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      8 kW Demand / 33.33 A Load
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
@@ -367,8 +415,8 @@ export default function ResidentialLoadCalculatorPage() {
                       Calculate service feeder load for an electric clothes dryer under NEC 220.54 minimums.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      20.83 A Load (Requires 30A with 10 AWG)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      20.83 A Load (Min 30A)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">

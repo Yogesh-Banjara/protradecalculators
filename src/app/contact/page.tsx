@@ -10,7 +10,7 @@ import { buildWebPageSchema } from "@/lib/seo/schema";
 import { Mail, MessageSquare, Bug, ShieldCheck, Clock } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Contact & Technical Corrections | ProTradeCalculators",
+  title: "Contact & Technical Corrections",
   description:
     "Submit code discrepancy audits, mathematical formula corrections, tool suggestions, or general technical inquiries to the ProTradeCalculators engineering team.",
   path: "/contact",
