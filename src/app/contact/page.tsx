@@ -1,24 +1,26 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { JsonLd } from "@/components/seo/json-ld";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { buildWebPageSchema } from "@/lib/seo/schema";
-import { Mail, MessageSquare, Bug } from "lucide-react";
+import { Mail, MessageSquare, Bug, ShieldCheck, Clock } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Contact & Feedback",
-  description: "Get in touch with the ProTrade Calculators team for tool suggestions, formula corrections, or inquiries.",
+  title: "Contact & Technical Corrections | ProTradeCalculators",
+  description:
+    "Submit code discrepancy audits, mathematical formula corrections, tool suggestions, or general technical inquiries to the ProTradeCalculators engineering team.",
   path: "/contact",
 });
 
 export default function ContactPage() {
-  const breadcrumbs = [{ name: "Contact", url: "/contact" }];
+  const breadcrumbs = [{ name: "Contact & Corrections", url: "/contact" }];
   const pageSchema = buildWebPageSchema(
-    "Contact & Feedback",
-    "Get in touch with the ProTrade Calculators team for tool suggestions, formula corrections, or inquiries.",
+    "Contact & Technical Corrections | ProTradeCalculators",
+    "Submit code discrepancy audits, mathematical formula corrections, tool suggestions, or general technical inquiries to the ProTradeCalculators engineering team.",
     "/contact",
     breadcrumbs
   );
@@ -26,73 +28,111 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd schema={pageSchema} />
-      <div className="py-10">
+      <div className="py-8 sm:py-12">
         <Container size="md">
           <Breadcrumb items={breadcrumbs} />
 
           <div className="space-y-4 mb-8">
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Contact &amp; Feedback</h1>
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+              <Mail className="h-3.5 w-3.5 text-amber-600" />
+              Engineering Peer Review &amp; Inquiries
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Contact &amp; Code Corrections
+            </h1>
             <p className="text-base text-slate-600 leading-relaxed">
-              We welcome suggestions for new calculators, trade standard references, and formula
-              verification from contractors, estimators, and tradespeople.
+              We welcome peer review from master electricians, electrical engineers, licensed contractors,
+              building inspectors, and vocational instructors. If you spot a formula edge case, local code variance,
+              or want to suggest a new tool, reach out below.
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card>
+              <Card className="border-slate-200 shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <Bug className="h-4 w-4 text-amber-600" />
-                    Formula Corrections &amp; Bugs
+                    Code Discrepancies &amp; Bug Reports
                   </CardTitle>
                   <CardDescription>
-                    If you identify an edge case, mathematical discrepancy, or regional code difference.
+                    Report potential discrepancies in NEC tables, formulas, or rounding logic.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="text-sm text-slate-600">
-                  Please provide the exact inputs, expected result, and relevant trade reference standard.
+                <CardContent className="text-xs sm:text-sm text-slate-600 space-y-2">
+                  <p>
+                    Please include the specific calculator URL, input values, expected result, and cite the
+                    applicable <strong>NEC Edition (2020, 2023, 2026), Article, or Table</strong>.
+                  </p>
+                  <div className="p-2.5 rounded bg-slate-100 font-mono text-xs text-slate-800">
+                    corrections@protradecalculators.com
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-slate-200 shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <MessageSquare className="h-4 w-4 text-amber-600" />
-                    Tool Requests
+                    Tool Requests &amp; Trade Features
                   </CardTitle>
                   <CardDescription>
-                    Suggest a new calculator for our upcoming trade suites.
+                    Suggest new calculators or trade takeoff schedules for upcoming development.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="text-sm text-slate-600">
-                  Let us know what trade takeoff problem you want to automate next.
+                <CardContent className="text-xs sm:text-sm text-slate-600 space-y-2">
+                  <p>
+                    Tell us what takeoff challenge or calculation slowdown you encounter most frequently on the
+                    jobsite or in the estimating trailer.
+                  </p>
+                  <div className="p-2.5 rounded bg-slate-100 font-mono text-xs text-slate-800">
+                    feedback@protradecalculators.com
+                  </div>
                 </CardContent>
               </Card>
             </div>
 
-            <Card className="bg-slate-900 text-slate-100 border-slate-800">
+            {/* General Inquiries Box */}
+            <Card className="bg-slate-900 text-slate-100 border-slate-800 shadow-md">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Mail className="h-5 w-5 text-amber-400" />
-                  Electronic Communication
+                  General &amp; Editorial Inquiries
                 </CardTitle>
                 <CardDescription className="text-slate-400">
-                  Direct all technical feedback and inquiries to our project maintainers.
+                  Direct communication with our editorial and development maintainers.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="text-sm text-slate-300">
+              <CardContent className="text-sm text-slate-300 space-y-3">
                 <p>
-                  You can reach the maintenance team at:{" "}
+                  Primary Email:{" "}
                   <span className="font-mono text-amber-400 font-semibold select-all">
                     contact@protradecalculators.com
                   </span>
                 </p>
-                <p className="text-xs text-slate-400 mt-2">
-                  We strive to review all technical feedback within 2 business days.
-                </p>
+                <div className="flex flex-col sm:flex-row gap-4 pt-2 border-t border-slate-800 text-xs text-slate-400">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-amber-500" />
+                    <span>Response Time: Typically within 24-48 business hours</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+                    <span>Audits reviewed by certified engineering staff</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
+
+            {/* Quick Links */}
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-3">
+              <span>Looking for validation protocols and code citations?</span>
+              <Link
+                href="/methodology"
+                className="text-amber-700 hover:text-amber-800 font-bold underline"
+              >
+                Read our Calculation Methodology &rarr;
+              </Link>
+            </div>
           </div>
         </Container>
       </div>

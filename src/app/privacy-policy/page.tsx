@@ -12,15 +12,15 @@ export const metadata: Metadata = generatePageMetadata({
   title: "Privacy Policy | ProTradeCalculators",
   description:
     "Comprehensive privacy policy covering data handling, Google AdSense monetization, cookie usage, GDPR compliance, and CCPA privacy disclosures.",
-  path: "/privacy",
+  path: "/privacy-policy",
 });
 
-export default function PrivacyPage() {
-  const breadcrumbs = [{ name: "Privacy Policy", url: "/privacy" }];
+export default function PrivacyPolicyPage() {
+  const breadcrumbs = [{ name: "Privacy Policy", url: "/privacy-policy" }];
   const pageSchema = buildWebPageSchema(
     "Privacy Policy | ProTradeCalculators",
     "Comprehensive privacy policy covering data handling, Google AdSense monetization, cookie usage, GDPR compliance, and CCPA privacy disclosures.",
-    "/privacy",
+    "/privacy-policy",
     breadcrumbs
   );
 

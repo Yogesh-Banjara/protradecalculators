@@ -10,7 +10,7 @@ export const dynamic = "force-static";
  * ProTrade Calculators (https://protradecalculators.com)
  *
  * Exclusively outputs verified canonical routes from the central route registry,
- * programmatic worked solutions, and engineering methodology standards.
+ * programmatic worked solutions, technical master guides, and legal compliance pages.
  * Strictly excludes query strings, share hashes, drafts, and test pages.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -51,10 +51,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   };
 
+  const additionalGuideEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/guides`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/guides/nec-conduit-fill-rules-and-tables`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/guides/electricians-guide-to-voltage-drop-calculations`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+  ];
+
+  const privacyPolicyEntry: MetadataRoute.Sitemap[number] = {
+    url: `${base}/privacy-policy`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.3,
+  };
+
   return [
     ...standardEntries,
     solutionsHubEntry,
     ...solutionProblemEntries,
     methodologyEntry,
+    ...additionalGuideEntries,
+    privacyPolicyEntry,
   ];
 }
