@@ -12,6 +12,7 @@ import {
   buildFaqSchema,
 } from "@/lib/seo/schema";
 import { ElectricalLoadCalculatorForm } from "@/components/tools/electrical-load-calculator/electrical-load-form";
+import { EmbedModal } from "@/components/tools/embed-modal";
 import {
   Zap,
   HelpCircle,
@@ -148,6 +149,12 @@ export default function ResidentialLoadCalculatorPage() {
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
               Calculate residential electrical service demand load (Amps and kVA) per <strong>NEC Article 220.82</strong>. Evaluate existing 100A panels against proposed 200A/400A service upgrades for EV chargers, heat pumps, electric ranges, and home additions.
             </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 no-print">
+              <EmbedModal
+                toolSlug="residential-load-calculator"
+                toolName="Residential Electrical Service Load Calculator"
+              />
+            </div>
           </div>
 
           {/* Interactive Calculator Form Component */}

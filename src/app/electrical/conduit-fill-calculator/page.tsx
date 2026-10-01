@@ -12,6 +12,7 @@ import {
   buildFaqSchema,
 } from "@/lib/seo/schema";
 import { ConduitFillCalculatorForm } from "@/components/tools/conduit-fill-calculator/conduit-form";
+import { EmbedModal } from "@/components/tools/embed-modal";
 import {
   Layers,
   HelpCircle,
@@ -147,6 +148,12 @@ export default function ConduitFillCalculatorPage() {
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
               Calculate mixed-conductor <strong>conduit fill percentage</strong>, <strong>trade size capacity</strong>, and <strong>jam ratio risks</strong> for EMT, PVC Schedule 40/80, RMC, FMC, and LFMC raceways per <strong>NEC Chapter 9 Tables 1, 4 &amp; 5</strong>.
             </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 no-print">
+              <EmbedModal
+                toolSlug="conduit-fill-calculator"
+                toolName="Electrical Conduit Fill Calculator"
+              />
+            </div>
           </div>
 
           {/* Interactive Calculator Form Component */}

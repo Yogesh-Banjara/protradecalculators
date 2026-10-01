@@ -12,6 +12,7 @@ import {
   buildFaqSchema,
 } from "@/lib/seo/schema";
 import { VoltageDropCalculatorForm } from "@/components/tools/voltage-drop-calculator/voltage-drop-form";
+import { EmbedModal } from "@/components/tools/embed-modal";
 import {
   Zap,
   HelpCircle,
@@ -150,6 +151,12 @@ export default function VoltageDropCalculatorPage() {
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
               Calculate single-phase, 3-phase, and DC <strong>voltage drop</strong>, <strong>recommended AWG/kcmil wire gauge</strong>, <strong>copper vs aluminum comparisons</strong>, and <strong>NEC Table 310.16 ampacity derating</strong>.
             </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 no-print">
+              <EmbedModal
+                toolSlug="voltage-drop-calculator"
+                toolName="Electrical Wire Size & Voltage Drop Calculator"
+              />
+            </div>
           </div>
 
           {/* Interactive Calculator Form Component */}

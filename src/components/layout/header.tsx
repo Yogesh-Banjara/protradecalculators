@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Container } from "../ui/container";
 import { QuickSearchModal } from "./quick-search-modal";
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 
 export function Header() {
+  const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
@@ -27,6 +29,7 @@ export function Header() {
 
   // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
+    if (pathname?.startsWith("/embed")) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
@@ -35,7 +38,7 @@ export function Header() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [pathname]);
 
   // Close Category Menu when clicking outside or pressing Escape
   useEffect(() => {
@@ -59,6 +62,11 @@ export function Header() {
       document.removeEventListener("keydown", handleEscape);
     };
   }, []);
+
+  // Omit site navigation header on embeddable calculator widgets
+  if (pathname?.startsWith("/embed")) {
+    return null;
+  }
 
   return (
     <>

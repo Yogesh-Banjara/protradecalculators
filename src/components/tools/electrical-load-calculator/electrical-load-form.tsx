@@ -20,6 +20,7 @@ import { Alert } from "@/components/ui/alert";
 import { FormField } from "@/components/ui/form-field";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { PrintButton, JobsitePrintHeader } from "@/components/ui/print-view";
+import { EmbedModal } from "@/components/tools/embed-modal";
 import {
   trackCalculatorStarted,
   trackResultGenerated,
@@ -1058,7 +1059,7 @@ export function ElectricalLoadCalculatorForm() {
 
               {/* Action Toolbar */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-slate-800 no-print">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <Button
                     variant="outline"
                     size="sm"
@@ -1083,6 +1084,13 @@ export function ElectricalLoadCalculatorForm() {
                     category="electrical"
                     label="Print Permit Worksheet"
                     className="text-slate-200 border-slate-700 bg-slate-900 hover:bg-slate-800"
+                  />
+
+                  <EmbedModal
+                    toolSlug="residential-load-calculator"
+                    toolName="Residential Electrical Service Load Calculator"
+                    buttonLabel="Embed on Your Website"
+                    variant="outline"
                   />
                 </div>
 

@@ -1,12 +1,20 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Container } from "../ui/container";
 import { ShieldCheck } from "lucide-react";
 import { BrandLogo } from "@/components/brand/brand-logo";
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  if (pathname?.startsWith("/embed")) {
+    return null;
+  }
 
   return (
     <footer className="border-t border-slate-800 bg-slate-950 text-slate-400 mt-20">
