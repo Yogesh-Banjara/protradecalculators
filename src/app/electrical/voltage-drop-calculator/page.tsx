@@ -431,7 +431,7 @@ export default function VoltageDropCalculatorPage() {
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Step-by-step mathematical solutions and code citations for wire sizing and voltage drop problems:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
                   href="/solutions/voltage-drop-100ft-12awg-20a-120v"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -439,23 +439,50 @@ export default function VoltageDropCalculatorPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        NEC Article 210.19(A) Note 4
+                        NEC 210.19(A)
                       </span>
-                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Voltage Drop Calculation for 100ft 12 AWG at 20A 120V
+                      100ft 12 AWG at 20A 120V
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate single-phase voltage drop and percentage loss over 100 feet using 12 AWG copper under NEC recommended 3% limits.
+                      Calculate single-phase voltage drop and percentage loss over 100 feet using 12 AWG copper under 3% limits.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      7.90 V Drop (6.58% Loss - Upsize conductor to 10 AWG to stay below 3%)
+                      7.90 V Drop (6.58% Loss - Upsize to 10 AWG)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/voltage-drop-250ft-6awg-50a-240v-subpanel"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 215.2(A)(1)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      250ft 6 AWG at 50A 240V
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate feeder voltage drop over 250 feet for a 50A 240V subpanel using 6 AWG copper.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      12.29 V Drop (5.12% Loss - Upsize to 4 AWG)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
                   </div>
                 </Link>
 
@@ -466,23 +493,23 @@ export default function VoltageDropCalculatorPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        NEC Table 430.250 &amp; NEC 430.22
+                        NEC Table 430.250
                       </span>
-                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Service Demand Calculation for a 3-Phase 20 HP 230V HVAC Motor Unit
+                      3-Phase 20 HP HVAC Demand
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate conductor ampacity and full-load current (FLC) for a 20 HP, 230V, 3-phase motor using NEC Table 430.250 and NEC 430.22.
+                      Calculate conductor ampacity and full-load current (FLC) for a 20 HP, 230V, 3-phase motor.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      67.5 A Conductor Ampacity (54 A Running FLC)
+                      67.5 A Conductor Ampacity (54 A FLC)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
                   </div>
                 </Link>
               </div>

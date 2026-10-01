@@ -32,7 +32,11 @@ export function CalculatorEmbed({ calculatorType, inputs }: CalculatorEmbedProps
   }
 
   if (calculatorType === "conduit-fill-calculator") {
-    const rawConduitType = (typeof inputs.conduitType === "string" ? inputs.conduitType.toLowerCase() : "emt") as ConduitType;
+    const rawConduit = typeof inputs.conduitType === "string" ? inputs.conduitType.toLowerCase() : "emt";
+    const validConduitTypes: ConduitType[] = ["emt", "pvc_sch40", "pvc_sch80", "rmc", "fmc", "lfmc"];
+    const initialConduitType: ConduitType = validConduitTypes.includes(rawConduit as ConduitType)
+      ? (rawConduit as ConduitType)
+      : "emt";
     let initialConductors: ConductorInputRow[] = [
       { id: "1", size: "4 AWG", insulation: "thhn", count: 3 },
     ];
@@ -57,7 +61,7 @@ export function CalculatorEmbed({ calculatorType, inputs }: CalculatorEmbedProps
 
     return (
       <ConduitFillCalculatorForm
-        initialConduitType={rawConduitType}
+        initialConduitType={initialConduitType}
         initialConductors={initialConductors}
       />
     );

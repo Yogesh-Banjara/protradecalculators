@@ -296,7 +296,7 @@ export default function ConduitFillCalculatorPage() {
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Explore step-by-step mathematical solutions and code citations for raceway fill problems:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
                   href="/solutions/conduit-fill-three-4awg-thhn-in-emt"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -304,23 +304,77 @@ export default function ConduitFillCalculatorPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        NEC Chapter 9 Table 1 &amp; Table 4 (EMT)
+                        NEC Table 4 (EMT)
                       </span>
-                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Conduit Fill Sizing for Three 4 AWG THHN Conductors in EMT
+                      Three 4 AWG THHN in EMT
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Calculate minimum EMT conduit trade size for three 4 AWG THHN copper conductors using NEC Chapter 9, Tables 1, 4, and 5.
+                      Calculate minimum EMT conduit trade size for three 4 AWG THHN copper conductors using NEC Chapter 9.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      1-inch EMT Conduit (0.2472 sq. in. vs 0.346 sq. in. allowed)
+                      1-inch EMT Conduit (0.2472 vs 0.346 sq. in.)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/conduit-fill-four-500kcmil-thhn-in-rigid-metal-conduit"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 4 (RMC)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Four 500 kcmil THHN in RMC
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Size Rigid Metal Conduit (RMC) for four 500 kcmil THHN copper conductors under NEC 40% fill limit.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      3-inch RMC (2.8292 vs 2.95 sq. in.)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/box-fill-six-12awg-two-clamps-one-receptacle"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 314.16(B)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Box Fill: Six 12 AWG &amp; Clamps
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate minimum metal device box cubic inch volume for conductors, internal clamps, and device.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      22.50 cu. in. Minimum Box Volume
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
                   </div>
                 </Link>
               </div>

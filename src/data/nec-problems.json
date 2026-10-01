@@ -57,7 +57,8 @@
     "steps": [
       "Identify circular mil area for 12 AWG copper (CM = 6,530) and resistivity constant (K = 12.9 ohms-cmil/ft).",
       "Compute voltage drop: (2 * 12.9 * 100 * 20) / 6,530 = 7.90 Volts.",
-      "Determine percentage drop: (7.90 / 120) * 100 = 6.58% (Exceeds the 3% NEC branch circuit recommendation)."
+      "Determine percentage drop: (7.90 / 120) * 100 = 6.58% (Exceeds the 3% NEC branch circuit recommendation).",
+      "Compare with NEC recommendation: 6.58% exceeds the 3% limit. Upsize conductor to 10 AWG to maintain voltage stability."
     ],
     "answer": "7.90 V Drop (6.58% Loss - Upsize conductor to 10 AWG to stay below 3%)"
   },
@@ -79,5 +80,133 @@
       "Check 40% fill column in NEC Chapter 9 Table 4 for EMT: 3/4 inch EMT allows 0.213 sq. in. (too small), 1 inch EMT allows 0.346 sq. in. (compliant)."
     ],
     "answer": "1-inch EMT Conduit (Total wire fill: 0.2472 sq. in. vs 0.346 sq. in. permitted)"
+  },
+  {
+    "slug": "range-service-load-12kw-household-single-phase",
+    "title": "Household Electric Range Service Demand for 12 kW at 240V",
+    "metaDescription": "Calculate minimum service demand for a 12 kW household electric range using NEC Table 220.55 Column C.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 220.55 & Table 220.55",
+    "inputs": {
+      "wattage": 12000,
+      "voltage": 240,
+      "continuous": false
+    },
+    "formula": "Demand = Table 220.55 Column C (8 kW max demand)",
+    "steps": [
+      "Consult NEC Table 220.55 Column C for a single household range not exceeding 12 kW.",
+      "The maximum demand rating permitted is 8 kW (8,000 Watts).",
+      "Calculate minimum branch circuit current: 8,000 W / 240 V = 33.33 Amperes.",
+      "Apply minimum conductor rating per NEC 210.19(A)(3): Minimum 40 Ampere branch circuit required."
+    ],
+    "answer": "8 kW Demand / 33.33 A Load (Minimum 40A Circuit Rating)"
+  },
+  {
+    "slug": "voltage-drop-250ft-6awg-50a-240v-subpanel",
+    "title": "Subpanel Feeder Voltage Drop Calculation: 250ft 6 AWG at 50A 240V",
+    "metaDescription": "Calculate feeder voltage drop over 250 feet for a 50A 240V subpanel using 6 AWG copper under NEC 215.2 recommendations.",
+    "category": "Electrical",
+    "calculatorType": "voltage-drop-calculator",
+    "necReference": "NEC Article 215.2(A)(1) Informational Note 2",
+    "inputs": {
+      "distance": 250,
+      "wireGauge": "6 AWG",
+      "current": 50,
+      "voltage": 240,
+      "phase": 1
+    },
+    "formula": "VD = (2 * K * L * I) / CM",
+    "steps": [
+      "Identify circular mil area for 6 AWG copper (CM = 26,240) and resistivity constant (K = 12.9 ohms-cmil/ft).",
+      "Compute feeder voltage drop: (2 * 12.9 * 250 * 50) / 26,240 = 12.29 Volts.",
+      "Determine percentage drop: (12.29 / 240) * 100 = 5.12%.",
+      "Compare with NEC recommendation: 5.12% exceeds the recommended 3% maximum. Upsize conductor to 4 AWG copper to keep drop below 3% (7.73V / 3.22%)."
+    ],
+    "answer": "12.29 V Drop (5.12% Loss - Upsize to 4 AWG Copper)"
+  },
+  {
+    "slug": "conduit-fill-four-500kcmil-thhn-in-rigid-metal-conduit",
+    "title": "Conduit Sizing for Four 500 kcmil THHN Conductors in RMC",
+    "metaDescription": "Size Rigid Metal Conduit (RMC) for four 500 kcmil THHN copper conductors using NEC Chapter 9 Tables 1, 4, and 5.",
+    "category": "Electrical",
+    "calculatorType": "conduit-fill-calculator",
+    "necReference": "NEC Chapter 9 Table 1 & Table 4 (RMC)",
+    "inputs": {
+      "conductors": [{ "gauge": "500 kcmil", "insulation": "THHN", "count": 4 }],
+      "conduitType": "RMC"
+    },
+    "formula": "Total Conductor Area <= 40% of Conduit Interior Area",
+    "steps": [
+      "Find area of one 500 kcmil THHN conductor from NEC Table 5: 0.7073 sq. in.",
+      "Multiply by 4 conductors: 4 * 0.7073 = 2.8292 sq. in.",
+      "Consult NEC Table 4 RMC 40% fill column: 3-inch RMC allows 2.95 sq. in., satisfying the 2.8292 sq. in. requirement."
+    ],
+    "answer": "3-inch RMC Conduit (Wire fill: 2.8292 sq. in. vs 2.95 sq. in. permitted)"
+  },
+  {
+    "slug": "motor-branch-circuit-sizing-15hp-460v-3phase",
+    "title": "Branch Circuit Conductor & Breaker Sizing for 15 HP 460V 3-Phase Motor",
+    "metaDescription": "Calculate minimum conductor ampacity and inverse time breaker sizing for a 15 HP 460V 3-phase motor under NEC 430.22 and 430.52.",
+    "category": "Electrical",
+    "calculatorType": "motor-calculator",
+    "necReference": "NEC Table 430.250, NEC 430.22, & Table 430.52",
+    "inputs": {
+      "horsepower": 15,
+      "voltage": 460,
+      "phase": 3
+    },
+    "formula": "Ampacity = FLC * 1.25 | Breaker = FLC * 2.50",
+    "steps": [
+      "Locate Full-Load Current (FLC) from NEC Table 430.250: 21 Amperes.",
+      "Conductor Ampacity: 21 A * 1.25 = 26.25 Amperes (Select minimum 10 AWG copper rated at 75°C).",
+      "Short-Circuit Protection (Inverse Time Breaker per Table 430.52 at 250%): 21 A * 2.50 = 52.5 Amperes.",
+      "Select standard breaker size per NEC 240.6(A): Next standard size up is a 60 Ampere circuit breaker."
+    ],
+    "answer": "26.25 A Conductor (10 AWG) with 60A Inverse-Time Breaker"
+  },
+  {
+    "slug": "residential-dryer-feeder-load-5000w-240v",
+    "title": "Calculated Service Load for an Electric Clothes Dryer Rated 5,000W at 240V",
+    "metaDescription": "Calculate service feeder load for an electric clothes dryer under NEC Article 220.54 minimum requirements.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 220.54",
+    "inputs": {
+      "wattage": 5000,
+      "voltage": 240,
+      "continuous": false
+    },
+    "formula": "Demand = Max(Nameplate Rating, 5000W)",
+    "steps": [
+      "Per NEC 220.54, the feeder demand for a residential electric dryer must be a minimum of 5,000 Watts or the nameplate rating, whichever is higher.",
+      "Nameplate is 5,000 W, so calculation load = 5,000 Watts.",
+      "Compute feeder ampacity: 5,000 W / 240 V = 20.83 Amperes.",
+      "Select minimum branch circuit rating per NEC 250: Minimum 30 Ampere circuit with 10 AWG copper."
+    ],
+    "answer": "20.83 A Load (5,000W Demand - Requires 30A Circuit with 10 AWG)"
+  },
+  {
+    "slug": "box-fill-six-12awg-two-clamps-one-receptacle",
+    "title": "NEC Box Fill Calculation: Six 12 AWG, Internal Clamps, One Device",
+    "metaDescription": "Calculate minimum metal device box cubic inch volume for six 12 AWG conductors, internal clamps, and one duplex receptacle under NEC 314.16.",
+    "category": "Electrical",
+    "calculatorType": "conduit-fill-calculator",
+    "necReference": "NEC Article 314.16(B)",
+    "inputs": {
+      "conductors": [{ "gauge": "12 AWG", "insulation": "THHN", "count": 6 }],
+      "conduitType": "Box Fill"
+    },
+    "formula": "Volume = Sum of Volume Allowances * 2.25 cu in",
+    "steps": [
+      "Conductor volume factor for 12 AWG per NEC Table 314.16(B) = 2.25 cu. in. per conductor.",
+      "Count conductors: 6 circuit wires = 6 volume units.",
+      "Internal cable clamps: Add 1 volume unit for one or more internal cable clamps.",
+      "Duplex receptacle device: Add 2 volume units for device strap.",
+      "Equipment grounding wire: Add 1 volume unit for grounding conductors.",
+      "Total volume units = 6 + 1 + 2 + 1 = 10 units.",
+      "Total box volume required: 10 * 2.25 cu. in. = 22.50 cubic inches."
+    ],
+    "answer": "22.50 cu. in. Minimum Box Volume (e.g., 4 x 4 x 1-1/2 square box with plaster ring)"
   }
 ]

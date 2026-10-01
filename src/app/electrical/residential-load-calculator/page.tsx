@@ -287,7 +287,7 @@ export default function ResidentialLoadCalculatorPage() {
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Step-by-step mathematical solutions and code citations for fixed heating and branch service loads:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
                   href="/solutions/baseboard-heater-7000w-240v-service-load"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -295,23 +295,77 @@ export default function ResidentialLoadCalculatorPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        NEC Article 220.51 &amp; NEC 424.3(B)
+                        NEC 220.51
                       </span>
-                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Calculated Service Load for a Baseboard Heater Rated 7,000W at 240V
+                      Baseboard Heater 7,000W 240V
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Step-by-step NEC calculation for a 7,000W, 240V electric baseboard heater continuous load under NEC 220.51 and NEC 424.3(B).
+                      Step-by-step NEC calculation for a 7,000W, 240V electric baseboard heater continuous load.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
-                      36.46 A (Minimum 40A Overcurrent Protection)
+                      36.46 A (40A Overcurrent Protection)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/range-service-load-12kw-household-single-phase"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 220.55
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      12 kW Electric Range Demand
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate minimum service demand for a 12 kW household range using Table 220.55 Column C.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      8 kW Demand / 33.33 A Load (Min 40A)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/residential-dryer-feeder-load-5000w-240v"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Article 220.54
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      5,000W Electric Clothes Dryer
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate service feeder load for an electric clothes dryer under NEC 220.54 minimums.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      20.83 A Load (Requires 30A with 10 AWG)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
                   </div>
                 </Link>
               </div>
