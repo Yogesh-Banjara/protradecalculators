@@ -124,7 +124,9 @@
   header,
   footer,
   nav,
-  .no-print {
+  .no-print,
+  .adsbygoogle,
+  ins.adsbygoogle {
     display: none !important;
   }
 
