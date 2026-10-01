@@ -28,10 +28,10 @@ describe("Sitemap & Canonical Indexation Scalability", () => {
     expect(coreCount + catCount + toolCount).toBe(27);
   });
 
-  it("generates sitemap entries in sitemap.xml including solutions", () => {
+  it("generates sitemap entries in sitemap.xml including solutions and methodology", () => {
     const sitemapEntries = sitemap();
-    // 27 baseline canonical routes + 1 /solutions hub + 10 programmatic worked solutions
-    expect(sitemapEntries.length).toBe(38);
+    // 27 baseline canonical routes + 1 /solutions hub + 20 programmatic worked solutions + 1 /methodology
+    expect(sitemapEntries.length).toBe(49);
 
     // Verify all URLs begin with official production domain
     for (const entry of sitemapEntries) {

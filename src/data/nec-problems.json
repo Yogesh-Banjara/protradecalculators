@@ -208,5 +208,212 @@
       "Total box volume required: 10 * 2.25 cu. in. = 22.50 cubic inches."
     ],
     "answer": "22.50 cu. in. Minimum Box Volume (e.g., 4 x 4 x 1-1/2 square box with plaster ring)"
+  },
+  {
+    "slug": "feeder-ampacity-single-family-dwelling-200a-service",
+    "title": "200-Ampere Single-Family Residential Service Feeder Sizing",
+    "metaDescription": "Calculate minimum service conductor ampacity for a 200A 120/240V dwelling service using NEC Table 310.12.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 310.12 & Table 310.12",
+    "inputs": {
+      "wattage": 48000,
+      "voltage": 240,
+      "continuous": false
+    },
+    "formula": "Feeder Ampacity = Service Rating * 0.83",
+    "steps": [
+      "Per NEC 310.12, dwelling unit service and feeder conductors are permitted to be sized at 83% of the service rating.",
+      "Calculate 83% of 200 Amperes: 200 A * 0.83 = 166 Amperes minimum ampacity.",
+      "Select conductor from NEC Table 310.12: 2/0 AWG Copper or 4/0 AWG Aluminum rated at 75°C satisfies the 200A dwelling service requirement."
+    ],
+    "answer": "166 A Ampacity Required (2/0 AWG Copper or 4/0 AWG Aluminum)"
+  },
+  {
+    "slug": "voltage-drop-500ft-480v-3phase-100a-feeder",
+    "title": "Three-Phase 480V Feeder Voltage Drop: 500ft 100A",
+    "metaDescription": "Calculate 3-phase line-to-line voltage drop and percentage loss over 500 feet for a 100A 480V industrial feeder under NEC recommendations.",
+    "category": "Electrical",
+    "calculatorType": "voltage-drop-calculator",
+    "necReference": "NEC Article 215.2(A)(1) Informational Note 2",
+    "inputs": {
+      "distance": 500,
+      "wireGauge": "1 AWG",
+      "current": 100,
+      "voltage": 480,
+      "phase": 3
+    },
+    "formula": "VD = (1.732 * K * L * I) / CM",
+    "steps": [
+      "Select 1 AWG copper conductor (CM = 83,690) with copper constant K = 12.9.",
+      "Apply 3-phase formula: (1.732 * 12.9 * 500 * 100) / 83,690 = 13.34 Volts drop.",
+      "Calculate percentage drop: (13.34 / 480) * 100 = 2.78%.",
+      "Compare against code limits: 2.78% is within the NEC recommended 3% feeder limit."
+    ],
+    "answer": "13.34 V Drop (2.78% Loss - Compliant with NEC 3% Feeder Recommendation)"
+  },
+  {
+    "slug": "neutral-sizing-electric-range-unbalanced-load",
+    "title": "Household Electric Range Feeder Neutral Conductor Sizing",
+    "metaDescription": "Calculate the maximum unbalance neutral feeder load for a household electric range using the 70% demand factor under NEC 220.61(B).",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 220.61(B)(1)",
+    "inputs": {
+      "wattage": 8000,
+      "voltage": 240,
+      "continuous": false
+    },
+    "formula": "Neutral Demand = Range Demand * 0.70",
+    "steps": [
+      "Per NEC 220.61(B)(1), the feeder neutral demand for household electric ranges is assessed at 70% of the calculated demand from Table 220.55.",
+      "Base range demand from Table 220.55 = 8,000 Watts.",
+      "Calculate neutral demand: 8,000 W * 0.70 = 5,600 Watts.",
+      "Compute neutral current: 5,600 W / 240 V = 23.33 Amperes."
+    ],
+    "answer": "5,600 W Neutral Demand (23.33 A Current Rating)"
+  },
+  {
+    "slug": "conduit-fill-six-10awg-thhn-in-half-inch-emt",
+    "title": "Conduit Sizing Verification: Six 10 AWG THHN Wires in 1/2-Inch EMT",
+    "metaDescription": "Verify code compliance and percentage raceway fill for six 10 AWG THHN conductors inside 1/2-inch EMT per NEC Chapter 9.",
+    "category": "Electrical",
+    "calculatorType": "conduit-fill-calculator",
+    "necReference": "NEC Chapter 9 Table 1, Table 4, & Table C.1",
+    "inputs": {
+      "conductors": [{ "gauge": "10 AWG", "insulation": "THHN", "count": 6 }],
+      "conduitType": "EMT"
+    },
+    "formula": "Conductor Area <= 40% EMT Interior Cross-Section",
+    "steps": [
+      "Find cross-sectional area of 10 AWG THHN from Table 5: 0.0211 sq. in.",
+      "Calculate total area for 6 wires: 6 * 0.0211 = 0.1266 sq. in.",
+      "Check 1/2-inch EMT 40% fill limit from Table 4: 0.122 sq. in.",
+      "Evaluate: 0.1266 sq. in. exceeds the 0.122 sq. in. allowance (Fill is 41.5%). 1/2-inch EMT is undersized; upsizing to 3/4-inch EMT is required."
+    ],
+    "answer": "Non-Compliant in 1/2-inch EMT (41.5% Fill). Must Upsize to 3/4-inch EMT"
+  },
+  {
+    "slug": "transformer-full-load-amps-45kva-480v-to-208v",
+    "title": "45 kVA 3-Phase Transformer Primary and Secondary Full-Load Amps",
+    "metaDescription": "Calculate primary (480V) and secondary (208V) full-load current (FLC) and minimum overcurrent protection for a 45 kVA 3-phase dry-type transformer under NEC 450.3.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 450.3(B) & Table 450.3(B)",
+    "inputs": {
+      "wattage": 45000,
+      "voltage": 480,
+      "continuous": true
+    },
+    "formula": "FLC = kVA / (Voltage * 1.732)",
+    "steps": [
+      "Calculate 480V Primary FLC: 45,000 / (480 * 1.732) = 54.13 Amperes.",
+      "Calculate 208V Secondary FLC: 45,000 / (208 * 1.732) = 124.91 Amperes.",
+      "Determine primary overcurrent protection per Table 450.3(B) at 125%: 54.13 A * 1.25 = 67.66 A (Next standard size up: 70A breaker)."
+    ],
+    "answer": "Primary FLC: 54.13A (70A Breaker) | Secondary FLC: 124.91A"
+  },
+  {
+    "slug": "minimum-wire-size-ac-unit-mca-mop-nameplate",
+    "title": "HVAC Sizing: Conductor Ampacity & Breaker for 28.5A MCA / 45A MOP Unit",
+    "metaDescription": "Determine minimum branch circuit conductor gauge and maximum breaker size for an air conditioning unit with 28.5A MCA and 45A MOP under NEC 440.",
+    "category": "Electrical",
+    "calculatorType": "motor-calculator",
+    "necReference": "NEC Article 440.4(B), 440.22, & 440.32",
+    "inputs": {
+      "horsepower": 5,
+      "voltage": 240,
+      "phase": 1
+    },
+    "formula": "Conductor Rating >= MCA | Breaker <= MOP",
+    "steps": [
+      "Per NEC 440.32, branch circuit conductors must have an ampacity not less than the nameplate Minimum Circuit Ampacity (MCA): 28.5 Amperes.",
+      "Select conductor from Table 310.16 at 75°C: 10 AWG copper is rated for 35 Amperes, satisfying the 28.5A MCA requirement.",
+      "Per NEC 440.22, the protective device must not exceed the Maximum Overcurrent Protection (MOP) rating: 45 Amperes.",
+      "Result: 10 AWG copper conductors protected by a 40A or 45A circuit breaker."
+    ],
+    "answer": "10 AWG Copper Conductor with 45A Maximum Breaker"
+  },
+  {
+    "slug": "kitchen-small-appliance-branch-circuits-demand",
+    "title": "Kitchen Small Appliance & Laundry Branch Circuit Feeder Demand",
+    "metaDescription": "Calculate total volt-ampere service demand for required kitchen small-appliance and laundry circuits under NEC Article 220.52.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 220.52(A) & (B)",
+    "inputs": {
+      "wattage": 4500,
+      "voltage": 120,
+      "continuous": false
+    },
+    "formula": "Total VA = (2 Kitchen Circuits * 1500 VA) + (1 Laundry Circuit * 1500 VA)",
+    "steps": [
+      "Per NEC 220.52(A), provide a minimum of two 20A small appliance branch circuits rated at 1,500 VA each = 3,000 VA.",
+      "Per NEC 220.52(B), provide at least one 20A laundry circuit rated at 1,500 VA.",
+      "Sum base load: 3,000 VA + 1,500 VA = 4,500 VA before applying dwelling demand factors."
+    ],
+    "answer": "4,500 VA Base Demand (Three 20A Dedicated Branch Circuits)"
+  },
+  {
+    "slug": "solar-pv-inverter-output-circuit-conductor-sizing",
+    "title": "Solar PV Inverter Output Conductor Sizing: 7.6 kW 240V Continuous Output",
+    "metaDescription": "Calculate minimum conductor size and overcurrent protection for a 7.6 kW 240V grid-tied solar inverter under NEC 690.8 continuous duty rules.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 690.8(A)(3) & 690.8(B)",
+    "inputs": {
+      "wattage": 7600,
+      "voltage": 240,
+      "continuous": true
+    },
+    "formula": "Conductor Ampacity = (Inverter Max Current) * 1.25",
+    "steps": [
+      "Calculate maximum continuous inverter output current: 7,600 W / 240 V = 31.67 Amperes.",
+      "Per NEC 690.8(B), multiply maximum inverter output current by 125% for continuous duty: 31.67 A * 1.25 = 39.58 Amperes.",
+      "Select conductor from Table 310.16 at 75°C: 8 AWG copper (rated 50A) or 8 AWG THHN.",
+      "Select overcurrent protective device: 40 Ampere double-pole circuit breaker."
+    ],
+    "answer": "39.58 A Conductor Ampacity (8 AWG Copper with 40A Breaker)"
+  },
+  {
+    "slug": "grounding-electrode-conductor-sizing-200a-service",
+    "title": "Grounding Electrode Conductor (GEC) Sizing for 200A Service",
+    "metaDescription": "Size the Grounding Electrode Conductor for a 200A residential service with 2/0 copper service conductors using NEC Table 250.66.",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 250.66 & Table 250.66",
+    "inputs": {
+      "wattage": 48000,
+      "voltage": 240,
+      "continuous": false
+    },
+    "formula": "GEC Size = Lookup(Service Conductor Size in Table 250.66)",
+    "steps": [
+      "Identify service entrance conductor gauge: 2/0 AWG Copper.",
+      "Consult NEC Table 250.66 under '2/0 or 3/0 AWG Copper'.",
+      "Read required GEC size: 4 AWG Copper (or 2 AWG Aluminum).",
+      "Special electrode exceptions: Ground rods require maximum 6 AWG copper (NEC 250.66(A)); concrete-encased electrodes require maximum 4 AWG copper (NEC 250.66(B))."
+    ],
+    "answer": "4 AWG Copper GEC (6 AWG max for ground rods, 4 AWG for Ufer ground)"
+  },
+  {
+    "slug": "box-fill-4x4-square-box-deep-device-capacity",
+    "title": "4x4x2-1/8 Square Deep Metal Box Conductor & Device Capacity",
+    "metaDescription": "Determine maximum conductor capacity and device allowance for a 4x4x2-1/8 inch deep square metal box (30.3 cu in) under NEC 314.16.",
+    "category": "Electrical",
+    "calculatorType": "conduit-fill-calculator",
+    "necReference": "NEC Table 314.16(A) & 314.16(B)",
+    "inputs": {
+      "conductors": [{ "gauge": "12 AWG", "insulation": "THHN", "count": 13 }],
+      "conduitType": "Box Fill"
+    },
+    "formula": "Max 12 AWG Conductors = Total Volume / 2.25 cu in",
+    "steps": [
+      "Per NEC Table 314.16(A), a 4 x 4 x 2-1/8 inch square metal box provides 30.3 cubic inches of interior volume.",
+      "Volume allowance per 12 AWG conductor is 2.25 cubic inches.",
+      "Compute maximum pure conductor capacity: 30.3 cu. in. / 2.25 cu. in. = 13 conductors (29.25 cu. in.).",
+      "When installing a receptacle (deduct 2 allowances = 4.5 cu in) and ground wire (deduct 1 allowance = 2.25 cu in), maximum remaining 12 AWG conductors is (30.3 - 6.75) / 2.25 = 10 conductors."
+    ],
+    "answer": "30.3 cu. in. Volume: Maximum 13 isolated 12 AWG wires (or 10 wires with 1 receptacle & ground)"
   }
 ]

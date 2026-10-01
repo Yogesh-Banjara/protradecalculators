@@ -96,6 +96,14 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
+                  href="/methodology"
+                  className="hover:text-amber-400 transition-colors font-medium text-slate-300"
+                >
+                  Calculation Methodology &amp; NEC Compliance
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="hover:text-amber-400 transition-colors"
                 >
@@ -138,6 +146,9 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center pt-2 gap-3 text-slate-500">
             <p>© {currentYear} {siteConfig.name}. All rights reserved.</p>
             <div className="flex items-center gap-4">
+              <Link href="/methodology" className="hover:text-slate-300">
+                Methodology
+              </Link>
               <Link href="/privacy" className="hover:text-slate-300">
                 Privacy
               </Link>

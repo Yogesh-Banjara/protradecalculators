@@ -9,8 +9,8 @@ export const dynamic = "force-static";
  * Scalable Dynamic XML Sitemap Generator
  * ProTrade Calculators (https://protradecalculators.com)
  *
- * Exclusively outputs verified canonical routes from the central route registry
- * plus programmatic worked solutions.
+ * Exclusively outputs verified canonical routes from the central route registry,
+ * programmatic worked solutions, and engineering methodology standards.
  * Strictly excludes query strings, share hashes, drafts, and test pages.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -44,5 +44,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...standardEntries, solutionsHubEntry, ...solutionProblemEntries];
+  const methodologyEntry: MetadataRoute.Sitemap[number] = {
+    url: `${base}/methodology`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  };
+
+  return [
+    ...standardEntries,
+    solutionsHubEntry,
+    ...solutionProblemEntries,
+    methodologyEntry,
+  ];
 }
