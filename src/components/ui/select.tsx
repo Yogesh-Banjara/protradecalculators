@@ -20,10 +20,10 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         disabled={disabled}
         aria-invalid={error ? "true" : "false"}
         className={cn(
-          "flex h-11 sm:h-10 w-full rounded-xl border bg-white px-3.5 py-2 text-sm font-medium text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/15 focus-visible:border-amber-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 shadow-2xs transition-all",
+          "flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500",
           error
             ? "border-red-500 focus-visible:ring-red-500"
-            : "border-slate-200 hover:border-slate-300",
+            : "border-slate-300 focus-visible:border-amber-500 focus-visible:ring-amber-500",
           className
         )}
         {...props}

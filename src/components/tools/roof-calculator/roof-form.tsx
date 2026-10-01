@@ -207,10 +207,10 @@ export function RoofCalculatorForm() {
         {/* RIGHT PANE: Variable Controls & Primary Results (5 Cols on Desktop / 42%) */}
         <div className="lg:col-span-5 space-y-4">
           {/* 1. Essential Geometry Inputs */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 shadow-sm space-y-4 text-white">
+          <div className="instrument-dock p-5 shadow-xl space-y-4 text-white">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <div className="flex items-center gap-2">
-                <div className="h-7 w-7 rounded-lg bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center font-mono font-bold text-xs">
+                <div className="h-7 w-7 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-mono font-bold text-xs">
                   01
                 </div>
                 <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
@@ -345,7 +345,7 @@ export function RoofCalculatorForm() {
           </div>
 
           {/* 2. Progressive Disclosure: Overhangs, Birdsmouth & Waste */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden shadow-sm text-white">
+          <div className="instrument-dock overflow-hidden shadow-xl text-white">
             <button
               type="button"
               onClick={() => setShowAdvanced(!showAdvanced)}
@@ -499,16 +499,16 @@ export function RoofCalculatorForm() {
 
           {/* 3. Primary Calculated Results & Takeoff Schedule */}
           {result && (
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-lg overflow-hidden text-white space-y-0">
+            <div className="rounded-2xl border-2 border-amber-500/40 bg-slate-950 shadow-2xl overflow-hidden text-white space-y-0">
               {/* Header */}
-              <div className="bg-slate-900 px-5 py-3.5 border-b border-slate-800 flex items-center justify-between">
+              <div className="bg-slate-900 px-5 py-3 border-b border-slate-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Compass className="h-4 w-4 text-amber-400" />
                   <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                    Rafter Geometry &amp; Layout Schedule
+                    Rafter Geometry &amp; Layout Schedule (Assumed Geometry)
                   </span>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded border border-amber-500/30">
+                <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
                   {result.geometry.pitchIn12}:12 Pitch ({result.geometry.pitchAngleDegrees}°)
                 </span>
               </div>
@@ -516,11 +516,11 @@ export function RoofCalculatorForm() {
               {/* Primary Calculated Answer */}
               <div className="p-5 space-y-4">
                 <div>
-                  <span className="text-[10px] uppercase font-mono font-bold text-slate-400 block tracking-wider">
+                  <span className="text-[10px] uppercase font-mono font-bold text-amber-400 block tracking-wider">
                     Common Rafter Line Length (Theoretical Ridge Center to Wall Line)
                   </span>
                   <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-4xl sm:text-5xl font-black text-amber-400 font-mono tracking-tight tabular-nums">
+                    <span className="text-4xl sm:text-5xl font-black text-amber-400 font-mono tracking-tight">
                       {result.geometry.rafterLineLengthFormatted}
                     </span>
                     <span className="text-sm font-mono text-slate-300">
@@ -594,7 +594,7 @@ export function RoofCalculatorForm() {
                     {result.warnings.map((w, i) => (
                       <div
                         key={i}
-                        className="flex items-start gap-1.5 bg-amber-950/40 border border-amber-800/60 p-2.5 rounded-lg text-[11px] text-amber-200 leading-snug"
+                        className="flex items-start gap-1.5 bg-amber-950/50 border border-amber-800/60 p-2.5 rounded-lg text-[11px] text-amber-200 leading-snug"
                       >
                         <AlertTriangle className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
                         <span>{w.message}</span>
@@ -608,30 +608,30 @@ export function RoofCalculatorForm() {
                   <button
                     type="button"
                     onClick={copySummaryToClipboard}
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-xs transition-all cursor-pointer active:scale-[0.98]"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all cursor-pointer active:scale-[0.98]"
                   >
-                    {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5 text-slate-900" />}
+                    {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     <span>{copied ? "Copied Takeoff!" : "Copy Takeoff"}</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={saveConfiguration}
-                    className={`inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all cursor-pointer active:scale-[0.98] border ${
+                    className={`inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer active:scale-[0.98] border ${
                       saved
-                        ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/50 font-semibold"
-                        : "bg-slate-800 hover:bg-slate-750 text-slate-200 border-slate-700/80"
+                        ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/50 font-bold"
+                        : "bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700"
                     }`}
                   >
                     {saved ? (
                       <>
                         <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span>Saved ✓</span>
+                        <span>Saved on this device ✓</span>
                       </>
                     ) : (
                       <>
-                        <Save className="h-3.5 w-3.5 text-slate-400" />
-                        <span>Save Config</span>
+                        <Save className="h-3.5 w-3.5 text-amber-400" />
+                        <span>Save on This Device</span>
                       </>
                     )}
                   </button>
@@ -640,7 +640,7 @@ export function RoofCalculatorForm() {
                     toolSlug="roof-pitch-calculator"
                     category="construction"
                     label="Print Worksheet"
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700/80 cursor-pointer active:scale-[0.98]"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer active:scale-[0.98]"
                   />
                 </div>
               </div>

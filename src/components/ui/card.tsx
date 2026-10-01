@@ -16,7 +16,7 @@ export function Card({
       className={cn(
         "rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-2xs transition-all duration-150 ease-out",
         interactive &&
-          "hover:border-slate-300 hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] focus-within:border-amber-500/80 focus-within:ring-2 focus-within:ring-amber-500/10 cursor-pointer",
+          "hover:border-amber-400 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-500/20 cursor-pointer",
         className
       )}
       {...props}

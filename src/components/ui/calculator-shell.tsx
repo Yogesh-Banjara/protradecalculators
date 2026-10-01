@@ -37,22 +37,22 @@ export function CalculatorShell({
         {/* Calculator Header Hero */}
         <header className="my-6 space-y-3 max-w-4xl">
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="brand" className="gap-1.5 py-1 px-2.5 text-xs">
+            <Badge variant="brand" className="gap-1.5 py-1 px-3">
               {categoryIcon}
               <span>{categoryName}</span>
             </Badge>
             {referenceStandard && (
-              <Badge variant="outline" className="text-xs font-mono font-medium text-slate-600 bg-white">
+              <Badge variant="outline" className="text-xs font-mono font-bold text-slate-700 bg-slate-100">
                 {referenceStandard}
               </Badge>
             )}
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
             {title}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
             {subtitle}
           </p>
         </header>

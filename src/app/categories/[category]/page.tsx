@@ -103,19 +103,19 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
 
           <div className="space-y-4 my-8">
             <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200/80 shrink-0">
-                {categoryIcons[category.slug] ?? <HardHat className="h-7 w-7 text-amber-600" />}
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200 shrink-0">
+                {categoryIcons[category.slug] ?? <HardHat className="h-8 w-8 text-amber-500" />}
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-3 flex-wrap">
-                  <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                  <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                     {category.name}
                   </h1>
-                  <Badge variant={category.status === "active" ? "brand" : "outline"} className="text-xs">
+                  <Badge variant={category.status === "active" ? "brand" : "outline"}>
                     {tools.length} {tools.length === 1 ? "Calculator" : "Calculators"}
                   </Badge>
                 </div>
-                <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+                <p className="text-base text-slate-600 max-w-3xl leading-relaxed">
                   {category.description}
                 </p>
               </div>
@@ -123,40 +123,40 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
           </div>
 
           {category.slug === "plumbing" && (
-            <div className="p-6 rounded-2xl border border-cyan-200/80 bg-white shadow-2xs space-y-4">
+            <div className="p-6 rounded-2xl border border-cyan-200 bg-gradient-to-r from-cyan-50/80 via-white to-cyan-50/40 shadow-sm space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-800">
                 <Droplets className="h-4 w-4 text-cyan-600" />
                 <span>Sanitary Drainage &amp; Potable Supply Design</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
-                <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                <div className="space-y-1">
                   <h3 className="font-bold text-slate-900 text-base">
                     Sizing Sanitary Drainage Lines by Fixture Units
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Gravity drainage requires converting fixture discharge into cumulative units. Sizing horizontal branches, vertical soil stacks, and building drains is governed by IPC Chapter 7 (Table 710.1) and UPC Chapter 7 (Table 703.2).
                   </p>
-                  <div className="pt-1">
+                  <div className="pt-2">
                     <Link
                       href="/plumbing/dfu-calculator"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-700 hover:text-cyan-800 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 hover:text-cyan-800 transition-colors"
                     >
                       Calculate Drainage Fixture Units (DFU) &amp; Drain Pipe Sizes
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
                 </div>
-                <div className="space-y-2 border-t md:border-t-0 md:border-l border-slate-100 md:pl-6 pt-4 md:pt-0">
+                <div className="space-y-1 border-t md:border-t-0 md:border-l border-cyan-100 md:pl-4 pt-3 md:pt-0">
                   <h3 className="font-bold text-slate-900 text-base">
                     Potable Water Supply &amp; Velocity Control
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Sizing potable water mains and distribution branches requires converting fixture units to peak design flow (GPM) via Hunter&apos;s Curve and maintaining velocity under 8.0 FPS.
                   </p>
-                  <div className="pt-1">
+                  <div className="pt-2">
                     <Link
                       href="/plumbing/wsfu-calculator"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-700 hover:text-cyan-800 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 hover:text-cyan-800 transition-colors"
                     >
                       Calculate Water Supply Fixture Units (WSFU) &amp; Water Lines
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -168,40 +168,40 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
           )}
 
           {category.slug === "construction" && (
-            <div className="p-6 rounded-2xl border border-amber-200/80 bg-white shadow-2xs space-y-4">
+            <div className="p-6 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50/80 via-white to-amber-50/40 shadow-sm space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800">
                 <HardHat className="h-4 w-4 text-amber-600" />
                 <span>Structural Framing &amp; Code Compliance</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
-                <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                <div className="space-y-1">
                   <h3 className="font-bold text-slate-900 text-base">
                     Stair Stringer Cuts &amp; IRC Rise and Run Layout
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Residential stairs must satisfy IRC Section R311.7 (max 7-3/4&quot; rise, min 10&quot; run, 80&quot; headroom). Calculate exact 2x12 stringer cut patterns and bottom riser deductions before sawing lumber.
                   </p>
-                  <div className="pt-1">
+                  <div className="pt-2">
                     <Link
                       href="/construction/stair-calculator"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-800 hover:text-amber-900 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 hover:text-amber-900 transition-colors"
                     >
                       Calculate Stair Stringer Layout &amp; Riser Heights
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
                 </div>
-                <div className="space-y-2 border-t md:border-t-0 md:border-l border-slate-100 md:pl-6 pt-4 md:pt-0">
+                <div className="space-y-1 border-t md:border-t-0 md:border-l border-amber-100 md:pl-4 pt-3 md:pt-0">
                   <h3 className="font-bold text-slate-900 text-base">
                     Deck Framing, Joist Spans &amp; Pier Footings
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Complete material takeoff for composite or wood decking, 12&quot; vs 16&quot; on-center joists per IRC Table R507.6, support beams, concrete pier footings, and structural hardware.
                   </p>
-                  <div className="pt-1">
+                  <div className="pt-2">
                     <Link
                       href="/construction/deck-calculator"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-800 hover:text-amber-900 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 hover:text-amber-900 transition-colors"
                     >
                       Calculate Deck Surface Boards, Joists &amp; Pier Footings
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -212,7 +212,7 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
             </div>
           )}
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <h2 className="text-xl font-bold text-slate-900">Available Calculators in Suite</h2>
               <span className="text-xs text-slate-500 font-mono">
@@ -229,16 +229,16 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
                     className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-2xl active:scale-[0.99] transition-transform"
                   >
                     <Card interactive={true} className="h-full flex flex-col justify-between">
-                      <CardHeader className="space-y-2.5 p-5">
+                      <CardHeader className="space-y-2">
                         <div className="flex items-center justify-between gap-2 mb-1">
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200/80">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">
                             Deterministic Engine
                           </span>
                           <Badge variant="outline" className="text-[10px]">
                             {tool.inputs?.length ?? 0} Inputs
                           </Badge>
                         </div>
-                        <CardTitle className="text-base sm:text-lg font-bold group-hover:text-amber-800 flex items-center justify-between transition-colors">
+                        <CardTitle className="text-lg font-bold group-hover:text-amber-800 flex items-center justify-between transition-colors">
                           <span>{tool.title}</span>
                           <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all text-amber-600 group-hover:translate-x-1" />
                         </CardTitle>
@@ -246,13 +246,13 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
                           {tool.description}
                         </CardDescription>
                       </CardHeader>
-                      <CardContent className="pt-0 p-5">
-                        <div className="border-t border-slate-100 pt-3.5 flex items-center justify-between text-xs">
-                          <span className="flex items-center gap-1.5 text-slate-500 font-medium">
+                      <CardContent className="pt-0">
+                        <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-xs">
+                          <span className="flex items-center gap-1 text-slate-500">
                             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                             SVG Visualizer
                           </span>
-                          <span className="font-semibold text-amber-700 group-hover:text-amber-800 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                          <span className="font-bold text-amber-700 group-hover:text-amber-800 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                             Launch Tool →
                           </span>
                         </div>

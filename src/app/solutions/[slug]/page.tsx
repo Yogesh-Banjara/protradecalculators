@@ -177,14 +177,14 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           </div>
 
           {/* Direct Answer Callout Banner */}
-          <div className="p-6 rounded-2xl bg-amber-50/70 border border-amber-200/90 print:bg-slate-50 print:border-slate-300 shadow-2xs mb-10">
+          <div className="p-5 sm:p-6 rounded-xl bg-gradient-to-r from-amber-500/15 via-amber-500/10 to-transparent border-2 border-amber-500/40 print:bg-slate-50 print:border-slate-300 shadow-sm mb-10">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-1.5 text-amber-800 print:text-slate-800 font-semibold text-xs uppercase tracking-wider">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 print:text-slate-800" />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-amber-800 print:text-slate-800 font-bold text-xs uppercase tracking-wider">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600 print:text-slate-800" />
                   Direct Answer
                 </div>
-                <div className="text-2xl sm:text-3xl font-black font-mono text-slate-900 tabular-nums">
+                <div className="text-xl sm:text-2xl font-black font-mono text-slate-900">
                   {problem.answer}
                 </div>
                 <p className="text-xs text-slate-600">
@@ -195,9 +195,9 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               <div className="shrink-0 no-print">
                 <Link
                   href={parentTool.url}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm transition-all shadow-2xs cursor-pointer active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs sm:text-sm hover:bg-amber-400 transition-colors shadow-sm"
                 >
-                  <Calculator className="h-4 w-4 text-amber-400" />
+                  <Calculator className="h-4 w-4" />
                   Open Full Calculator
                 </Link>
               </div>
@@ -277,9 +277,9 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               {problem.steps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-xl border border-slate-200/90 bg-white shadow-2xs flex items-start gap-4 print:shadow-none print:border-slate-300"
+                  className="p-4 sm:p-5 rounded-xl border border-slate-200 bg-white shadow-sm flex items-start gap-4 print:shadow-none print:border-slate-300"
                 >
-                  <span className="flex items-center justify-center h-7 w-7 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/60 print:bg-slate-200 print:text-slate-900 font-bold text-xs shrink-0 font-mono">
+                  <span className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 text-amber-900 print:bg-slate-200 print:text-slate-900 font-bold text-sm shrink-0 font-mono">
                     {idx + 1}
                   </span>
                   <div className="space-y-1 pt-0.5">
@@ -292,10 +292,10 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             </div>
 
             {/* Summary Conclusion Box */}
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/90 text-xs sm:text-sm text-slate-700 flex items-center justify-between print:border-slate-300">
+            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 flex items-center justify-between print:border-slate-300">
               <div>
                 <span className="font-semibold text-slate-900">Final Recommendation: </span>
-                <span className="font-mono font-bold text-slate-900 ml-1">{problem.answer}</span>
+                <span>{problem.answer}</span>
               </div>
               <Badge variant="outline" className="text-xs font-mono shrink-0">
                 {problem.necReference}
@@ -307,7 +307,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <div className="pt-10 no-print">
             <Link
               href={parentTool.url}
-              className="group p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 hover:border-slate-700 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 block shadow-md"
+              className="group p-6 rounded-xl bg-slate-900 text-white border border-slate-800 hover:border-amber-400 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 block shadow-md"
             >
               <div className="space-y-1">
                 <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
@@ -342,7 +342,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               {relatedProblems.map((item) => (
                 <div
                   key={item.slug}
-                  className="p-5 rounded-2xl border border-slate-200/90 bg-white hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between space-y-4 group"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group"
                 >
                   <div className="space-y-2.5">
                     <div className="flex flex-wrap items-center gap-1.5">
@@ -353,7 +353,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                         {item.category}
                       </Badge>
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-800 transition-colors line-clamp-2">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-2">
                       <Link href={`/solutions/${item.slug}`}>
                         {item.title}
                       </Link>
@@ -366,7 +366,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                   <div className="pt-3 border-t border-slate-100">
                     <Link
                       href={`/solutions/${item.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-amber-700 hover:text-amber-800 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors"
                     >
                       View Worked Solution &rarr;
                     </Link>
