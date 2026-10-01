@@ -108,17 +108,17 @@ export default function GuidesHubPage() {
               <Link
                 key={guide.slug}
                 href={`/guides/${guide.slug}`}
-                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm transition-all group flex flex-col justify-between shadow-2xs"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-bold text-amber-800 bg-amber-100/70 px-2.5 py-0.5 rounded-md">
+                    <span className="font-mono font-medium text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200/60">
                       {guide.codeReference}
                     </span>
-                    <span className="text-slate-400 font-mono">{guide.readTime}</span>
+                    <span className="text-slate-400 font-mono text-xs">{guide.readTime}</span>
                   </div>
 
-                  <h2 className="text-lg font-bold text-slate-900 group-hover:text-amber-600 transition-colors leading-snug">
+                  <h2 className="text-lg font-bold text-slate-900 group-hover:text-amber-800 transition-colors leading-snug">
                     {guide.title}
                   </h2>
 
@@ -131,7 +131,7 @@ export default function GuidesHubPage() {
                       {guide.keyTopics.map((topic, i) => (
                         <span
                           key={i}
-                          className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium"
+                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-50 text-slate-600 font-medium border border-slate-200/80"
                         >
                           {topic}
                         </span>
@@ -140,8 +140,8 @@ export default function GuidesHubPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center text-xs font-bold text-amber-600 pt-4 mt-4 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                  Read Technical Guide <ArrowRight className="h-4 w-4 ml-1" />
+                <div className="flex items-center text-xs font-semibold text-amber-700 group-hover:text-amber-800 pt-4 mt-4 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                  Read Technical Guide <ArrowRight className="h-3.5 w-3.5 ml-1" />
                 </div>
               </Link>
             ))}

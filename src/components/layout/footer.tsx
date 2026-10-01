@@ -17,7 +17,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 text-slate-400 mt-20">
+    <footer className="border-t border-slate-800 bg-slate-900 text-slate-400 mt-20">
       <Container>
         <div className="py-14 lg:py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand & Mission */}

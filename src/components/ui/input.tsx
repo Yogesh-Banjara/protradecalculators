@@ -13,7 +13,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative flex items-stretch w-full rounded-md shadow-sm">
         {prefixAddon && (
-          <div className="inline-flex items-center px-3 text-sm text-slate-500 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md select-none">
+          <div className="inline-flex items-center px-3 text-xs font-medium text-slate-500 bg-slate-50 border border-r-0 border-slate-200 rounded-l-xl select-none">
             {prefixAddon}
           </div>
         )}
@@ -23,10 +23,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           aria-invalid={error ? "true" : "false"}
           className={cn(
-            "flex min-h-[44px] sm:min-h-[40px] h-11 sm:h-10 w-full rounded-xl border bg-white px-3.5 py-2.5 text-base sm:text-sm font-bold text-slate-900 placeholder:text-slate-400 tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/20 focus-visible:border-amber-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all shadow-xs",
+            "flex min-h-[44px] sm:min-h-[40px] h-11 sm:h-10 w-full rounded-xl border bg-white px-3.5 py-2 text-base sm:text-sm font-semibold text-slate-900 placeholder:text-slate-400 tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/15 focus-visible:border-amber-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all shadow-2xs",
             error
               ? "border-red-500 focus-visible:ring-red-500"
-              : "border-slate-300",
+              : "border-slate-200 hover:border-slate-300",
             prefixAddon ? "rounded-l-none" : undefined,
             suffixAddon ? "rounded-r-none" : undefined,
             className
@@ -34,7 +34,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {suffixAddon && (
-          <div className="inline-flex items-center px-3 text-sm font-medium text-slate-600 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md select-none">
+          <div className="inline-flex items-center px-3 text-xs font-medium text-slate-600 bg-slate-50 border border-l-0 border-slate-200 rounded-r-xl select-none">
             {suffixAddon}
           </div>
         )}

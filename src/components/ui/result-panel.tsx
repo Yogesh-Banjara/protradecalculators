@@ -63,17 +63,17 @@ export function ResultPanel({
   return (
     <div
       className={cn(
-        "rounded-2xl border-2 border-amber-500/40 bg-slate-950 text-slate-100 shadow-xl overflow-hidden transition-all",
+        "rounded-2xl border border-slate-800 bg-slate-900 text-slate-100 shadow-lg overflow-hidden transition-all",
         className
       )}
     >
       {/* Header Bar */}
-      <div className="bg-slate-900/90 px-5 sm:px-6 py-3.5 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2">
+      <div className="bg-slate-900 px-5 sm:px-6 py-3.5 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+          <div className="h-7 w-7 rounded-lg bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center">
             <Calculator className="h-4 w-4" />
           </div>
-          <h4 className="text-sm sm:text-base font-bold text-white tracking-wide uppercase">
+          <h4 className="text-xs sm:text-sm font-bold text-white tracking-wider uppercase">
             {title}
           </h4>
         </div>
@@ -83,12 +83,12 @@ export function ResultPanel({
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700/80 transition-all cursor-pointer"
           >
             {copied ? (
               <>
                 <Check className="h-3.5 w-3.5 text-emerald-400" />
-                <span className="text-emerald-300 font-bold">Copied!</span>
+                <span className="text-emerald-300 font-medium">Copied!</span>
               </>
             ) : (
               <>
@@ -100,7 +100,7 @@ export function ResultPanel({
           <button
             type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700/80 transition-all cursor-pointer"
           >
             <Printer className="h-3.5 w-3.5 text-slate-400" />
             <span>Print Worksheet</span>
@@ -109,16 +109,16 @@ export function ResultPanel({
       </div>
 
       {/* Primary Hero Result Section */}
-      <div className="p-6 sm:p-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 space-y-4">
-        <div className="space-y-1">
-          <span className="text-xs uppercase tracking-wider text-amber-400 font-bold block">
+      <div className="p-6 sm:p-7 bg-slate-900/90 space-y-4">
+        <div className="space-y-1.5">
+          <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">
             {primaryResult.label ?? "Primary Calculated Result"}:
           </span>
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <span className="text-5xl sm:text-6xl font-black text-amber-400 tracking-tight font-mono">
+          <div className="flex items-baseline gap-2.5 flex-wrap">
+            <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-amber-400 tracking-tight font-mono tabular-nums">
               {primaryResult.value}
             </span>
-            <span className="text-2xl sm:text-3xl font-bold text-slate-200">
+            <span className="text-xl sm:text-2xl font-bold text-slate-300">
               {primaryResult.unit}
             </span>
           </div>
@@ -126,8 +126,8 @@ export function ResultPanel({
 
         {/* Practical Jobsite Takeaway */}
         {takeawayText && (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 text-xs sm:text-sm text-amber-200 flex items-start gap-2.5">
-            <div className="h-5 w-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 font-bold">
+          <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3.5 text-xs sm:text-sm text-amber-200 flex items-start gap-2.5">
+            <div className="h-5 w-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
               ℹ
             </div>
             <div className="leading-relaxed">
@@ -139,11 +139,11 @@ export function ResultPanel({
 
         {/* Secondary Metrics Grid */}
         {secondaryMetrics && secondaryMetrics.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-4 border-t border-slate-800">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 pt-3 border-t border-slate-800/80">
             {secondaryMetrics.map((m, idx) => (
               <div
                 key={idx}
-                className="bg-slate-900/80 rounded-xl p-3 border border-slate-800 hover:border-slate-700 transition-colors"
+                className="bg-slate-800/50 rounded-xl p-3 border border-slate-800 hover:border-slate-700 transition-colors"
               >
                 <span className="text-[11px] text-slate-400 block truncate">{m.label}</span>
                 <div className="text-base sm:text-lg font-bold text-white font-mono mt-0.5">

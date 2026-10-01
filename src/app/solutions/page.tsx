@@ -163,23 +163,23 @@ export default function SolutionsIndexPage() {
           {/* Page Hero */}
           <div className="space-y-4 mb-8">
             <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
                 <BookOpen className="h-3.5 w-3.5" />
                 20 Verified NEC Worked Solutions
               </div>
               <Link
                 href="/methodology"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-amber-600 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-amber-700 transition-colors"
               >
                 <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
                 Standards &amp; Methodology Compliance &rarr;
               </Link>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
               Real-World NEC Calculation Solutions
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
               Step-by-step mathematical solutions and code citations for 20 common electrical
               engineering, contractor licensing, and master electrician exam scenarios. Each
               problem provides exact formulas, step derivations, direct answers, and pre-loaded
@@ -201,9 +201,9 @@ export default function SolutionsIndexPage() {
               </span>
             </div>
 
-            <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+            <div className="overflow-x-auto rounded-2xl border border-slate-200/90 bg-white shadow-2xs">
               <table className="w-full text-left text-xs sm:text-sm text-slate-700">
-                <thead className="bg-slate-100 text-slate-900 font-bold border-b border-slate-200 uppercase text-[11px] tracking-wider">
+                <thead className="bg-slate-50 text-slate-900 font-bold border-b border-slate-200/90 uppercase text-[11px] tracking-wider">
                   <tr>
                     <th className="p-3 sm:p-3.5">Code Article</th>
                     <th className="p-3 sm:p-3.5">Topic</th>
@@ -213,7 +213,7 @@ export default function SolutionsIndexPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {CODE_REFERENCE_ROWS.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-amber-50/60 transition-colors">
+                    <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
                       <td className="p-3 sm:p-3.5 font-mono font-bold text-slate-900 whitespace-nowrap">
                         {row.article}
                       </td>
@@ -226,7 +226,7 @@ export default function SolutionsIndexPage() {
                       <td className="p-3 sm:p-3.5 text-right whitespace-nowrap">
                         <Link
                           href={row.href}
-                          className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 hover:text-amber-900 bg-amber-100/70 hover:bg-amber-200/80 px-2.5 py-1 rounded-md transition-colors"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-800 hover:text-slate-950 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1 rounded-lg border border-slate-200/60 transition-colors"
                         >
                           {row.linkText} <ArrowRight className="h-3 w-3" />
                         </Link>
@@ -245,7 +245,7 @@ export default function SolutionsIndexPage() {
           />
 
           {/* Compliance & Methodology Footer Banner */}
-          <div className="p-6 rounded-xl bg-slate-900 text-white border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-12">
+          <div className="p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-12">
             <div className="space-y-1">
               <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
                 Verification &amp; Standards
@@ -259,7 +259,7 @@ export default function SolutionsIndexPage() {
             </div>
             <Link
               href="/methodology"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs sm:text-sm hover:bg-amber-400 transition-colors shrink-0 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-semibold text-xs sm:text-sm hover:bg-amber-400 transition-colors shrink-0 shadow-xs"
             >
               Calculation Methodology <ExternalLink className="h-3.5 w-3.5" />
             </Link>
