@@ -38,6 +38,11 @@ export const siteConfig: SiteConfig = {
       status: "active",
     },
     {
+      title: "NEC Solutions",
+      href: "/solutions",
+      status: "active",
+    },
+    {
       title: "Guides",
       href: "/guides/subpanel-feeder-sizing",
       status: "active",

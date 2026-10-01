@@ -16,6 +16,7 @@ import {
   Wind,
   Droplets,
   ChevronDown,
+  BookOpen,
 } from "lucide-react";
 
 export function Header() {
@@ -335,6 +336,14 @@ export function Header() {
                 className="block px-3 py-2 rounded-lg text-sm font-bold text-slate-900 bg-amber-50 hover:bg-amber-100"
               >
                 Tools Directory (15 Calculators) →
+              </Link>
+              <Link
+                href="/solutions"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-amber-900 bg-amber-100/70 hover:bg-amber-100"
+              >
+                <BookOpen className="h-4 w-4 text-amber-700" />
+                <span>NEC Solutions (20 Worked Problems)</span>
               </Link>
               <Link
                 href="/guides/subpanel-feeder-sizing"

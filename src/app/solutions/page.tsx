@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
-import { Badge } from "@/components/ui/badge";
 import { JsonLd } from "@/components/seo/json-ld";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { buildBreadcrumbSchema, buildWebPageSchema } from "@/lib/seo/schema";
+import { SolutionsBrowser, type ProblemCategory } from "@/components/solutions/solutions-browser";
 import necProblems from "@/data/nec-problems.json";
-import { BookOpen, ArrowRight, ShieldCheck, ExternalLink } from "lucide-react";
+import { BookOpen, ShieldCheck, ExternalLink, ArrowRight, Table } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "NEC Electrical Solutions & Step-by-Step Calculations",
@@ -23,14 +23,9 @@ export const metadata: Metadata = generatePageMetadata({
     "conduit fill examples",
     "box fill calculation examples",
     "motor branch circuit sizing",
+    "nec code reference table",
   ],
 });
-
-interface ProblemCategory {
-  title: string;
-  description: string;
-  slugs: string[];
-}
 
 const SOLUTION_CATEGORIES: ProblemCategory[] = [
   {
@@ -90,6 +85,58 @@ const SOLUTION_CATEGORIES: ProblemCategory[] = [
   },
 ];
 
+const CODE_REFERENCE_ROWS = [
+  {
+    article: "NEC 220.51 & 424.3(B)",
+    topic: "Fixed Space Heating",
+    application: "7,000W 240V Baseboard Continuous Sizing (125%)",
+    linkText: "Baseboard Heating Load",
+    href: "/solutions/baseboard-heater-7000w-240v-service-load",
+  },
+  {
+    article: "NEC Table 430.250 & 430.22",
+    topic: "3-Phase Induction Motors",
+    application: "20 HP 230V Running FLC & Conductor Ampacity",
+    linkText: "20 HP HVAC Demand",
+    href: "/solutions/3-phase-20hp-230v-hvac-service-demand",
+  },
+  {
+    article: "NEC 210.19(A) Note 4",
+    topic: "Voltage Drop Limits",
+    application: "100ft 12 AWG 120V 20A Branch Circuit (3% limit)",
+    linkText: "100ft 12 AWG Drop",
+    href: "/solutions/voltage-drop-100ft-12awg-20a-120v",
+  },
+  {
+    article: "NEC Chapter 9 Table 4",
+    topic: "Conduit Area 40% Fill",
+    application: "Three 4 AWG THHN Conductors in EMT Sizing",
+    linkText: "Three 4 AWG in EMT",
+    href: "/solutions/conduit-fill-three-4awg-thhn-in-emt",
+  },
+  {
+    article: "NEC Table 220.55 Col C",
+    topic: "Household Electric Ranges",
+    application: "12 kW Single-Phase Residential Range Demand",
+    linkText: "12 kW Range Demand",
+    href: "/solutions/range-service-load-12kw-household-single-phase",
+  },
+  {
+    article: "NEC 310.12 & Table 310.12",
+    topic: "Dwelling Service Sizing",
+    application: "200A Dwelling Service 83% Conductor Ampacity",
+    linkText: "200A Service Sizing",
+    href: "/solutions/feeder-ampacity-single-family-dwelling-200a-service",
+  },
+  {
+    article: "NEC Article 314.16(B)",
+    topic: "Metal Box Fill Allowances",
+    application: "Six 12 AWG Wires, Clamps, & Duplex Receptacle",
+    linkText: "Box Fill 6x 12 AWG",
+    href: "/solutions/box-fill-six-12awg-two-clamps-one-receptacle",
+  },
+];
+
 export default function SolutionsIndexPage() {
   const breadcrumbs = [{ name: "Solutions", url: "/solutions" }];
 
@@ -105,13 +152,11 @@ export default function SolutionsIndexPage() {
     ...breadcrumbs,
   ]);
 
-  const problemMap = new Map(necProblems.map((p) => [p.slug, p]));
-
   return (
     <>
       <JsonLd schema={[pageSchema, breadcrumbSchema]} />
 
-      <div className="py-8 sm:py-12 space-y-12">
+      <div className="py-8 sm:py-12 space-y-10">
         <Container>
           <Breadcrumb items={breadcrumbs} />
 
@@ -142,69 +187,62 @@ export default function SolutionsIndexPage() {
             </p>
           </div>
 
-          {/* Grouped Scenarios by Category */}
-          <div className="space-y-12">
-            {SOLUTION_CATEGORIES.map((cat, catIdx) => {
-              const categoryProblems = cat.slugs
-                .map((slug) => problemMap.get(slug))
-                .filter((p): p is (typeof necProblems)[number] => Boolean(p));
+          {/* Quick Reference Cheat Sheet Table */}
+          <section className="space-y-4 mb-10">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+              <div className="flex items-center gap-2">
+                <Table className="h-5 w-5 text-amber-600" />
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  NEC Code Reference Quick Table
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-slate-500 hidden sm:inline">
+                Direct Code Articles &rarr; Worked Solutions
+              </span>
+            </div>
 
-              return (
-                <section key={catIdx} className="space-y-4">
-                  <div className="border-b border-slate-200 pb-3">
-                    <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-                      {cat.title}
-                    </h2>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                      {cat.description}
-                    </p>
-                  </div>
+            <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="w-full text-left text-xs sm:text-sm text-slate-700">
+                <thead className="bg-slate-100 text-slate-900 font-bold border-b border-slate-200 uppercase text-[11px] tracking-wider">
+                  <tr>
+                    <th className="p-3 sm:p-3.5">Code Article</th>
+                    <th className="p-3 sm:p-3.5">Topic</th>
+                    <th className="p-3 sm:p-3.5">Typical Application</th>
+                    <th className="p-3 sm:p-3.5 text-right">Direct Solution</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {CODE_REFERENCE_ROWS.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-amber-50/60 transition-colors">
+                      <td className="p-3 sm:p-3.5 font-mono font-bold text-slate-900 whitespace-nowrap">
+                        {row.article}
+                      </td>
+                      <td className="p-3 sm:p-3.5 font-semibold text-slate-800">
+                        {row.topic}
+                      </td>
+                      <td className="p-3 sm:p-3.5 text-slate-600">
+                        {row.application}
+                      </td>
+                      <td className="p-3 sm:p-3.5 text-right whitespace-nowrap">
+                        <Link
+                          href={row.href}
+                          className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 hover:text-amber-900 bg-amber-100/70 hover:bg-amber-200/80 px-2.5 py-1 rounded-md transition-colors"
+                        >
+                          {row.linkText} <ArrowRight className="h-3 w-3" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {categoryProblems.map((problem) => (
-                      <Link
-                        key={problem.slug}
-                        href={`/solutions/${problem.slug}`}
-                        className="p-5 rounded-xl bg-white border border-slate-200 hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
-                      >
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between gap-2">
-                            <Badge variant="brand" className="text-[11px] truncate max-w-[200px]">
-                              {problem.necReference}
-                            </Badge>
-                            <span className="text-[11px] font-mono font-semibold text-slate-500">
-                              {problem.category}
-                            </span>
-                          </div>
-
-                          <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-2">
-                            {problem.title}
-                          </h3>
-
-                          <p className="text-xs text-slate-600 line-clamp-2">
-                            {problem.metaDescription}
-                          </p>
-
-                          <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200/80 font-mono text-xs text-slate-800">
-                            <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">
-                              Direct Answer:
-                            </span>
-                            <span className="font-bold text-slate-900 line-clamp-1">
-                              {problem.answer}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                          View Worked Derivation <ArrowRight className="h-3.5 w-3.5 ml-1" />
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
-          </div>
+          {/* Interactive Client-Side Search Filter & Grouped Scenarios */}
+          <SolutionsBrowser
+            problems={necProblems}
+            categories={SOLUTION_CATEGORIES}
+          />
 
           {/* Compliance & Methodology Footer Banner */}
           <div className="p-6 rounded-xl bg-slate-900 text-white border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-12">
