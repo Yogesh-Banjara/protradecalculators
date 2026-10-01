@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Residential Electrical Load Calculator - NEC 220 Sizing",
+  title: "Residential Load Calculator - NEC 220 Sizing",
   description:
     "Calculate home electrical service load in Amps and kVA per NEC 220.82. Size 100A, 200A, or 400A panels for EV chargers, heat pumps, and home additions.",
   path: "/electrical/residential-load-calculator",
@@ -422,6 +422,87 @@ export default function ResidentialLoadCalculatorPage() {
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
                       20.83 A Load (Min 30A)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/kitchen-small-appliance-branch-circuits-demand"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 220.52(A)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Small Appliance Branch Circuits
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate feeder and service demand for two kitchen small appliance branch circuits (3,000 VA).
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Demand:</span>
+                      3,000 VA included in general lighting
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/neutral-sizing-electric-range-unbalanced-load"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 220.61(B)(1)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Electric Range Neutral Sizing
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate 70% demand reduction factor for household electric range neutral conductors.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Reduction:</span>
+                      5,600 VA (23.33 A maximum unbalance)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/grounding-electrode-conductor-sizing-200a-service"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 250.66
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      200A Grounding Electrode Conductor
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Size copper and aluminum grounding electrode conductors for a 200A residential service.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      #4 AWG Copper (#2 AWG Aluminum)
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">

@@ -25,9 +25,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Deck Calculator - Material, Board Count & Framing Takeoff",
+  title: "Deck Calculator - Material & Board Takeoff",
   description:
-    "Estimate deck boards, 12\" and 16\" OC joists, beams, concrete pier footings, and hardware. Calculate composite or wood decking material needs with instant takeoff.",
+    "Calculate deck boards, 12\" & 16\" OC joists, beams, concrete footings, and hardware. Instant composite and wood material takeoff with IRC span tables.",
   path: "/construction/deck-calculator",
   keywords: [
     "deck calculator",

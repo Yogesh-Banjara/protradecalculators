@@ -26,7 +26,7 @@ import {
 export const metadata: Metadata = generatePageMetadata({
   title: "HVAC Duct Sizing Calculator - CFM",
   description:
-    "Free HVAC duct sizing calculator. Calculate round duct diameters, rectangular equivalents (Huebscher), air velocity (FPM), friction loss, and room branch CFM schedules.",
+    "Free HVAC duct sizing calculator. Calculate round duct diameters, rectangular equivalents (Huebscher), air velocity, friction loss, and room branch CFM.",
   path: "/hvac/duct-sizing-calculator",
   keywords: [
     "duct sizing calculator",
@@ -388,6 +388,28 @@ export default function DuctSizingCalculatorPage() {
                 </div>
               </div>
             </section>
+
+            {/* Thermal Load & Equipment Sizing Callout */}
+            <div className="p-6 rounded-2xl border border-emerald-200 bg-emerald-50/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+                  Thermal Load Engineering
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  Calculating room BTU/hr loads and equipment tonnage?
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Calculate required cooling and heating BTU loads, design temperature differences, and equipment tonnage for residential and commercial spaces.
+                </p>
+              </div>
+              <Link
+                href="/hvac/btu-calculator"
+                className="shrink-0 px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-colors shadow-xs inline-flex items-center gap-2"
+              >
+                Open BTU &amp; AC Sizing Calculator
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
             {/* Section 6: Frequently Asked Questions */}
             <section className="space-y-6">

@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Voltage Drop & Wire Size Calculator - NEC 3% Sizing",
+  title: "Voltage Drop Calculator - NEC Wire Sizing",
   description:
     "Calculate single-phase, 3-phase, and DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and copper vs aluminum.",
   path: "/electrical/voltage-drop-calculator",
@@ -566,6 +566,87 @@ export default function VoltageDropCalculatorPage() {
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
                       67.5 A Ampacity (54 A FLC)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/solar-pv-inverter-output-circuit-conductor-sizing"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 690.8(B)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Solar PV Inverter Output Sizing
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate continuous current rating (125% rule) and minimum conductor ampacity for a 7.6 kW grid-tied solar inverter.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      39.58 A (40A OCPD &bull; #8 AWG Cu)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/transformer-full-load-amps-45kva-480v-to-208v"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 450.3(B)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      45 kVA 3-Phase Transformer FLA
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate primary (480V) and secondary (208V/120V) full-load amperes and primary overcurrent protection limits.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      54.1 A Primary &bull; 124.9 A Secondary
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/motor-branch-circuit-sizing-15hp-460v-3phase"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 430.22 / 430.52
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      15 HP 460V 3-Phase Motor Sizing
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Size branch-circuit conductors (125% FLC) and dual-element time-delay fuses (175%) for a 15 HP industrial motor.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
+                      26.25 A Min &bull; #10 AWG &bull; 40A Fuse
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">

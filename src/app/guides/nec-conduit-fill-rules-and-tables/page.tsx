@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "NEC Conduit Fill Rules, Chapter 9 Tables & Sizing",
+  title: "NEC Conduit Fill Rules & Chapter 9 Guide",
   description:
-    "Master NEC raceway sizing: learn Chapter 9 Table 1 percentage limits (53%, 31%, 40%), Table 4 dimensions, Table 5 conductor areas, and how to avoid the 3-wire jam ratio.",
+    "Master NEC raceway sizing: learn Chapter 9 Table 1 limits (53%, 31%, 40%), Table 4 dimensions, Table 5 conductor areas, and the 3-wire jam ratio.",
   path: "/guides/nec-conduit-fill-rules-and-tables",
   keywords: [
     "nec conduit fill guide",

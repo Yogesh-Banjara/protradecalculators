@@ -21,6 +21,8 @@ import {
   Clock,
   ArrowRight,
   Calculator,
+  BookOpen,
+  FileText,
 } from "lucide-react";
 import type { ToolCategoryId } from "@/types/tools";
 
@@ -225,6 +227,51 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
             </div>
           )}
 
+          {category.slug === "hvac" && (
+            <div className="p-5 sm:p-6 rounded-2xl border border-emerald-200/80 bg-white shadow-xs space-y-3 mb-8">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
+                <Wind className="h-4 w-4 text-emerald-600" />
+                <span>HVAC &amp; Mechanical Engineering Suite</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+                <div className="space-y-1">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
+                    Equal Friction Duct Sizing &amp; CFM Airflow
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Size supply ducts, return air trunks, and branch runs using Huebscher rectangular conversion and standard friction loss rates (0.05 to 0.1 in. wg/100 ft).
+                  </p>
+                  <div className="pt-2">
+                    <Link
+                      href="/hvac/duct-sizing-calculator"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
+                    >
+                      Calculate HVAC Duct Sizing &amp; Branch CFM
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+                <div className="space-y-1 border-t md:border-t-0 md:border-l border-slate-100 md:pl-5 pt-3 md:pt-0">
+                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
+                    Manual J Thermal Load &amp; AC Tonnage
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Estimate whole-house or room heating and cooling loads (BTU/hr) and size residential split systems and heat pumps across climate zones 1 through 7.
+                  </p>
+                  <div className="pt-2">
+                    <Link
+                      href="/hvac/btu-calculator"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
+                    >
+                      Calculate Heating &amp; Cooling BTU Load &amp; Tonnage
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Tools Grid */}
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -291,6 +338,303 @@ export default async function CategoryHubPage({ params }: CategoryPageProps) {
               </div>
             )}
           </div>
+
+          {/* Electrical Suite Exclusive: NEC Solutions & Guides */}
+          {category.slug === "electrical" && (
+            <div className="space-y-8 pt-8 border-t border-slate-200">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <div>
+                    <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                      <BookOpen className="h-5 w-5 text-amber-600" />
+                      NEC Worked Solutions &amp; Code Case Studies
+                    </h2>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Step-by-step mathematical proofs and code citations for real-world electrical design problems:
+                    </p>
+                  </div>
+                  <Link
+                    href="/solutions"
+                    className="text-xs font-bold text-amber-800 hover:text-amber-900 flex items-center gap-1"
+                  >
+                    View All 20 Solutions <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <Link
+                    href="/solutions/voltage-drop-100ft-12awg-20a-120v"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 210.19(A)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      100ft 12 AWG at 20A 120V Voltage Drop
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate voltage loss and upsize conductor to 10 AWG to maintain the NEC 3% branch circuit threshold.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/conduit-fill-three-4awg-thhn-in-emt"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC Chapter 9 Table 1
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Three 4 AWG THHN in EMT Raceway
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Determine minimum EMT trade size using Table 4 dimensions and 40% fill maximums.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/box-fill-six-12awg-two-clamps-one-receptacle"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 314.16(B)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Six 12 AWG, Two Clamps &amp; Receptacle Box Fill
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate cubic inch volume requirements for conductor counts, internal clamps, and device yokes.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/feeder-ampacity-single-family-dwelling-200a-service"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 310.12
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      200A Single-Family Dwelling Feeder Sizing
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Apply the 83% residential service conductor demand factor to size copper or aluminum entrance conductors.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/solar-pv-inverter-output-circuit-conductor-sizing"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 690.8(B)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Solar PV Inverter Output Conductor Sizing
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate 125% continuous output current and minimum OCPD protection for grid-tied solar systems.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/grounding-electrode-conductor-sizing-200a-service"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC Table 250.66
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      200A Service Grounding Electrode Conductor
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Size copper and aluminum grounding electrode conductors based on ungrounded service entrance size.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/box-fill-4x4-square-box-deep-device-capacity"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC Table 314.16(A)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      4x4 Deep Square Box Conductor Capacity
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      30.3 cu in volume allowances, conductor fill deductions, and device volume sizing.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/conduit-fill-six-10awg-thhn-in-half-inch-emt"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC Chapter 9 Table 4
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Six 10 AWG THHN in 1/2&quot; EMT Fill Check
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate cross-sectional area and 40% fill capacity limit (0.122 sq in threshold).
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/kitchen-small-appliance-branch-circuits-demand"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 220.52(A)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Kitchen Small Appliance Branch Circuits
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate 1,500 VA demand factors for two kitchen circuits and dedicated laundry branch.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/minimum-wire-size-ac-unit-mca-mop-nameplate"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 440.32
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      AC Unit Wire Sizing (MCA &amp; MOP)
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Determine branch circuit ampacity for 28.5A MCA and maximum 45A overcurrent protection.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/motor-branch-circuit-sizing-15hp-460v-3phase"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 430.22
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      15 HP 460V 3-Phase Motor Branch Circuit
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate 125% FLC conductor rating (26.25A) and inverse time breaker sizing (50A).
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/neutral-sizing-electric-range-unbalanced-load"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 220.61(B)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Electric Range Feeder Neutral Sizing
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Apply the 70% unbalanced neutral demand factor for household cooking appliances.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/residential-dryer-feeder-load-5000w-240v"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 220.54
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Residential Clothes Dryer 5,000W Feeder
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate minimum 5 kW dryer demand or nameplate rating under Table 220.54.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/transformer-full-load-amps-45kva-480v-to-208v"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      NEC 450.3(B)
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      45 kVA 480V-208V Transformer Full-Load Amps
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Calculate 54.13A primary FLC, 124.91A secondary FLC, and 70A primary breaker sizing.
+                    </p>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Technical Electrical Master Guides */}
+              <div className="space-y-4">
+                <div className="border-b border-slate-200 pb-3">
+                  <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <FileText className="h-5 w-5 text-amber-600" />
+                    Technical Electrical Master Guides
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Comprehensive code walkthroughs and engineering derivations:
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Link
+                    href="/guides/electricians-guide-to-voltage-drop-calculations"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
+                      Master Guide
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Electrician&apos;s Guide to Voltage Drop
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Formulas, resistance constants, NEC 3% vs 5% thresholds, and distance derating tables.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/guides/nec-conduit-fill-rules-and-tables"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
+                      Master Guide
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      NEC Conduit Fill Rules &amp; Tables
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Chapter 9 Table 1 percentages, 60% nipple exemptions, Table 4 dimensions, and jam ratios.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/guides/subpanel-feeder-sizing"
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-xs transition-all group"
+                  >
+                    <span className="text-[10px] font-bold uppercase text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
+                      Master Guide
+                    </span>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-amber-600 mt-2">
+                      Subpanel Feeder Conductor Sizing
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                      Continuous load factors, Table 310.16 ampacity, and long-run voltage drop calculations.
+                    </p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
         </Container>
       </div>
     </>

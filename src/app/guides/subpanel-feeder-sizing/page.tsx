@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = generatePageMetadata({
   title: "Subpanel Feeder Conductor Sizing by Distance",
   description:
-    "Technical electrical guide for sizing subpanel feeder conductors across distance. Learn how continuous load, NEC Table 310.16 ampacity, and 3% voltage drop limits interact.",
+    "Technical guide for sizing subpanel feeder conductors across distance. Learn how continuous load, NEC Table 310.16, and 3% voltage drop limits interact.",
   path: "/guides/subpanel-feeder-sizing",
   keywords: [
     "subpanel feeder sizing",
@@ -481,6 +481,32 @@ export default function SubpanelFeederSizingGuide() {
                     </span>
                     <p className="text-[11px] text-slate-500 mt-1">
                       Verify EMT, PVC, and RMC raceway trade sizes for upsized feeder wire bundles per NEC Chapter 9 tables.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/voltage-drop-250ft-6awg-50a-240v-subpanel"
+                    className="p-3 rounded-lg border border-slate-200 hover:border-amber-400 hover:bg-slate-50 transition-colors block group"
+                  >
+                    <span className="text-xs font-bold text-slate-900 group-hover:text-amber-700 flex items-center justify-between">
+                      Solution: 250ft 6 AWG 50A Subpanel Feeder
+                      <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </span>
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      Complete mathematical proof showing why 6 AWG exceeds 3% drop and requires #4 AWG upsizing.
+                    </p>
+                  </Link>
+
+                  <Link
+                    href="/solutions/feeder-ampacity-single-family-dwelling-200a-service"
+                    className="p-3 rounded-lg border border-slate-200 hover:border-amber-400 hover:bg-slate-50 transition-colors block group"
+                  >
+                    <span className="text-xs font-bold text-slate-900 group-hover:text-amber-700 flex items-center justify-between">
+                      Solution: 200A Dwelling Service Feeder
+                      <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </span>
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      Step-by-step application of NEC 310.12 83% dwelling demand factor for 200A service feeders.
                     </p>
                   </Link>
                 </CardContent>

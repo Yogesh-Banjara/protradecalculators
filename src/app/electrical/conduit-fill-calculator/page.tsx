@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Conduit Fill Calculator - NEC Chapter 9 Wire Capacity",
+  title: "Conduit Fill Calculator - NEC Chapter 9",
   description:
     "Calculate conduit fill percentage and trade size for mixed wire gauges in EMT, PVC, RMC, and FMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
   path: "/electrical/conduit-fill-calculator",
@@ -412,29 +412,29 @@ export default function ConduitFillCalculatorPage() {
                 </Link>
 
                 <Link
-                  href="/solutions/conduit-nipple-fill-exemption-60-percent"
+                  href="/guides/nec-conduit-fill-rules-and-tables"
                   className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
-                        Ch 9 Note 4 (60% Fill)
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-900 border border-blue-300">
+                        Technical Guide
                       </span>
-                      <span className="text-xs font-mono text-slate-500">Solved</span>
+                      <span className="text-xs font-mono text-slate-500">Master Reference</span>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                      Conduit Nipple 60% Fill
+                      NEC Conduit Fill Rules &amp; Tables
                     </h3>
                     <p className="text-xs text-slate-600 line-clamp-2">
-                      Apply the 24-inch or less conduit nipple exception permitting up to 60% fill.
+                      Complete guide to Chapter 9 Table 1 limits (53%, 31%, 40%), Table 4 dimensions, and 60% nipple exemption.
                     </p>
                     <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Result:</span>
-                      3/4-inch EMT Nipple (0.320 sq. in.)
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Coverage:</span>
+                      NEC Chapter 9 Tables 1, 4 &amp; 5
                     </div>
                   </div>
                   <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
-                    View Solution <ArrowRight className="h-4 w-4 ml-1" />
+                    Read Master Guide <ArrowRight className="h-4 w-4 ml-1" />
                   </div>
                 </Link>
               </div>

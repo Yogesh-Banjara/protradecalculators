@@ -1,7 +1,18 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { HardHat, ArrowLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "404 - Page Not Found | ProTrade Calculators",
+  description:
+    "The requested trade calculator or engineering guide was not found. Browse our complete directory of construction and trade calculation instruments.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (

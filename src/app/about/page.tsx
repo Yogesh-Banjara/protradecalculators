@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "About ProTradeCalculators & Engineering Standards",
+  title: "About Our Engineering & Standards",
   description:
-    "Learn about ProTradeCalculators: our mission, editorial review standards, focus on National Electrical Code (NEC) compliance, and who our deterministic tools are built for.",
+    "Learn about ProTradeCalculators: our mission, editorial review standards, NEC compliance focus, and deterministic tools for trade professionals.",
   path: "/about",
   keywords: [
     "about protrade calculators",

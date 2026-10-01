@@ -9,17 +9,17 @@ import { buildWebPageSchema } from "@/lib/seo/schema";
 import { ShieldCheck, Lock, Eye, Cookie, FileText, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Privacy Policy & AdSense Disclosures",
+  title: "AdSense & Advertising Disclosures",
   description:
-    "Comprehensive privacy policy covering data handling, Google AdSense monetization, cookie usage, GDPR compliance, and CCPA privacy disclosures.",
+    "ProTrade Calculators advertising privacy policy detailing Google AdSense cookie usage, personalized ads, GDPR/CCPA consumer rights, and opt-out choices.",
   path: "/privacy-policy",
 });
 
 export default function PrivacyPolicyPage() {
-  const breadcrumbs = [{ name: "Privacy Policy", url: "/privacy-policy" }];
+  const breadcrumbs = [{ name: "AdSense & Advertising Disclosures", url: "/privacy-policy" }];
   const pageSchema = buildWebPageSchema(
-    "Privacy Policy | ProTradeCalculators",
-    "Comprehensive privacy policy covering data handling, Google AdSense monetization, cookie usage, GDPR compliance, and CCPA privacy disclosures.",
+    "AdSense & Advertising Disclosures | ProTrade Calculators",
+    "ProTrade Calculators advertising privacy policy detailing Google AdSense cookie usage, personalized ads, GDPR/CCPA consumer rights, and opt-out choices.",
     "/privacy-policy",
     breadcrumbs
   );
@@ -34,10 +34,10 @@ export default function PrivacyPolicyPage() {
           <div className="space-y-4 mb-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-800">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-              User Privacy &amp; Data Transparency
+              Advertising &amp; Cookie Transparency
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Privacy Policy
+              AdSense &amp; Advertising Privacy Disclosures
             </h1>
             <p className="text-sm text-slate-500 font-mono">
               Effective Date: September 1, 2026 &bull; Last Revised: October 1, 2026

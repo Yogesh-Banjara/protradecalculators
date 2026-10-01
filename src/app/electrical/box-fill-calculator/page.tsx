@@ -20,10 +20,11 @@ import {
   CheckCircle2,
   ArrowRight,
   Compass,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Electrical Box Fill Calculator - NEC 314.16 Volume Sizing",
+  title: "Electrical Box Fill Calculator - NEC 314.16",
   description:
     "Calculate electrical box fill cubic inches per NEC 314.16. Size standard metal and plastic boxes for mixed wire gauges, device yokes, clamps, and grounds.",
   path: "/electrical/box-fill-calculator",
@@ -372,6 +373,77 @@ export default function BoxFillCalculatorPage() {
                     </div>
                   </Link>
                 </div>
+              </div>
+            </section>
+
+            {/* Section: Worked Code Solutions & Step-by-Step Examples */}
+            <section className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    <BookOpen className="h-6 w-6 text-amber-600" />
+                    Worked Code Solutions &amp; Step-by-Step NEC Calculations
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    Step-by-step mathematical solutions and code citations for real-world junction box and device enclosure problems:
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Link
+                  href="/solutions/box-fill-4x4-square-box-deep-device-capacity"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 314.16(A)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Worked Solution</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      4″ x 1-1/2″ Square Box Capacity
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Determine maximum conductor and device volume capacity for standard 21.0 cu in square metal boxes.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Allowance:</span>
+                      21.0 cu in &bull; Up to 9 #12 AWG
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/box-fill-six-12awg-two-clamps-one-receptacle"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC 314.16(B)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Worked Solution</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Six 12 AWG, Two Clamps &amp; Receptacle
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate total cubic inches required for 6 conductors, internal clamps, equipment grounding, and device yoke.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Total Volume:</span>
+                      22.5 cu in required (Deep box needed)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
               </div>
             </section>
 

@@ -128,6 +128,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/privacy-policy"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Ad &amp; Cookie Disclosures
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/terms"
                   className="hover:text-amber-400 transition-colors"
                 >

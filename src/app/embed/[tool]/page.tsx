@@ -54,7 +54,9 @@ export async function generateMetadata({ params }: EmbedPageProps): Promise<Meta
   }
 
   return {
-    title: `${config.title} | ProTradeCalculators`,
+    title: {
+      absolute: `${config.title} | ProTrade Calculators`,
+    },
     description: config.description,
     alternates: {
       canonical: `https://protradecalculators.com${config.canonicalPath}`,
@@ -76,6 +78,7 @@ export default async function EmbedToolPage({ params }: EmbedPageProps) {
 
   return (
     <div className="w-full min-h-[480px] flex flex-col justify-between space-y-4">
+      <h1 className="sr-only">{config.title}</h1>
       <div className="w-full flex-1">
         {tool === "conduit-fill-calculator" && <ConduitFillCalculatorForm />}
         {tool === "voltage-drop-calculator" && <VoltageDropCalculatorForm />}

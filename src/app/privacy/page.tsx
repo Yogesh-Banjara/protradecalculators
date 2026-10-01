@@ -122,6 +122,13 @@ export default function PrivacyPage() {
                   .
                 </li>
               </ul>
+              <p className="text-xs text-slate-500 pt-2 border-t border-slate-100">
+                For complete technical disclosures on ad network vendors, consent string signals, and vendor lists, see our dedicated{" "}
+                <Link href="/privacy-policy" className="text-amber-700 underline font-semibold">
+                  AdSense &amp; Advertising Disclosures
+                </Link>
+                .
+              </p>
             </section>
 
             {/* 4. Analytics & Technical Logs */}

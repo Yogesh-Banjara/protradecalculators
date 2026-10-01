@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Compass,
   Snowflake,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -412,6 +413,99 @@ export default function HvacBtuCalculatorPage() {
                 </div>
               </div>
             </section>
+
+            {/* Section: Worked HVAC Electrical Solutions */}
+            <section className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    <BookOpen className="h-6 w-6 text-amber-600" />
+                    HVAC Electrical &amp; Equipment Worked Solutions
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    Step-by-step mathematical solutions and NEC code citations for heating and cooling electrical equipment:
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Link
+                  href="/solutions/minimum-wire-size-ac-unit-mca-mop-nameplate"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Article 440
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Worked Solution</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      A/C Unit MCA &amp; MOP Sizing
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Determine minimum circuit ampacity (MCA) conductor size and maximum overcurrent protection (MOP) from equipment nameplate.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Allowance:</span>
+                      MCA 24.5A (#10 AWG) &bull; MOP 40A Breaker
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/3-phase-20hp-230v-hvac-service-demand"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 430.250
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Worked Solution</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      3-Phase 20 HP HVAC Compressor Demand
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate conductor ampacity and full-load current (FLC) for commercial 20 HP, 230V, 3-phase air conditioning chillers.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Full Load:</span>
+                      54A FLC &bull; 67.5A Min Conductor Ampacity
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+              </div>
+            </section>
+
+            {/* Airflow & Duct Sizing Callout */}
+            <div className="p-6 rounded-2xl border border-emerald-200 bg-emerald-50/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+                  Ductwork &amp; Airflow Engineering
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  Need to size supply ducts and return trunks for this BTU load?
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Convert CFM airflow into round duct diameters and Huebscher rectangular equivalents using the equal friction method.
+                </p>
+              </div>
+              <Link
+                href="/hvac/duct-sizing-calculator"
+                className="shrink-0 px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-colors shadow-xs inline-flex items-center gap-2"
+              >
+                Open Duct Sizing Calculator
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
             {/* Section 6: Frequently Asked Questions */}
             <section className="space-y-6">

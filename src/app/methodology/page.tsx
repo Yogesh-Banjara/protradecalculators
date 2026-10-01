@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Calculation Methodology & NEC Standards Compliance",
+  title: "Engineering Methodology & Code Standards",
   description:
     "Editorial guidelines, mathematical validation protocols, and National Electrical Code (NFPA 70) reference standards.",
   path: "/methodology",

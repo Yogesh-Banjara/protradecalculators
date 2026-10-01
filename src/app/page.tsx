@@ -152,9 +152,9 @@ export default function HomePage() {
     },
     {
       title: "Conduit Fill Example",
-      code: "NEC 310.15(C)(1)(a)",
-      desc: "How many #12 THHN wires fit in 3/4″ EMT conduit?",
-      href: "/solutions/conduit-fill-100a-feeder-thhn",
+      code: "NEC Ch 9 Table 1",
+      desc: "Calculate allowable fill for three 4 AWG THHN wires in EMT.",
+      href: "/solutions/conduit-fill-three-4awg-thhn-in-emt",
       category: "Raceway Sizing",
     },
     {

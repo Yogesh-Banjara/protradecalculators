@@ -11,7 +11,7 @@ import necProblems from "@/data/nec-problems.json";
 import { BookOpen, ShieldCheck, ExternalLink, ArrowRight, Table } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "NEC Electrical Solutions & Step-by-Step Calculations",
+  title: "NEC Electrical Solutions & Code Examples",
   description:
     "Explore 20 solved National Electrical Code (NEC) calculation problems with step-by-step derivations, code references, and interactive calculation tools.",
   path: "/solutions",
