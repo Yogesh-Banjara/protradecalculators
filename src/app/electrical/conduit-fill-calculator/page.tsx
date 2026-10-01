@@ -25,9 +25,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Conduit Fill Calculator - NEC Sizing",
+  title: "Conduit Fill Calculator - NEC Chapter 9 Wire Capacity",
   description:
-    "Free electrical conduit fill calculator for mixed wire sizes in EMT, PVC Sch 40/80, RMC, FMC, and LFMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
+    "Calculate conduit fill percentage and trade size for mixed wire gauges in EMT, PVC, RMC, and FMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
   path: "/electrical/conduit-fill-calculator",
   keywords: [
     "conduit fill calculator",
@@ -51,8 +51,8 @@ export default function ConduitFillCalculatorPage() {
   ];
 
   const pageSchema = buildWebPageSchema(
-    "Conduit Fill Calculator - Mixed Wire Gauge & Trade Size",
-    "Free electrical conduit fill calculator for mixed wire sizes in EMT, PVC Sch 40/80, RMC, FMC, and LFMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
+    "Conduit Fill Calculator - NEC Chapter 9 Wire Capacity",
+    "Calculate conduit fill percentage and trade size for mixed wire gauges in EMT, PVC, RMC, and FMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
     "/electrical/conduit-fill-calculator",
     breadcrumbs
   );
@@ -137,10 +137,15 @@ export default function ConduitFillCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Layers className="h-3.5 w-3.5" />
-              NEC Chapter 9 Conduit Fill &amp; Capacity Utility
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+                <Layers className="h-3.5 w-3.5" />
+                NEC Chapter 9 Conduit Fill &amp; Capacity Utility
+              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                40% Multi-Wire • 53% 1-Wire • 31% 2-Wire • 60% Nipple (&le;24&quot;) • Jam Ratio Safety
+              </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Electrical Conduit Fill Calculator

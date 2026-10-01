@@ -541,14 +541,15 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Deck Calculator - Boards, Joists, Beams & Pier Footings",
+      title: "Deck Calculator - Material, Board Count & Framing Takeoff",
       description:
-        "Free deck material calculator to estimate composite and wood deck boards, 12\"/16\" OC joists, beams, concrete sonotube footings, and hardware fasteners.",
+        "Estimate deck boards, 12\" and 16\" OC joists, beams, concrete pier footings, and hardware. Calculate composite or wood decking material needs with instant takeoff.",
       keywords: [
         "deck calculator",
         "deck material calculator",
         "deck board calculator",
         "how many deck boards do i need",
+        "deck framing calculator",
         "deck joist calculator",
         "deck footing calculator",
         "deck lumber estimator",
@@ -612,9 +613,9 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Electrical Wire Size & Voltage Drop Calculator",
+      title: "Voltage Drop & Wire Size Calculator - NEC 3% Sizing",
       description:
-        "Free voltage drop and wire size calculator for single-phase, 3-phase, and DC circuits with NEC Table 310.16 ampacity and copper vs aluminum comparisons.",
+        "Calculate single-phase, 3-phase, and DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and copper vs aluminum.",
       keywords: [
         "voltage drop calculator",
         "wire size calculator",
@@ -668,9 +669,9 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Conduit Fill Calculator - Mixed Wire Gauge & Trade Size",
+      title: "Conduit Fill Calculator - NEC Chapter 9 Wire Capacity",
       description:
-        "Free electrical conduit fill calculator for mixed wire sizes in EMT, PVC Sch 40/80, RMC, FMC, and LFMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
+        "Calculate conduit fill percentage and trade size for mixed wire gauges in EMT, PVC, RMC, and FMC. Calibrated to NEC Chapter 9 Tables 1, 4, and 5.",
       keywords: [
         "conduit fill calculator",
         "emt conduit fill calculator",
@@ -725,9 +726,9 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Electrical Box Fill Calculator - NEC 314.16 Wire & Box Sizing",
+      title: "Electrical Box Fill Calculator - NEC 314.16 Volume Sizing",
       description:
-        "Free electrical box fill calculator per NEC 314.16 volume allowance tables. Calculate cubic inch capacity for mixed wire gauges, devices, clamps, and grounds in standard boxes.",
+        "Calculate electrical box fill cubic inches per NEC 314.16. Size standard metal and plastic boxes for mixed wire gauges, device yokes, clamps, and grounds.",
       keywords: [
         "electrical box fill calculator",
         "box fill calculator",
@@ -909,9 +910,9 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Residential Electrical Load Calculator - NEC 220 Panel Sizing",
+      title: "Residential Electrical Load Calculator - NEC 220 Sizing",
       description:
-        "Free NEC 220.82 residential electrical load calculator. Estimate service panel capacity in amps and VA for 100A to 200A/400A upgrades, EV chargers, and heat pumps.",
+        "Calculate home electrical service load in Amps and kVA per NEC 220.82. Size 100A, 200A, or 400A panels for EV chargers, heat pumps, and home additions.",
       keywords: [
         "electrical load calculator",
         "residential electrical load calculator",

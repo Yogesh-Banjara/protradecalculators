@@ -26,9 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Residential Electrical Load Calculator",
+  title: "Residential Electrical Load Calculator - NEC 220 Sizing",
   description:
-    "Free NEC 220.82 residential electrical load calculator. Estimate service panel capacity in amps and VA for 100A to 200A/400A upgrades, EV chargers, and heat pumps.",
+    "Calculate home electrical service load in Amps and kVA per NEC 220.82. Size 100A, 200A, or 400A panels for EV chargers, heat pumps, and home additions.",
   path: "/electrical/residential-load-calculator",
   keywords: [
     "electrical load calculator",
@@ -52,8 +52,8 @@ export default function ResidentialLoadCalculatorPage() {
   ];
 
   const pageSchema = buildWebPageSchema(
-    "Residential Electrical Service Load Calculator",
-    "Free NEC 220.82 residential electrical load calculator. Estimate service panel capacity in amps and VA for 100A to 200A/400A upgrades, EV chargers, and heat pumps.",
+    "Residential Electrical Load Calculator - NEC 220 Sizing",
+    "Calculate home electrical service load in Amps and kVA per NEC 220.82. Size 100A, 200A, or 400A panels for EV chargers, heat pumps, and home additions.",
     "/electrical/residential-load-calculator",
     breadcrumbs
   );
@@ -138,10 +138,15 @@ export default function ResidentialLoadCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Zap className="h-3.5 w-3.5" />
-              NEC Article 220.82 Optional Calculation Method
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+                <Zap className="h-3.5 w-3.5" />
+                NEC Article 220.82 Optional Calculation Method
+              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                NEC 220.82 Optional Method • 100A / 200A / 400A Panels • 125% EVSE • Non-Coincident HVAC
+              </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Residential Electrical Service Load Calculator

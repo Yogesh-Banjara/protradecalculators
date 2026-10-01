@@ -201,6 +201,16 @@ export default function PlumbingWsfuCalculatorPage() {
             (0.7 WSFU), domestic dishwashers (1.4 WSFU), and high-demand commercial flushometer valves (5.0–8.0 WSFU)—into
             a unified design load. This load is then mapped to hydraulic peak demand flow rates in Gallons Per Minute (GPM).
           </p>
+          <p className="text-sm sm:text-base leading-relaxed text-slate-700 bg-cyan-50/60 border-l-4 border-cyan-500 p-3 rounded-r-lg">
+            <strong>Sanitary Drainage Separation:</strong> WSFU ratings apply strictly to incoming pressurized potable water supply lines. To size the gravity wastewater lines, stacks, and sewers that receive this water, use our companion{" "}
+            <Link
+              href="/plumbing/dfu-calculator"
+              className="font-bold text-cyan-800 underline hover:text-cyan-950 transition-colors"
+            >
+              Plumbing Drainage Fixture Unit (DFU) &amp; Pipe Sizing Calculator
+            </Link>{" "}
+            calibrated to IPC Chapter 7 and UPC Chapter 7 tables.
+          </p>
         </article>
 
         {/* Section 2: Hunter's Curve Theory */}

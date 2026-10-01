@@ -27,9 +27,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Voltage Drop & Wire Size Calculator",
+  title: "Voltage Drop & Wire Size Calculator - NEC 3% Sizing",
   description:
-    "Free wire size and voltage drop calculator for single-phase, 3-phase, and DC circuits. Features NEC Table 310.16 ampacity, copper vs aluminum, and derating.",
+    "Calculate single-phase, 3-phase, and DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and copper vs aluminum.",
   path: "/electrical/voltage-drop-calculator",
   keywords: [
     "voltage drop calculator",
@@ -54,8 +54,8 @@ export default function VoltageDropCalculatorPage() {
   ];
 
   const pageSchema = buildWebPageSchema(
-    "Electrical Wire Size & Voltage Drop Calculator",
-    "Free electrical wire size and voltage drop calculator for single-phase, 3-phase, and DC circuits with NEC Table 310.16 ampacity and copper vs aluminum comparisons.",
+    "Voltage Drop & Wire Size Calculator - NEC 3% Sizing",
+    "Calculate single-phase, 3-phase, and DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and copper vs aluminum.",
     "/electrical/voltage-drop-calculator",
     breadcrumbs
   );
@@ -140,10 +140,15 @@ export default function VoltageDropCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Zap className="h-3.5 w-3.5" />
-              NEC Electrical Engineering &amp; Wire Sizing Utility
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+                <Zap className="h-3.5 w-3.5" />
+                NEC Electrical Engineering &amp; Wire Sizing Utility
+              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                NEC 3% Branch Limit • 5% Feeder System • Single &amp; 3-Phase AC / DC • Copper vs Aluminum
+              </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Electrical Wire Size &amp; Voltage Drop Calculator

@@ -23,9 +23,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Electrical Box Fill Calculator - NEC 314.16",
+  title: "Electrical Box Fill Calculator - NEC 314.16 Volume Sizing",
   description:
-    "Free electrical box fill calculator per NEC 314.16 volume tables. Calculate cubic inch capacity for mixed wire sizes, devices, clamps, and grounds in standard boxes.",
+    "Calculate electrical box fill cubic inches per NEC 314.16. Size standard metal and plastic boxes for mixed wire gauges, device yokes, clamps, and grounds.",
   path: "/electrical/box-fill-calculator",
   keywords: [
     "electrical box fill calculator",
@@ -49,8 +49,8 @@ export default function BoxFillCalculatorPage() {
   ];
 
   const pageSchema = buildWebPageSchema(
-    "Electrical Box Fill Calculator - NEC 314.16",
-    "Free electrical box fill calculator per NEC 314.16 volume allowance tables. Calculate cubic inch capacity for mixed wire gauges, devices, clamps, and grounds in standard boxes.",
+    "Electrical Box Fill Calculator - NEC 314.16 Volume Sizing",
+    "Calculate electrical box fill cubic inches per NEC 314.16. Size standard metal and plastic boxes for mixed wire gauges, device yokes, clamps, and grounds.",
     "/electrical/box-fill-calculator",
     breadcrumbs
   );
@@ -139,10 +139,15 @@ export default function BoxFillCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Layers className="h-3.5 w-3.5" />
-              NEC Article 314.16 Enclosure Sizing Utility
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+                <Layers className="h-3.5 w-3.5" />
+                NEC Article 314.16 Enclosure Sizing Utility
+              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                NEC Table 314.16(B) • Conductor Allowances • Device Yoke Deductions • Ground Wire Rules
+              </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Electrical Box Fill Calculator

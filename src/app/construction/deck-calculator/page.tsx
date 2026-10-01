@@ -25,15 +25,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Deck Calculator - Boards, Joists & Footings",
+  title: "Deck Calculator - Material, Board Count & Framing Takeoff",
   description:
-    "Free deck material calculator to estimate composite and wood deck boards, 12\"/16\" OC joists, beams, concrete sonotube footings, and hardware fasteners.",
+    "Estimate deck boards, 12\" and 16\" OC joists, beams, concrete pier footings, and hardware. Calculate composite or wood decking material needs with instant takeoff.",
   path: "/construction/deck-calculator",
   keywords: [
     "deck calculator",
     "deck material calculator",
     "deck board calculator",
     "how many deck boards do i need",
+    "deck framing calculator",
     "deck joist calculator",
     "deck footing calculator",
     "deck lumber estimator",
@@ -48,8 +49,8 @@ export default function DeckCalculatorPage() {
   ];
 
   const pageSchema = buildWebPageSchema(
-    "Deck Calculator - Boards, Joists, Beams & Pier Footings",
-    "Free deck material calculator to estimate composite and wood deck boards, 12\"/16\" OC joists, beams, concrete sonotube footings, and hardware fasteners.",
+    "Deck Calculator - Material, Board Count & Framing Takeoff",
+    "Estimate deck boards, 12\" and 16\" OC joists, beams, concrete pier footings, and hardware. Calculate composite or wood decking material needs with instant takeoff.",
     "/construction/deck-calculator",
     breadcrumbs
   );
@@ -134,10 +135,15 @@ export default function DeckCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
-              <Maximize2 className="h-3.5 w-3.5" />
-              Deck Material &amp; Framing Takeoff Utility
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-800">
+                <Maximize2 className="h-3.5 w-3.5" />
+                Deck Material &amp; Framing Takeoff Utility
+              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                Composite &amp; Wood • 12&quot; &amp; 16&quot; OC Joists • Sonotube Footings • IRC R507 Spans
+              </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
               Deck Material &amp; Framing Calculator
@@ -145,6 +151,18 @@ export default function DeckCalculatorPage() {
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
               Calculate composite and wood <strong>deck surface boards</strong>, <strong>field joists (12&quot;/16&quot; OC)</strong>, <strong>ledger boards</strong>, <strong>support beams</strong>, <strong>sonotube concrete pier footings</strong>, and <strong>fastener hardware</strong>.
             </p>
+            <div className="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-xs sm:text-sm text-slate-700 max-w-3xl flex items-start gap-2.5">
+              <span className="font-bold text-amber-900 shrink-0">Deck Stairs:</span>
+              <span>
+                Planning outdoor access steps from your deck to grade? Calculate 2x12 stringer cuts, riser drops, and IRC step ergonomics with our companion{" "}
+                <Link
+                  href="/construction/stair-calculator"
+                  className="font-bold text-amber-900 underline hover:text-amber-950 transition-colors"
+                >
+                  Stair Stringer &amp; Riser Calculator
+                </Link>.
+              </span>
+            </div>
           </div>
 
           {/* Interactive Calculator Form Component */}
