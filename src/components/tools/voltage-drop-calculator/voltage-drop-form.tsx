@@ -43,17 +43,41 @@ const QUICK_VOLTAGE_PRESETS = [
 
 const QUICK_AMPERAGE_PRESETS = [15, 20, 30, 40, 50, 60, 100, 200];
 
-export function VoltageDropCalculatorForm() {
-  const [voltage, setVoltage] = useState<number>(240);
-  const [phase, setPhase] = useState<ElectricalPhase>("single_phase");
-  const [loadCurrentAmps, setLoadCurrentAmps] = useState<number>(50);
-  const [distanceFt, setDistanceFt] = useState<number>(100);
-  const [material, setMaterial] = useState<ConductorMaterial>("copper");
-  const [temperatureRating, setTemperatureRating] = useState<ConductorTemperatureRating>("75C");
-  const [targetMaxVoltageDropPercent, setTargetMaxVoltageDropPercent] = useState<number>(3.0);
-  const [isContinuousLoad, setIsContinuousLoad] = useState<boolean>(false);
-  const [ambientTempF, setAmbientTempF] = useState<number>(86);
-  const [conductorsInConduit, setConductorsInConduit] = useState<number>(3);
+export interface VoltageDropCalculatorFormProps {
+  initialVoltage?: number;
+  initialPhase?: ElectricalPhase;
+  initialLoadCurrentAmps?: number;
+  initialDistanceFt?: number;
+  initialMaterial?: ConductorMaterial;
+  initialTemperatureRating?: ConductorTemperatureRating;
+  initialTargetMaxVoltageDropPercent?: number;
+  initialIsContinuousLoad?: boolean;
+  initialAmbientTempF?: number;
+  initialConductorsInConduit?: number;
+}
+
+export function VoltageDropCalculatorForm({
+  initialVoltage = 240,
+  initialPhase = "single_phase",
+  initialLoadCurrentAmps = 50,
+  initialDistanceFt = 100,
+  initialMaterial = "copper",
+  initialTemperatureRating = "75C",
+  initialTargetMaxVoltageDropPercent = 3.0,
+  initialIsContinuousLoad = false,
+  initialAmbientTempF = 86,
+  initialConductorsInConduit = 3,
+}: VoltageDropCalculatorFormProps = {}) {
+  const [voltage, setVoltage] = useState<number>(initialVoltage);
+  const [phase, setPhase] = useState<ElectricalPhase>(initialPhase);
+  const [loadCurrentAmps, setLoadCurrentAmps] = useState<number>(initialLoadCurrentAmps);
+  const [distanceFt, setDistanceFt] = useState<number>(initialDistanceFt);
+  const [material, setMaterial] = useState<ConductorMaterial>(initialMaterial);
+  const [temperatureRating, setTemperatureRating] = useState<ConductorTemperatureRating>(initialTemperatureRating);
+  const [targetMaxVoltageDropPercent, setTargetMaxVoltageDropPercent] = useState<number>(initialTargetMaxVoltageDropPercent);
+  const [isContinuousLoad, setIsContinuousLoad] = useState<boolean>(initialIsContinuousLoad);
+  const [ambientTempF, setAmbientTempF] = useState<number>(initialAmbientTempF);
+  const [conductorsInConduit, setConductorsInConduit] = useState<number>(initialConductorsInConduit);
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
 
   const [copied, setCopied] = useState<boolean>(false);
@@ -108,16 +132,16 @@ export function VoltageDropCalculatorForm() {
   }, [calculationResult.result]);
 
   const resetAll = () => {
-    setVoltage(240);
-    setPhase("single_phase");
-    setLoadCurrentAmps(50);
-    setDistanceFt(100);
-    setMaterial("copper");
-    setTemperatureRating("75C");
-    setTargetMaxVoltageDropPercent(3.0);
-    setIsContinuousLoad(false);
-    setAmbientTempF(86);
-    setConductorsInConduit(3);
+    setVoltage(initialVoltage);
+    setPhase(initialPhase);
+    setLoadCurrentAmps(initialLoadCurrentAmps);
+    setDistanceFt(initialDistanceFt);
+    setMaterial(initialMaterial);
+    setTemperatureRating(initialTemperatureRating);
+    setTargetMaxVoltageDropPercent(initialTargetMaxVoltageDropPercent);
+    setIsContinuousLoad(initialIsContinuousLoad);
+    setAmbientTempF(initialAmbientTempF);
+    setConductorsInConduit(initialConductorsInConduit);
     setShowAdvanced(false);
   };
 

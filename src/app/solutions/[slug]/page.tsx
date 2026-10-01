@@ -1,0 +1,271 @@
+import React from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Container } from "@/components/ui/container";
+import { Breadcrumb } from "@/components/layout/breadcrumb";
+import { JsonLd } from "@/components/seo/json-ld";
+import { Badge } from "@/components/ui/badge";
+import { generatePageMetadata } from "@/lib/seo/metadata";
+import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib/seo/schema";
+import { CalculatorEmbed } from "@/components/solutions/calculator-embed";
+import necProblems from "@/data/nec-problems.json";
+import {
+  CheckCircle2,
+  ArrowRight,
+  BookOpen,
+  Calculator,
+  ShieldCheck,
+} from "lucide-react";
+
+export function generateStaticParams() {
+  return necProblems.map((problem) => ({
+    slug: problem.slug,
+  }));
+}
+
+interface SolutionPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export async function generateMetadata({ params }: SolutionPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const problem = necProblems.find((p) => p.slug === slug);
+
+  if (!problem) {
+    return { title: "Solution Not Found" };
+  }
+
+  return generatePageMetadata({
+    title: `${problem.title} | NEC Solution`,
+    description: problem.metaDescription,
+    path: `/solutions/${problem.slug}`,
+    keywords: [
+      problem.title.toLowerCase(),
+      problem.necReference.toLowerCase(),
+      "nec calculation",
+      "electrical code solution",
+      "step-by-step electrical calculation",
+    ],
+  });
+}
+
+const PARENT_CALCULATOR_MAP: Record<string, { name: string; url: string }> = {
+  "load-calculator": {
+    name: "Residential Electrical Service Load Calculator",
+    url: "/electrical/residential-load-calculator",
+  },
+  "motor-calculator": {
+    name: "Electrical Wire Size & Voltage Drop Calculator",
+    url: "/electrical/voltage-drop-calculator",
+  },
+  "voltage-drop-calculator": {
+    name: "Electrical Wire Size & Voltage Drop Calculator",
+    url: "/electrical/voltage-drop-calculator",
+  },
+  "conduit-fill-calculator": {
+    name: "Electrical Conduit Fill Calculator",
+    url: "/electrical/conduit-fill-calculator",
+  },
+};
+
+export default async function SolutionPage({ params }: SolutionPageProps) {
+  const { slug } = await params;
+  const problem = necProblems.find((p) => p.slug === slug);
+
+  if (!problem) {
+    notFound();
+  }
+
+  const breadcrumbs = [
+    { name: "Solutions", url: "/solutions" },
+    { name: problem.title, url: `/solutions/${problem.slug}` },
+  ];
+
+  const parentTool = PARENT_CALCULATOR_MAP[problem.calculatorType] ?? {
+    name: "Electrical & Conduit Calculators",
+    url: "/categories/electrical",
+  };
+
+  const pageSchema = buildWebPageSchema(
+    problem.title,
+    problem.metaDescription,
+    `/solutions/${problem.slug}`,
+    breadcrumbs
+  );
+
+  const faqSchema = buildFaqSchema([
+    {
+      question: problem.title,
+      answer: `${problem.steps.join(" ")} Answer: ${problem.answer}`,
+    },
+  ]);
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    ...breadcrumbs,
+  ]);
+
+  return (
+    <>
+      <JsonLd schema={[pageSchema, faqSchema, breadcrumbSchema]} />
+
+      <div className="py-8 sm:py-10 space-y-10">
+        <Container>
+          {/* Breadcrumbs: Home > Solutions > [Problem Title] */}
+          <Breadcrumb items={breadcrumbs} />
+
+          {/* Above the fold header */}
+          <div className="space-y-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="brand" className="text-xs px-3 py-1 font-semibold flex items-center gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5" />
+                {problem.necReference}
+              </Badge>
+              <Badge variant="neutral" className="text-xs px-2.5 py-0.5">
+                {problem.category}
+              </Badge>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+              {problem.title}
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+              {problem.metaDescription}
+            </p>
+          </div>
+
+          {/* Direct Answer Callout Banner */}
+          <div className="p-5 sm:p-6 rounded-xl bg-gradient-to-r from-amber-500/15 via-amber-500/10 to-transparent border-2 border-amber-500/40 shadow-sm mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                  Direct Answer
+                </div>
+                <div className="text-xl sm:text-2xl font-black font-mono text-slate-900">
+                  {problem.answer}
+                </div>
+                <p className="text-xs text-slate-600">
+                  Calculated strictly in accordance with {problem.necReference}.
+                </p>
+              </div>
+
+              <div className="shrink-0">
+                <Link
+                  href={parentTool.url}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs sm:text-sm hover:bg-amber-400 transition-colors shadow-sm"
+                >
+                  <Calculator className="h-4 w-4" />
+                  Open Full Calculator
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Embedded Interactive Calculator */}
+          <section className="mb-12 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                  <Calculator className="h-6 w-6 text-amber-600" />
+                  Interactive Scenario Calculator
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  Adjust values below to test custom variations of this NEC problem.
+                </p>
+              </div>
+            </div>
+
+            <CalculatorEmbed
+              calculatorType={problem.calculatorType}
+              inputs={problem.inputs}
+            />
+          </section>
+
+          {/* Step-by-Step Mathematical Solution */}
+          <section className="space-y-6 pt-8 border-t border-slate-200">
+            <div className="space-y-1">
+              <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <BookOpen className="h-6 w-6 text-amber-600" />
+                Step-by-Step Mathematical Solution
+              </h2>
+              <p className="text-sm text-slate-600">
+                Detailed calculation derivation citing applicable National Electrical Code articles.
+              </p>
+            </div>
+
+            {/* Formula Callout */}
+            <div className="p-4 sm:p-5 rounded-lg bg-slate-900 text-white font-mono border border-slate-800 shadow-sm space-y-1.5">
+              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block font-sans">
+                Governing Equation:
+              </span>
+              <div className="text-base sm:text-lg text-amber-300 font-bold">
+                {problem.formula}
+              </div>
+              <span className="text-[11px] text-slate-400 block font-sans">
+                Citing {problem.necReference}
+              </span>
+            </div>
+
+            {/* Numbered Steps */}
+            <div className="space-y-3">
+              {problem.steps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="p-4 sm:p-5 rounded-xl border border-slate-200 bg-white shadow-sm flex items-start gap-4"
+                >
+                  <span className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 text-amber-900 font-bold text-sm shrink-0 font-mono">
+                    {idx + 1}
+                  </span>
+                  <div className="space-y-1 pt-0.5">
+                    <p className="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+                      {step}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Summary Conclusion Box */}
+            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 flex items-center justify-between">
+              <div>
+                <span className="font-semibold text-slate-900">Final Recommendation: </span>
+                <span>{problem.answer}</span>
+              </div>
+              <Badge variant="outline" className="text-xs font-mono shrink-0">
+                {problem.necReference}
+              </Badge>
+            </div>
+          </section>
+
+          {/* Link back to parent calculator tool */}
+          <div className="pt-10">
+            <Link
+              href={parentTool.url}
+              className="group p-6 rounded-xl bg-slate-900 text-white border border-slate-800 hover:border-amber-400 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 block shadow-md"
+            >
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
+                  Comprehensive Takeoff Tool
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                  Open full {parentTool.name} for custom calculations &rarr;
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300">
+                  Perform full project sizing, multi-circuit analysis, and printable jobsite schedules.
+                </p>
+              </div>
+              <div className="flex items-center text-amber-400 font-bold text-sm shrink-0 group-hover:translate-x-1 transition-transform">
+                Go to Calculator <ArrowRight className="h-4 w-4 ml-1.5" />
+              </div>
+            </Link>
+          </div>
+        </Container>
+      </div>
+    </>
+  );
+}

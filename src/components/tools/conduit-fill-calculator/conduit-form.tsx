@@ -91,13 +91,23 @@ const CIRCUIT_PRESETS = [
   },
 ];
 
-export function ConduitFillCalculatorForm() {
-  const [conduitType, setConduitType] = useState<ConduitType>("emt");
-  const [isNipple, setIsNipple] = useState<boolean>(false);
-  const [conductors, setConductors] = useState<ConductorInputRow[]>([
+export interface ConduitFillCalculatorFormProps {
+  initialConduitType?: ConduitType;
+  initialIsNipple?: boolean;
+  initialConductors?: ConductorInputRow[];
+}
+
+export function ConduitFillCalculatorForm({
+  initialConduitType = "emt",
+  initialIsNipple = false,
+  initialConductors = [
     { id: "1", size: "6 AWG", insulation: "thhn", count: 3 },
     { id: "2", size: "10 AWG", insulation: "thhn", count: 1 },
-  ]);
+  ],
+}: ConduitFillCalculatorFormProps = {}) {
+  const [conduitType, setConduitType] = useState<ConduitType>(initialConduitType);
+  const [isNipple, setIsNipple] = useState<boolean>(initialIsNipple);
+  const [conductors, setConductors] = useState<ConductorInputRow[]>(initialConductors);
 
   const [copied, setCopied] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(false);
@@ -154,12 +164,9 @@ export function ConduitFillCalculatorForm() {
   };
 
   const resetAll = () => {
-    setConduitType("emt");
-    setIsNipple(false);
-    setConductors([
-      { id: "1", size: "6 AWG", insulation: "thhn", count: 3 },
-      { id: "2", size: "10 AWG", insulation: "thhn", count: 1 },
-    ]);
+    setConduitType(initialConduitType);
+    setIsNipple(initialIsNipple);
+    setConductors(initialConductors);
   };
 
   const copySummaryToClipboard = () => {

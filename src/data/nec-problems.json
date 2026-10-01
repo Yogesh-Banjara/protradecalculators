@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "baseboard-heater-7000w-240v-service-load",
+    "title": "Calculated Service Load for a Baseboard Heater Rated 7,000W at 240V",
+    "metaDescription": "Step-by-step NEC calculation for a 7,000W, 240V electric baseboard heater continuous load under NEC 220.51 and NEC 424.3(B).",
+    "category": "Electrical",
+    "calculatorType": "load-calculator",
+    "necReference": "NEC Article 220.51 & NEC 424.3(B)",
+    "inputs": {
+      "wattage": 7000,
+      "voltage": 240,
+      "continuous": true
+    },
+    "formula": "I = (P / V) * 1.25",
+    "steps": [
+      "Find base load current: 7,000 Watts / 240 Volts = 29.17 Amperes.",
+      "Apply continuous duty factor (125%) per NEC 424.3(B): 29.17 A * 1.25 = 36.46 Amperes.",
+      "Select minimum branch circuit rating: 40 Ampere breaker."
+    ],
+    "answer": "36.46 A (Minimum 40A Overcurrent Protection)"
+  },
+  {
+    "slug": "3-phase-20hp-230v-hvac-service-demand",
+    "title": "Service Demand Calculation for a 3-Phase 20 HP 230V HVAC Motor Unit",
+    "metaDescription": "Calculate conductor ampacity and full-load current (FLC) for a 20 HP, 230V, 3-phase motor using NEC Table 430.250 and NEC 430.22.",
+    "category": "Electrical",
+    "calculatorType": "motor-calculator",
+    "necReference": "NEC Table 430.250 & NEC 430.22",
+    "inputs": {
+      "horsepower": 20,
+      "voltage": 230,
+      "phase": 3
+    },
+    "formula": "Conductor Ampacity = FLC * 1.25",
+    "steps": [
+      "Obtain Full-Load Current (FLC) from NEC Table 430.250 for 20 HP at 230V, 3-Phase: 54 Amperes.",
+      "Multiply by 125% for branch circuit conductor sizing per NEC 430.22: 54 A * 1.25 = 67.5 Amperes.",
+      "Select minimum conductor gauge: 4 AWG copper wire rated at 75°C."
+    ],
+    "answer": "67.5 A Conductor Ampacity (54 A Running FLC)"
+  },
+  {
+    "slug": "voltage-drop-100ft-12awg-20a-120v",
+    "title": "Voltage Drop Calculation for 100ft 12 AWG at 20A 120V",
+    "metaDescription": "Calculate single-phase voltage drop and percentage loss over 100 feet using 12 AWG copper under NEC recommended 3% limits.",
+    "category": "Electrical",
+    "calculatorType": "voltage-drop-calculator",
+    "necReference": "NEC Article 210.19(A) Informational Note 4",
+    "inputs": {
+      "distance": 100,
+      "wireGauge": "12 AWG",
+      "current": 20,
+      "voltage": 120,
+      "phase": 1
+    },
+    "formula": "VD = (2 * K * L * I) / CM",
+    "steps": [
+      "Identify circular mil area for 12 AWG copper (CM = 6,530) and resistivity constant (K = 12.9 ohms-cmil/ft).",
+      "Compute voltage drop: (2 * 12.9 * 100 * 20) / 6,530 = 7.90 Volts.",
+      "Determine percentage drop: (7.90 / 120) * 100 = 6.58% (Exceeds the 3% NEC branch circuit recommendation)."
+    ],
+    "answer": "7.90 V Drop (6.58% Loss - Upsize conductor to 10 AWG to stay below 3%)"
+  },
+  {
+    "slug": "conduit-fill-three-4awg-thhn-in-emt",
+    "title": "Conduit Fill Sizing for Three 4 AWG THHN Conductors in EMT",
+    "metaDescription": "Calculate minimum EMT conduit trade size for three 4 AWG THHN copper conductors using NEC Chapter 9, Tables 1, 4, and 5.",
+    "category": "Electrical",
+    "calculatorType": "conduit-fill-calculator",
+    "necReference": "NEC Chapter 9, Table 1 & Table 4 (EMT)",
+    "inputs": {
+      "conductors": [{ "gauge": "4 AWG", "insulation": "THHN", "count": 3 }],
+      "conduitType": "EMT"
+    },
+    "formula": "Total Conductor Area <= 40% of Conduit Interior Area",
+    "steps": [
+      "Find cross-sectional area of one 4 AWG THHN conductor from NEC Chapter 9 Table 5: 0.0824 sq. in.",
+      "Calculate total area for 3 conductors: 3 * 0.0824 = 0.2472 sq. in.",
+      "Check 40% fill column in NEC Chapter 9 Table 4 for EMT: 3/4 inch EMT allows 0.213 sq. in. (too small), 1 inch EMT allows 0.346 sq. in. (compliant)."
+    ],
+    "answer": "1-inch EMT Conduit (Total wire fill: 0.2472 sq. in. vs 0.346 sq. in. permitted)"
+  }
+]

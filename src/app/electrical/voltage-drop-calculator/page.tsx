@@ -22,6 +22,7 @@ import {
   ArrowRight,
   Compass,
   ShieldCheck,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -418,6 +419,72 @@ export default function VoltageDropCalculatorPage() {
                     </div>
                   </Link>
                 </div>
+              </div>
+            </section>
+
+            {/* Section 8: Real-World NEC Calculation Scenarios */}
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <BookOpen className="h-6 w-6 text-amber-600" />
+                8. Real-World NEC Calculation Scenarios
+              </h2>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Step-by-step mathematical solutions and code citations for wire sizing and voltage drop problems:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link
+                  href="/solutions/voltage-drop-100ft-12awg-20a-120v"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Article 210.19(A) Note 4
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Voltage Drop Calculation for 100ft 12 AWG at 20A 120V
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate single-phase voltage drop and percentage loss over 100 feet using 12 AWG copper under NEC recommended 3% limits.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      7.90 V Drop (6.58% Loss - Upsize conductor to 10 AWG to stay below 3%)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/solutions/3-phase-20hp-230v-hvac-service-demand"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Table 430.250 &amp; NEC 430.22
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Service Demand Calculation for a 3-Phase 20 HP 230V HVAC Motor Unit
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Calculate conductor ampacity and full-load current (FLC) for a 20 HP, 230V, 3-phase motor using NEC Table 430.250 and NEC 430.22.
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      67.5 A Conductor Ampacity (54 A Running FLC)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
               </div>
             </section>
 

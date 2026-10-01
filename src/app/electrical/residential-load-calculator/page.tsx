@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Compass,
   Gauge,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -277,7 +278,46 @@ export default function ResidentialLoadCalculatorPage() {
               </div>
             </section>
 
-            {/* Section 5: Reciprocal Electrical Ecosystem Hub */}
+            {/* Section 5: Real-World NEC Calculation Scenarios */}
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <BookOpen className="h-6 w-6 text-amber-600" />
+                5. Real-World NEC Calculation Scenarios
+              </h2>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Step-by-step mathematical solutions and code citations for fixed heating and branch service loads:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link
+                  href="/solutions/baseboard-heater-7000w-240v-service-load"
+                  className="p-5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                        NEC Article 220.51 &amp; NEC 424.3(B)
+                      </span>
+                      <span className="text-xs font-mono text-slate-500">Solved Scenario</span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      Calculated Service Load for a Baseboard Heater Rated 7,000W at 240V
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-2">
+                      Step-by-step NEC calculation for a 7,000W, 240V electric baseboard heater continuous load under NEC 220.51 and NEC 424.3(B).
+                    </p>
+                    <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-800">
+                      <span className="text-[10px] uppercase font-bold text-slate-400 block font-sans">Direct Result:</span>
+                      36.46 A (Minimum 40A Overcurrent Protection)
+                    </div>
+                  </div>
+                  <div className="flex items-center text-xs font-bold text-amber-600 pt-3 mt-2 border-t border-slate-100 group-hover:translate-x-1 transition-transform">
+                    View Step-by-Step Mathematical Solution <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                </Link>
+              </div>
+            </section>
+
+            {/* Reciprocal Electrical Ecosystem Hub */}
             <section className="space-y-4 bg-slate-900 text-slate-100 p-6 rounded-xl border border-slate-800">
               <div className="space-y-4">
                 <div>
