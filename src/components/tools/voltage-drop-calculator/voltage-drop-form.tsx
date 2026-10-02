@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
 import type {
   ConductorMaterial,
   ConductorTemperatureRating,
@@ -32,14 +33,21 @@ import {
   ShieldAlert,
   ChevronDown,
   ChevronUp,
+  BookOpen,
+  ArrowRight,
 } from "lucide-react";
 
-const QUICK_VOLTAGE_PRESETS = [
-  { label: "120V Single-Phase", voltage: 120, phase: "single_phase" as const },
-  { label: "240V Single-Phase (Feeder / EV)", voltage: 240, phase: "single_phase" as const },
-  { label: "208V 3-Phase", voltage: 208, phase: "three_phase" as const },
-  { label: "480V 3-Phase Commercial", voltage: 480, phase: "three_phase" as const },
-  { label: "12V / 24V DC", voltage: 12, phase: "dc" as const },
+const AC_VOLTAGE_PRESETS = [
+  { label: "120V Single-Phase (Branch/Lighting)", voltage: 120, phase: "single_phase" as const },
+  { label: "240V Single-Phase (Feeder / EV / Range)", voltage: 240, phase: "single_phase" as const },
+  { label: "208V 3-Phase Commercial", voltage: 208, phase: "three_phase" as const },
+  { label: "480V 3-Phase Industrial Feeder", voltage: 480, phase: "three_phase" as const },
+];
+
+const DC_VOLTAGE_PRESETS = [
+  { label: "12V DC (Automotive / Marine / RV)", voltage: 12, phase: "dc" as const },
+  { label: "24V DC (Solar Array / Heavy Vehicle)", voltage: 24, phase: "dc" as const },
+  { label: "48V DC (Off-Grid Battery Bank / Telecom)", voltage: 48, phase: "dc" as const },
 ];
 
 const QUICK_AMPERAGE_PRESETS = [15, 20, 30, 40, 50, 60, 100, 200];
@@ -132,6 +140,31 @@ export function VoltageDropCalculatorForm({
     }
   }, [calculationResult.result]);
 
+  const matchedSolution = useMemo(() => {
+    if (voltage === 120 && phase === "single_phase" && Math.abs(distanceFt - 100) <= 10 && Math.abs(loadCurrentAmps - 20) <= 2) {
+      return {
+        slug: "voltage-drop-100ft-12awg-20a-120v",
+        title: "100ft 12 AWG at 20A 120V Circuit Proof",
+        necReference: "NEC Article 210.19(A) Note 4",
+      };
+    }
+    if (voltage === 240 && phase === "single_phase" && Math.abs(distanceFt - 250) <= 20 && Math.abs(loadCurrentAmps - 50) <= 5) {
+      return {
+        slug: "voltage-drop-250ft-6awg-50a-240v-subpanel",
+        title: "250ft 6 AWG at 50A 240V Subpanel Feeder Proof",
+        necReference: "NEC 215.2(A)(1) & NEC 310.16",
+      };
+    }
+    if (voltage === 480 && phase === "three_phase" && Math.abs(distanceFt - 500) <= 50 && Math.abs(loadCurrentAmps - 100) <= 15) {
+      return {
+        slug: "voltage-drop-500ft-480v-3phase-100a-feeder",
+        title: "500ft 480V 3-Phase 100A Commercial Feeder Proof",
+        necReference: "NEC 215.2(A)(1) & Chapter 9 Table 9",
+      };
+    }
+    return null;
+  }, [voltage, phase, distanceFt, loadCurrentAmps]);
+
   const resetAll = () => {
     setVoltage(initialVoltage);
     setPhase(initialPhase);
@@ -209,6 +242,50 @@ export function VoltageDropCalculatorForm({
 
         {/* Primary Inputs Grid */}
         <div className="rounded-lg border border-slate-200 bg-white p-4 sm:p-5 shadow-sm space-y-4">
+          {/* Circuit System Mode Selector: AC vs DC */}
+          <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 bg-slate-100 rounded-lg border border-slate-200">
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-bold text-slate-700 font-mono uppercase tracking-wider">Circuit System:</span>
+              <div className="inline-flex rounded-lg p-0.5 bg-slate-200 border border-slate-300">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPhase("single_phase");
+                    if (voltage < 100) setVoltage(120);
+                  }}
+                  className={`px-3 py-1 text-xs font-bold rounded-md transition-colors cursor-pointer ${
+                    phase !== "dc"
+                      ? "bg-slate-900 text-amber-400 shadow-sm"
+                      : "text-slate-700 hover:text-slate-950"
+                  }`}
+                >
+                  AC Systems (120V / 240V / 480V)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPhase("dc");
+                    if (voltage > 48) setVoltage(12);
+                    setTargetMaxVoltageDropPercent(3.0);
+                  }}
+                  className={`px-3 py-1 text-xs font-bold rounded-md transition-colors cursor-pointer ${
+                    phase === "dc"
+                      ? "bg-amber-500 text-slate-950 font-bold shadow-sm"
+                      : "text-slate-700 hover:text-slate-950"
+                  }`}
+                >
+                  12V / 24V DC Mode (Solar / Marine / RV)
+                </button>
+              </div>
+            </div>
+
+            {phase === "dc" && (
+              <span className="text-[11px] font-mono text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded">
+                2-Wire DC Loop: VD = (2 × K × I × D) / CM
+              </span>
+            )}
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* System Voltage */}
             <FormField id="sys-voltage" label="System Voltage (V)" required>
@@ -220,7 +297,7 @@ export function VoltageDropCalculatorForm({
                 step="1"
                 value={voltage || ""}
                 onChange={(e) => setVoltage(parseFloat(e.target.value) || 0)}
-                placeholder="240"
+                placeholder={phase === "dc" ? "12" : "240"}
               />
             </FormField>
 
@@ -229,12 +306,12 @@ export function VoltageDropCalculatorForm({
               <Input
                 id="load-amps"
                 type="number"
-                min="1"
+                min="0.1"
                 max="2000"
                 step="0.5"
                 value={loadCurrentAmps || ""}
                 onChange={(e) => setLoadCurrentAmps(parseFloat(e.target.value) || 0)}
-                placeholder="50"
+                placeholder="20"
               />
             </FormField>
 
@@ -281,10 +358,12 @@ export function VoltageDropCalculatorForm({
             </FormField>
           </div>
 
-          {/* Quick Voltage & Phase Presets */}
+          {/* Quick Voltage Presets (AC vs DC conditional) */}
           <div className="flex flex-wrap items-center gap-1.5 pt-1 text-xs">
-            <span className="text-slate-500 font-bold mr-1">Quick Voltages:</span>
-            {QUICK_VOLTAGE_PRESETS.map((preset) => (
+            <span className="text-slate-500 font-bold mr-1">
+              {phase === "dc" ? "DC Presets:" : "AC Presets:"}
+            </span>
+            {(phase === "dc" ? DC_VOLTAGE_PRESETS : AC_VOLTAGE_PRESETS).map((preset) => (
               <button
                 key={preset.label}
                 type="button"
@@ -292,7 +371,7 @@ export function VoltageDropCalculatorForm({
                   setVoltage(preset.voltage);
                   setPhase(preset.phase);
                 }}
-                className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${
+                className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
                   voltage === preset.voltage && phase === preset.phase
                     ? "bg-slate-900 text-amber-400 border-slate-900 font-bold"
                     : "bg-slate-50 text-slate-700 hover:bg-slate-100 border-slate-200"
@@ -465,6 +544,29 @@ export function VoltageDropCalculatorForm({
 
       {result && (
         <div className="space-y-6">
+          {/* Contextual Link to Matching NEC Solution */}
+          {matchedSolution && (
+            <div className="rounded-xl border border-amber-500/50 bg-amber-500/10 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <BookOpen className="h-5 w-5 text-amber-400 shrink-0" />
+                <div>
+                  <span className="font-bold text-amber-300 block text-sm">
+                    Verified NEC Code Proof Available ({matchedSolution.necReference})
+                  </span>
+                  <span className="text-slate-300">
+                    Configuration matches: <strong>{matchedSolution.title}</strong>
+                  </span>
+                </div>
+              </div>
+              <Link
+                href={`/solutions/${matchedSolution.slug}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold font-mono hover:bg-amber-400 transition-colors shrink-0"
+              >
+                Inspect Code Proof <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          )}
+
           {/* Primary Hero Results Panel */}
           <div className="rounded-xl border-2 border-amber-500/50 bg-slate-950 text-slate-100 shadow-lg overflow-hidden">
             <div className="bg-slate-900 px-6 py-4 border-b border-slate-800 flex items-center justify-between">

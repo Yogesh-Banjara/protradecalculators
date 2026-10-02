@@ -146,6 +146,17 @@ export const TOOL_REGISTRY: readonly ToolDefinition[] = [
     lastModified: "2026-09-01",
   },
   {
+    id: "rafter-calculator",
+    title: "Roof Rafter Calculator",
+    slug: "rafter-calculator",
+    categoryId: "construction",
+    path: "/construction/rafter-calculator",
+    description:
+      "Calculate common rafter length, theoretical line length, ridge board deductions, eave overhang, birdsmouth seat cuts, and IRC Section R802.7.1 notch limits.",
+    status: "active",
+    lastModified: "2026-10-02",
+  },
+  {
     id: "stair-calculator",
     title: "Stair Stringer & Riser Calculator",
     slug: "stair-calculator",

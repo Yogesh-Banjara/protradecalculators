@@ -11,27 +11,27 @@ import sitemap from "@/app/sitemap";
 import { siteConfig } from "@/config/site";
 
 describe("Sitemap & Canonical Indexation Scalability", () => {
-  it("maintains exactly 27 canonical indexable routes in baseline production", () => {
+  it("maintains exactly 28 canonical indexable routes in baseline production", () => {
     const allRoutes = getAllCanonicalRoutes();
-    expect(allRoutes.length).toBe(27);
-    expect(getIndexableRouteCount()).toBe(27);
+    expect(allRoutes.length).toBe(28);
+    expect(getIndexableRouteCount()).toBe(28);
   });
 
-  it("verifies composition of the 27 production routes", () => {
+  it("verifies composition of the 28 production routes", () => {
     const coreCount = CORE_STATIC_ROUTES.length; // 7 (home, tools, about, contact, privacy, terms, guide)
     const catCount = getCategoryRoutes().length; // 5 (construction, materials, electrical, plumbing, hvac)
-    const toolCount = getActiveToolRoutes().length; // 15 active calculators
+    const toolCount = getActiveToolRoutes().length; // 16 active calculators
 
     expect(coreCount).toBe(7);
     expect(catCount).toBe(5);
-    expect(toolCount).toBe(15);
-    expect(coreCount + catCount + toolCount).toBe(27);
+    expect(toolCount).toBe(16);
+    expect(coreCount + catCount + toolCount).toBe(28);
   });
 
   it("generates sitemap entries in sitemap.xml including solutions and methodology", () => {
     const sitemapEntries = sitemap();
-    // 27 baseline canonical routes + 1 /solutions hub + 20 programmatic worked solutions + 1 /methodology + 3 /guides + 1 /privacy-policy = 53
-    expect(sitemapEntries.length).toBe(53);
+    // 28 baseline canonical routes + 1 /solutions hub + 20 programmatic worked solutions + 1 /methodology + 3 /guides + 1 /privacy-policy = 54
+    expect(sitemapEntries.length).toBe(54);
 
     // Verify all URLs begin with official production domain
     for (const entry of sitemapEntries) {

@@ -26,9 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Plumbing DFU & Pipe Sizing Calculator",
+  title: "Plumbing DFU Calculator - Drain Pipe & Vent Stack Sizing (IPC & UPC)",
   description:
-    "Free plumbing DFU and drain pipe sizing calculator. Calculate fixture units and size horizontal branches, vertical stacks, and building drains per IPC & UPC.",
+    "Calculate Drainage Fixture Units (DFU) and size drain lines, soil stacks, building sewers, and IPC Table 906.1 vent stacks with fixture load schedules.",
   path: "/plumbing/dfu-calculator",
   keywords: [
     "plumbing dfu calculator",
@@ -42,6 +42,10 @@ export const metadata: Metadata = generatePageMetadata({
     "building drain sizing calculator",
     "sanitary pipe sizing",
     "plumbing code pipe sizing",
+    "ipc table 906.1",
+    "vent stack sizing calculator",
+    "stack vent pipe sizing",
+    "maximum developed length of vent",
   ],
 });
 
@@ -53,6 +57,11 @@ export default function PlumbingDfuCalculatorPage() {
   ];
 
   const faqItems = [
+    {
+      question: "How do you size a plumbing vent stack under IPC Table 906.1?",
+      answer:
+        "To size a stack vent or vent stack under IPC Section 906.1: First, determine the diameter of the soil/waste stack served and the total Drainage Fixture Units (DFU) connected to it. Second, measure the vent's developed length from the lowest vent connection to the outdoor open-air terminal. Third, cross-reference the stack diameter and DFU load in IPC Table 906.1 to select a vent pipe diameter whose maximum allowable developed length meets or exceeds your measured length. Finally, verify that the vent diameter is at least one-half the diameter of the drain served (e.g. minimum 1.5\" vent for a 3\" stack, minimum 2\" vent for a 4\" stack) and never less than 1-1/4\".",
+    },
     {
       question: "What is a Drainage Fixture Unit (DFU)?",
       answer:
@@ -412,6 +421,159 @@ export default function PlumbingDfuCalculatorPage() {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </section>
+
+            {/* IPC Table 906.1 Vent Stack & Stack Vent Sizing Matrix */}
+            <section className="space-y-4 rounded-2xl border border-cyan-200 bg-white p-6 shadow-sm">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-800">
+                  <Gauge className="h-4 w-4 text-cyan-600" />
+                  <span>IPC Section 906 Sizing Standard</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  Vent Stack &amp; Stack Vent Sizing: IPC Table 906.1
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Maximum permitted developed length (in feet) of stack vents and vent stacks based on the diameter of the soil/waste stack served and total connected Drainage Fixture Units (DFU):
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Soil/Waste Stack Diameter</th>
+                      <th className="p-3">Total DFUs Served</th>
+                      <th className="p-3 text-center">1-1/4″ Vent</th>
+                      <th className="p-3 text-center">1-1/2″ Vent</th>
+                      <th className="p-3 text-center">2″ Vent</th>
+                      <th className="p-3 text-center">2-1/2″ Vent</th>
+                      <th className="p-3 text-center">3″ Vent</th>
+                      <th className="p-3 text-center">4″ Vent</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">1-1/2″ Stack</td>
+                      <td className="p-3">8 DFU</td>
+                      <td className="p-3 text-center">50 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">150 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="p-3 font-bold text-slate-900">2″ Stack</td>
+                      <td className="p-3">12 DFU</td>
+                      <td className="p-3 text-center">30 ft</td>
+                      <td className="p-3 text-center">75 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">200 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">2″ Stack</td>
+                      <td className="p-3">24 DFU</td>
+                      <td className="p-3 text-center">26 ft</td>
+                      <td className="p-3 text-center">50 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">150 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="p-3 font-bold text-slate-900">3″ Stack</td>
+                      <td className="p-3">10 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">42 ft</td>
+                      <td className="p-3 text-center">150 ft</td>
+                      <td className="p-3 text-center">360 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">1,040 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">3″ Stack</td>
+                      <td className="p-3">21 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">32 ft</td>
+                      <td className="p-3 text-center">110 ft</td>
+                      <td className="p-3 text-center">270 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">810 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="p-3 font-bold text-slate-900">3″ Stack</td>
+                      <td className="p-3">53 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">27 ft</td>
+                      <td className="p-3 text-center">94 ft</td>
+                      <td className="p-3 text-center">230 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">680 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">3″ Stack</td>
+                      <td className="p-3">102 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">25 ft</td>
+                      <td className="p-3 text-center">86 ft</td>
+                      <td className="p-3 text-center">210 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">620 ft</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="p-3 font-bold text-slate-900">4″ Stack</td>
+                      <td className="p-3">43 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">35 ft</td>
+                      <td className="p-3 text-center">85 ft</td>
+                      <td className="p-3 text-center">250 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">980 ft</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">4″ Stack</td>
+                      <td className="p-3">140 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">27 ft</td>
+                      <td className="p-3 text-center">65 ft</td>
+                      <td className="p-3 text-center">200 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">750 ft</td>
+                    </tr>
+                    <tr className="bg-slate-50">
+                      <td className="p-3 font-bold text-slate-900">4″ Stack</td>
+                      <td className="p-3">320 DFU</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center text-slate-400">—</td>
+                      <td className="p-3 text-center">23 ft</td>
+                      <td className="p-3 text-center">55 ft</td>
+                      <td className="p-3 text-center">170 ft</td>
+                      <td className="p-3 text-center text-cyan-900 font-bold">640 ft</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="bg-cyan-50/70 border border-cyan-200/80 rounded-xl p-4 text-xs text-cyan-950 space-y-2">
+                <div className="font-bold flex items-center gap-1.5">
+                  <AlertTriangle className="h-4 w-4 text-cyan-700" />
+                  IPC Section 906.1 Sizing Rules:
+                </div>
+                <ul className="list-disc list-inside space-y-1 text-slate-700 font-sans">
+                  <li>
+                    <strong>Half-Diameter Floor Rule:</strong> The diameter of a stack vent or vent stack shall not be less than one-half the diameter of the drain served, and not less than 1-1/4 inches. A 3″ soil stack requires a minimum 1-1/2″ vent; a 4″ soil stack requires a minimum 2″ vent.
+                  </li>
+                  <li>
+                    <strong>Developed Length Measurement:</strong> The developed length of the vent is measured from the lowest point of connection with the drainage system to the open-air terminal above the roof line.
+                  </li>
+                  <li>
+                    <strong>Pneumatic Trap Protection:</strong> Vent pipe sizing limits differential pneumatic pressures within the drainage system to within &plusmn;1 inch of water column (249 Pa), preserving the 2-inch minimum water seal in fixture P-traps.
+                  </li>
+                </ul>
               </div>
             </section>
 

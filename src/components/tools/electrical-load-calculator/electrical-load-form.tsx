@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
 import type {
   CustomApplianceEntry,
   ElectricalLoadInput,
@@ -39,6 +40,10 @@ import {
   Flame,
   Snowflake,
   Car,
+  BookOpen,
+  ArrowRight,
+  FileText,
+  Printer,
 } from "lucide-react";
 
 const PRESETS = [
@@ -278,6 +283,50 @@ export function ElectricalLoadCalculatorForm() {
     airConditioningWatts,
     hvacHeatingType,
     heatingWatts,
+  ]);
+
+  const [showPermitSubmittal, setShowPermitSubmittal] = useState<boolean>(false);
+  const [permitJobAddress, setPermitJobAddress] = useState<string>("");
+  const [permitContractor, setPermitContractor] = useState<string>("");
+
+  const matchedSolution = useMemo(() => {
+    if (includeElectricRange && electricRangeWatts === 12000) {
+      return {
+        slug: "range-service-load-12kw-household-single-phase",
+        title: "12 kW Household Electric Range Service Demand (NEC Table 220.55)",
+        necReference: "NEC Article 220.55",
+      };
+    }
+    if (includeElectricDryer && electricDryerWatts === 5000) {
+      return {
+        slug: "residential-dryer-feeder-load-5000w-240v",
+        title: "5,000W Electric Clothes Dryer Service Load (NEC 220.54)",
+        necReference: "NEC Article 220.54",
+      };
+    }
+    if (hvacHeatingType === "electric_baseboard" && heatingWatts === 7000) {
+      return {
+        slug: "baseboard-heater-7000w-240v-service-load",
+        title: "7,000W Electric Baseboard Heater Continuous Load (NEC 424.3(B))",
+        necReference: "NEC 220.51 & NEC 424.3(B)",
+      };
+    }
+    if (proposedServiceRatingAmps === 200) {
+      return {
+        slug: "feeder-ampacity-single-family-dwelling-200a-service",
+        title: "200A Single-Family Dwelling Service Feeder Sizing (NEC Table 310.12)",
+        necReference: "NEC Table 310.12",
+      };
+    }
+    return null;
+  }, [
+    includeElectricRange,
+    electricRangeWatts,
+    includeElectricDryer,
+    electricDryerWatts,
+    hvacHeatingType,
+    heatingWatts,
+    proposedServiceRatingAmps,
   ]);
 
   useEffect(() => {
@@ -526,17 +575,39 @@ export function ElectricalLoadCalculatorForm() {
                 Electric Range / Cooktop
               </label>
               {includeElectricRange && (
-                <div className="flex items-center gap-1.5">
-                  <Input
-                    type="number"
-                    min="1000"
-                    max="20000"
-                    step="500"
-                    value={electricRangeWatts}
-                    onChange={(e) => setElectricRangeWatts(parseInt(e.target.value, 10) || 0)}
-                    className="h-7 text-xs font-bold text-right"
-                  />
-                  <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <Input
+                      type="number"
+                      min="1000"
+                      max="20000"
+                      step="500"
+                      value={electricRangeWatts}
+                      onChange={(e) => setElectricRangeWatts(parseInt(e.target.value, 10) || 0)}
+                      className="h-7 text-xs font-bold text-right"
+                    />
+                    <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {[
+                      { label: "8 kW (NEC min)", w: 8000 },
+                      { label: "12 kW (Standard)", w: 12000 },
+                      { label: "15 kW (Induction)", w: 15000 },
+                    ].map((p) => (
+                      <button
+                        key={p.label}
+                        type="button"
+                        onClick={() => setElectricRangeWatts(p.w)}
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors ${
+                          electricRangeWatts === p.w
+                            ? "bg-amber-500 text-slate-950 font-bold"
+                            : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -553,17 +624,39 @@ export function ElectricalLoadCalculatorForm() {
                 Electric Clothes Dryer
               </label>
               {includeElectricDryer && (
-                <div className="flex items-center gap-1.5">
-                  <Input
-                    type="number"
-                    min="3000"
-                    max="12000"
-                    step="500"
-                    value={electricDryerWatts}
-                    onChange={(e) => setElectricDryerWatts(parseInt(e.target.value, 10) || 0)}
-                    className="h-7 text-xs font-bold text-right"
-                  />
-                  <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <Input
+                      type="number"
+                      min="1000"
+                      max="12000"
+                      step="500"
+                      value={electricDryerWatts}
+                      onChange={(e) => setElectricDryerWatts(parseInt(e.target.value, 10) || 0)}
+                      className="h-7 text-xs font-bold text-right"
+                    />
+                    <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {[
+                      { label: "5 kW (Standard)", w: 5000 },
+                      { label: "1.5 kW (Heat Pump)", w: 1500 },
+                      { label: "6.5 kW (Commercial)", w: 6500 },
+                    ].map((p) => (
+                      <button
+                        key={p.label}
+                        type="button"
+                        onClick={() => setElectricDryerWatts(p.w)}
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors ${
+                          electricDryerWatts === p.w
+                            ? "bg-amber-500 text-slate-950 font-bold"
+                            : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -580,17 +673,39 @@ export function ElectricalLoadCalculatorForm() {
                 Electric Water Heater
               </label>
               {includeElectricWaterHeater && (
-                <div className="flex items-center gap-1.5">
-                  <Input
-                    type="number"
-                    min="1000"
-                    max="10000"
-                    step="500"
-                    value={electricWaterHeaterWatts}
-                    onChange={(e) => setElectricWaterHeaterWatts(parseInt(e.target.value, 10) || 0)}
-                    className="h-7 text-xs font-bold text-right"
-                  />
-                  <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <Input
+                      type="number"
+                      min="500"
+                      max="36000"
+                      step="500"
+                      value={electricWaterHeaterWatts}
+                      onChange={(e) => setElectricWaterHeaterWatts(parseInt(e.target.value, 10) || 0)}
+                      className="h-7 text-xs font-bold text-right"
+                    />
+                    <span className="text-[11px] text-slate-500 font-mono">Watts</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {[
+                      { label: "4.5 kW (Standard Tank)", w: 4500 },
+                      { label: "1 kW (Hybrid Heat Pump)", w: 1000 },
+                      { label: "18 kW (Tankless)", w: 18000 },
+                    ].map((p) => (
+                      <button
+                        key={p.label}
+                        type="button"
+                        onClick={() => setElectricWaterHeaterWatts(p.w)}
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors ${
+                          electricWaterHeaterWatts === p.w
+                            ? "bg-amber-500 text-slate-950 font-bold"
+                            : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -714,6 +829,27 @@ export function ElectricalLoadCalculatorForm() {
                         <option value={48}>48A (11.5 kW - Hardwired)</option>
                         <option value={80}>80A (19.2 kW - Dual Motor)</option>
                       </select>
+                      <div className="flex flex-wrap gap-1 pt-1">
+                        {[
+                          { label: "32A", a: 32 },
+                          { label: "40A", a: 40 },
+                          { label: "48A", a: 48 },
+                          { label: "80A", a: 80 },
+                        ].map((p) => (
+                          <button
+                            key={p.label}
+                            type="button"
+                            onClick={() => setEvChargerAmps(p.a)}
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors ${
+                              evChargerAmps === p.a
+                                ? "bg-emerald-600 text-white font-bold"
+                                : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                            }`}
+                          >
+                            {p.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
 
                     <div>
@@ -932,6 +1068,32 @@ export function ElectricalLoadCalculatorForm() {
 
       {result && (
         <div className="space-y-6">
+          {/* Contextual NEC Solution Link (Matches Specific Code Proofs) */}
+          {matchedSolution && (
+            <div className="rounded-lg border-2 border-amber-500/40 bg-gradient-to-r from-amber-950/30 via-slate-900/60 to-amber-950/30 p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+              <div className="flex items-start gap-2.5">
+                <BookOpen className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-slate-100 text-sm">
+                    Verified NEC Worked Solution Available
+                  </div>
+                  <p className="text-slate-300 text-xs mt-0.5">
+                    Your configuration matches the verified textbook problem:{" "}
+                    <strong className="text-amber-300">{matchedSolution.title}</strong>{" "}
+                    ({matchedSolution.necReference}).
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={`/solutions/${matchedSolution.slug}`}
+                className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded transition-colors text-xs whitespace-nowrap shrink-0 shadow-sm"
+              >
+                Inspect Step-by-Step Proof
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          )}
+
           {/* Primary Hero Results Panel */}
           <div className="rounded-xl border-2 border-amber-500/50 bg-slate-950 text-slate-100 shadow-lg overflow-hidden">
             <div className="bg-slate-900 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
@@ -1079,10 +1241,20 @@ export function ElectricalLoadCalculatorForm() {
                     )}
                   </Button>
 
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowPermitSubmittal((prev) => !prev)}
+                    className="text-amber-300 border-amber-500/50 bg-amber-950/40 hover:bg-amber-900/50"
+                  >
+                    <FileText className="h-4 w-4 mr-1.5 text-amber-400" />
+                    {showPermitSubmittal ? "Hide Permit Worksheet" : "Permit Submittal Worksheet"}
+                  </Button>
+
                   <PrintButton
                     toolSlug="residential-load-calculator"
                     category="electrical"
-                    label="Print Permit Worksheet"
+                    label="Print Summary"
                     className="text-slate-200 border-slate-700 bg-slate-900 hover:bg-slate-800"
                   />
 
@@ -1100,6 +1272,206 @@ export function ElectricalLoadCalculatorForm() {
               </div>
             </div>
           </div>
+
+          {/* Official Permit-Submittal View */}
+          {showPermitSubmittal && (
+            <div className="rounded-xl border-2 border-slate-300 bg-white p-6 sm:p-8 text-slate-900 shadow-md space-y-6">
+              <div className="border-b-2 border-slate-900 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold block">
+                    Electrical Permit Submittal Package • Informational Engineering Takeoff
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
+                    RESIDENTIAL SERVICE LOAD CALCULATION WORKSHEET
+                  </h2>
+                  <p className="text-xs text-slate-600 font-medium">
+                    National Electrical Code (NEC) Article 220.82 Optional Calculation Method
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 no-print">
+                  <Button
+                    size="sm"
+                    onClick={() => window.print()}
+                    className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold"
+                  >
+                    <Printer className="h-3.5 w-3.5 mr-1.5" />
+                    Print Submittal Sheet
+                  </Button>
+                </div>
+              </div>
+
+              {/* Job & Contractor Metadata Fields */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Job / Property Address:</label>
+                  <input
+                    type="text"
+                    value={permitJobAddress}
+                    onChange={(e) => setPermitJobAddress(e.target.value)}
+                    placeholder="e.g. 124 Main St, Springfield"
+                    className="w-full rounded border border-slate-300 bg-white px-2.5 py-1 text-xs text-slate-900 font-semibold"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Contractor / Preparer:</label>
+                  <input
+                    type="text"
+                    value={permitContractor}
+                    onChange={(e) => setPermitContractor(e.target.value)}
+                    placeholder="e.g. Apex Electrical Services LLC"
+                    className="w-full rounded border border-slate-300 bg-white px-2.5 py-1 text-xs text-slate-900 font-semibold"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Calculation Standard:</label>
+                  <div className="font-mono text-slate-800 font-bold py-1">
+                    NEC 2020 / 2023 / 2026 Art. 220.82
+                  </div>
+                </div>
+              </div>
+
+              {/* Service Summary Specifications */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div className="border border-slate-200 p-3 rounded bg-white">
+                  <span className="text-slate-500 block text-[11px]">Dwelling Area</span>
+                  <span className="font-bold font-mono text-slate-900 text-base">{dwellingFloorAreaSqFt} sq ft</span>
+                </div>
+                <div className="border border-slate-200 p-3 rounded bg-white">
+                  <span className="text-slate-500 block text-[11px]">Service Voltage</span>
+                  <span className="font-bold font-mono text-slate-900 text-base">120/240V 1Φ 3W</span>
+                </div>
+                <div className="border border-slate-200 p-3 rounded bg-white">
+                  <span className="text-slate-500 block text-[11px]">Existing Panel</span>
+                  <span className="font-bold font-mono text-slate-900 text-base">{result.existingServiceRatingAmps}A Main</span>
+                </div>
+                <div className="border border-slate-200 p-3 rounded bg-white">
+                  <span className="text-slate-500 block text-[11px]">Target Service</span>
+                  <span className="font-bold font-mono text-amber-700 text-base">{result.recommendedMinimumServiceAmps}A Required</span>
+                </div>
+              </div>
+
+              {/* Itemized Calculation Summary Table */}
+              <div className="space-y-2">
+                <h4 className="text-xs uppercase font-bold text-slate-700 tracking-wider">
+                  Demand Load Tabulation (NEC 220.82)
+                </h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-xs">
+                    <thead>
+                      <tr className="border-b-2 border-slate-300 bg-slate-100 text-left">
+                        <th className="py-2 px-3 font-bold text-slate-800">Section / Load Description</th>
+                        <th className="py-2 px-3 text-right font-bold text-slate-800">Connected (VA)</th>
+                        <th className="py-2 px-3 text-right font-bold text-slate-800">Demand Factor</th>
+                        <th className="py-2 px-3 text-right font-bold text-slate-800">Calculated Demand (VA)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      <tr>
+                        <td className="py-2 px-3 text-slate-800">General Lighting ({dwellingFloorAreaSqFt} sq ft × 3 VA/sq ft)</td>
+                        <td className="py-2 px-3 text-right font-mono">{result.breakdown.generalLightingVa.toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right text-slate-500">Tiered (10k @ 100%)</td>
+                        <td className="py-2 px-3 text-right font-mono text-slate-400">—</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-slate-800">Small Appliance ({smallApplianceCircuitsCount}) + Laundry ({laundryCircuitsCount}) Circuits @ 1,500 VA</td>
+                        <td className="py-2 px-3 text-right font-mono">{result.breakdown.smallApplianceLaundryVa.toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right text-slate-500">Tiered (10k @ 100%)</td>
+                        <td className="py-2 px-3 text-right font-mono text-slate-400">—</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-slate-800">Fixed Household Appliances (Range, Dryer, Water Heater, etc.)</td>
+                        <td className="py-2 px-3 text-right font-mono">{result.breakdown.fixedAppliancesTotalVa.toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right text-slate-500">Tiered (10k @ 100%)</td>
+                        <td className="py-2 px-3 text-right font-mono text-slate-400">—</td>
+                      </tr>
+                      <tr className="bg-amber-50/60 font-semibold">
+                        <td className="py-2 px-3 text-slate-900">
+                          NEC 220.82(B) General Load Demand (First 10,000 VA @ 100% + Remainder @ 40%)
+                        </td>
+                        <td className="py-2 px-3 text-right font-mono">{result.breakdown.grossGeneralLoadVa.toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right text-amber-800 font-bold">100% / 40%</td>
+                        <td className="py-2 px-3 text-right font-mono font-bold text-amber-900">
+                          {result.breakdown.calculatedGeneralDemandVa.toLocaleString()} VA
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-slate-800">
+                          NEC 220.82(C) Non-Coincident HVAC (Cooling: {result.breakdown.airConditioningVa.toLocaleString()} VA vs Heating: {result.breakdown.heatingVa.toLocaleString()} VA)
+                        </td>
+                        <td className="py-2 px-3 text-right font-mono">
+                          {Math.max(result.breakdown.airConditioningVa, result.breakdown.heatingVa).toLocaleString()}
+                        </td>
+                        <td className="py-2 px-3 text-right text-sky-800 font-bold">100% Largest</td>
+                        <td className="py-2 px-3 text-right font-mono font-bold text-sky-900">
+                          {result.breakdown.selectedHvacLoadVa.toLocaleString()} VA
+                        </td>
+                      </tr>
+                      {result.breakdown.evChargerDemandVa > 0 && (
+                        <tr>
+                          <td className="py-2 px-3 text-slate-800">
+                            NEC 625 Level 2 EVSE Charger ({evChargerAmps}A @ 240V continuous)
+                          </td>
+                          <td className="py-2 px-3 text-right font-mono">{result.breakdown.evChargerConnectedVa.toLocaleString()}</td>
+                          <td className="py-2 px-3 text-right text-emerald-800 font-bold">125% Continuous</td>
+                          <td className="py-2 px-3 text-right font-mono font-bold text-emerald-900">
+                            {result.breakdown.evChargerDemandVa.toLocaleString()} VA
+                          </td>
+                        </tr>
+                      )}
+                      <tr className="bg-slate-900 text-white font-bold border-t-2 border-slate-900">
+                        <td className="py-3 px-3 uppercase tracking-wide">
+                          Total Calculated Service Demand Load
+                        </td>
+                        <td className="py-3 px-3 text-right font-mono">
+                          {(
+                            result.breakdown.grossGeneralLoadVa +
+                            Math.max(result.breakdown.airConditioningVa, result.breakdown.heatingVa) +
+                            result.breakdown.evChargerConnectedVa
+                          ).toLocaleString()} VA
+                        </td>
+                        <td className="py-3 px-3 text-right text-amber-400 font-bold">
+                          Calculated
+                        </td>
+                        <td className="py-3 px-3 text-right font-mono font-black text-amber-300 text-sm">
+                          {result.totalCalculatedDemandVa.toLocaleString()} VA ({result.calculatedServiceAmps} Amps @ 240V)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Minimum Service Sizing Requirement */}
+              <div className="bg-slate-100 p-4 rounded-lg border border-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+                <div>
+                  <div className="font-bold text-slate-900 text-sm">
+                    Recommended Minimum Service Equipment Rating: {result.recommendedMinimumServiceAmps}A
+                  </div>
+                  <div className="text-slate-600">
+                    Calculated demand is {result.calculatedServiceAmps}A @ 240V single-phase. Under NEC 220.82 and NEC 230.79, the minimum standard service size is {result.recommendedMinimumServiceAmps}A.
+                  </div>
+                </div>
+                <div className="text-right font-mono font-bold text-slate-800 shrink-0">
+                  Status: {result.existingServiceStatus === "service_upgrade_required" ? (
+                    <span className="text-rose-600 font-black">UPGRADE REQUIRED</span>
+                  ) : (
+                    <span className="text-emerald-700 font-black">EXISTING PANEL SUFFICIENT</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Strict Non-Approval Permit Disclaimer */}
+              <div className="rounded-lg border-2 border-amber-300 bg-amber-50 p-4 text-[11px] text-amber-950 leading-relaxed space-y-1">
+                <div className="font-bold flex items-center gap-1.5 uppercase tracking-wide text-amber-900">
+                  <ShieldAlert className="h-4 w-4 text-amber-700" />
+                  Notice of Informational Engineering Worksheet (Non-Approval Disclaimer)
+                </div>
+                <p>
+                  This worksheet is an engineering calculation tool prepared as an informational attachment for electrical permit application packages under National Electrical Code (NEC) Article 220.82. <strong>This document does NOT constitute legal building permit approval, municipal inspection sign-off, or an engineering stamp.</strong> Final service entrance conductors, overcurrent protection sizing, grounding electrode systems, and utility meter equipment must be submitted to, reviewed by, and approved by the local Authority Having Jurisdiction (AHJ) and performed in accordance with applicable state and local electrical codes by a licensed electrical contractor.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Interactive SVG Panel Blueprint */}
           <ElectricalLoadDiagram result={result} />

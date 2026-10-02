@@ -21,22 +21,23 @@ import {
   CheckCircle2,
   ArrowRight,
   Compass,
+  Triangle,
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Roof Pitch & Rafter Calculator",
+  title: "Roof Pitch Calculator - Pitch Angles, Slope & Squares",
   description:
-    "Free roof pitch and rafter calculator to calculate pitch angles, common rafter lengths, birdsmouth cuts, roof surface area, and shingle squares.",
+    "Free roof pitch calculator to calculate roof slope angles, pitch multipliers, roof surface area, and roofing squares with shingle bundle estimates.",
   path: "/construction/roof-pitch-calculator",
   keywords: [
     "roof pitch calculator",
-    "rafter calculator",
     "roof slope calculator",
-    "calculate rafter length",
-    "birdsmouth cut calculator",
+    "roof angle calculator",
+    "calculate roof slope",
+    "roof grade percentage",
     "roofing squares calculator",
     "how many bundles of shingles",
-    "common rafter length",
+    "roof pitch multiplier",
   ],
 });
 
@@ -133,13 +134,33 @@ export default function RoofPitchCalculatorPage() {
           <Breadcrumb items={breadcrumbs} />
 
           {/* Above the Fold: Header & Intro */}
-          <div className="space-y-3 mb-8">
+          <div className="space-y-3 mb-6">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900">
-              Roof Pitch &amp; Rafter Calculator
+              Roof Pitch &amp; Slope Calculator
             </h1>
             <p className="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
-              Calculate roof pitch, rafter length, common rafter line length, roof area and roofing squares. Includes diagrams, formulas and code references.
+              Calculate roof pitch (in/12), pitch angles, slope multipliers, sloped roof surface area, and roofing squares with shingle bundle counts.
             </p>
+          </div>
+
+          {/* Dedicated Rafter Calculator Cross-Link Banner */}
+          <div className="mb-8 rounded-lg border border-amber-300 bg-amber-50/80 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <Triangle className="h-5 w-5 text-amber-700 shrink-0" />
+              <div>
+                <span className="font-bold text-amber-950 block sm:inline">Framing common rafters? </span>
+                <span className="text-amber-900">
+                  For birdsmouth seat/plumb cuts, ridge board deductions, tail overhangs, and IRC R802 notching limits, use our dedicated tool.
+                </span>
+              </div>
+            </div>
+            <a
+              href="/construction/rafter-calculator"
+              className="inline-flex items-center gap-1.5 font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 px-3 py-1.5 rounded transition-colors shrink-0 text-center"
+            >
+              Open Rafter Calculator
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
           </div>
 
           {/* Interactive Calculator Form Component */}

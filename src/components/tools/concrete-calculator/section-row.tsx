@@ -20,9 +20,9 @@ export interface SectionRowProps {
 const SHAPE_OPTIONS = [
   { label: "Rectangular Slab (Patio, Driveway, Floor)", value: "rectangular-slab" },
   { label: "Continuous Footing / Grade Beam", value: "continuous-footing" },
-  { label: "Round Column / Post Hole / Pier", value: "round-column" },
+  { label: "Sonotube / Cylindrical Footing / Pier Tube", value: "round-column" },
   { label: "Circular Slab", value: "circular-slab" },
-  { label: "Circular Footing", value: "circular-footing" },
+  { label: "Circular Footing Pad", value: "circular-footing" },
 ];
 
 export function SectionRow({
@@ -154,10 +154,10 @@ export function SectionRow({
           </>
         ) : (
           /* Diameter for circular shapes */
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <UnitInput
               id={`sec-${section.id}-diameter`}
-              label={section.shape === "round-column" ? "Diameter" : "Diameter"}
+              label={section.shape === "round-column" ? "Sonotube / Pier Diameter" : "Diameter"}
               value={section.diameter ?? 0}
               unit={(section.diameterUnit || section.lengthUnit) as LengthUnit}
               category="length"
@@ -170,6 +170,31 @@ export function SectionRow({
               }}
               min={0}
             />
+            {section.shape === "round-column" && (
+              <div className="flex flex-wrap items-center gap-1 pt-0.5">
+                <span className="text-[10px] text-slate-400 font-mono">Tubes:</span>
+                {[8, 10, 12, 14, 16, 18, 24].map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() =>
+                      onChange({
+                        ...section,
+                        diameter: d,
+                        diameterUnit: "inch",
+                      })
+                    }
+                    className={`px-1.5 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                      section.diameter === d && (section.diameterUnit === "inch" || !section.diameterUnit)
+                        ? "bg-amber-500 text-slate-950 font-bold"
+                        : "bg-slate-800 text-slate-300 hover:text-white"
+                    }`}
+                  >
+                    {d}″
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -179,8 +204,8 @@ export function SectionRow({
             id={`sec-${section.id}-depth`}
             label={
               section.shape === "round-column"
-                ? "Column Depth"
-                : "Thickness"
+                ? "Tube Depth / Height"
+                : "Thickness / Depth"
             }
             value={section.depth ?? 0}
             unit={section.depthUnit}

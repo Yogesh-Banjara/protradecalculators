@@ -127,6 +127,14 @@ export const SITE_CATALOG: readonly CatalogPage[] = [
     primaryKeywords: ["roof pitch calculator", "rafter length calculator", "roof angle"],
   },
   {
+    url: "/construction/rafter-calculator",
+    title: "Roof Rafter Calculator - Length & Cut Schedule | ProTrade Calculators",
+    h1: "Roof Rafter Length & Cut Schedule Calculator",
+    cluster: "construction",
+    type: "calculator",
+    primaryKeywords: ["rafter calculator", "roof rafter length calculator", "birdsmouth cut calculator", "common rafter calculator"],
+  },
+  {
     url: "/construction/stair-calculator",
     title: "Stair Stringer & Riser Calculator | ProTrade Calculators",
     h1: "Stair Stringer & Riser Calculator",

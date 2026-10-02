@@ -4,6 +4,8 @@ import type {
   PlumbingDfuInput,
   PlumbingDfuResult,
   StandardDrainPipeSizeInches,
+  VentStackSizingInput,
+  VentStackSizingResult,
 } from "@/types/plumbing-dfu";
 import type { CalculationStep, CalculationWarning } from "@/types/calculations";
 import {
@@ -11,8 +13,102 @@ import {
   PIPE_SIZE_NUMERIC_MAP,
   STANDARD_DRAIN_PIPE_SIZES,
   UPC_DRAIN_CAPACITIES,
+  IPC_TABLE_906_1_VENT_STACK_SIZING,
+  type IpcVentStackRow,
 } from "@/data/references/plumbing-dfu-types";
 import { roundTo } from "./rounding";
+
+/**
+ * Sizes stack vents and vent stacks per IPC Section 906.1 and Table 906.1.
+ */
+export function calculateVentStackSize(
+  input: VentStackSizingInput
+): VentStackSizingResult {
+  const { soilStackSizeInches, totalDfu, developedLengthFt } = input;
+
+  // Rule 1: Minimum vent diameter is 1/2 the diameter of the drain served, and not less than 1-1/4"
+  const stackNumeric = PIPE_SIZE_NUMERIC_MAP[soilStackSizeInches] || 3;
+  const halfNumeric = stackNumeric / 2;
+
+  let minAllowedVentSizeByHalfRule: StandardDrainPipeSizeInches = "1-1/4";
+  for (const size of STANDARD_DRAIN_PIPE_SIZES) {
+    if (
+      PIPE_SIZE_NUMERIC_MAP[size] >= halfNumeric &&
+      PIPE_SIZE_NUMERIC_MAP[size] >= 1.25
+    ) {
+      minAllowedVentSizeByHalfRule = size;
+      break;
+    }
+  }
+
+  // Find matching table rows for this soil stack diameter
+  const stackRows = IPC_TABLE_906_1_VENT_STACK_SIZING.filter(
+    (r) => r.soilStackSizeInches === soilStackSizeInches
+  );
+
+  let matchedRow: IpcVentStackRow | undefined;
+  if (stackRows.length > 0) {
+    matchedRow =
+      stackRows.find((r) => r.maxDfu >= totalDfu) ||
+      stackRows[stackRows.length - 1];
+  }
+
+  let recommendedVentSizeInches: StandardDrainPipeSizeInches =
+    minAllowedVentSizeByHalfRule;
+  let maxAllowedDevelopedLengthFt = 0;
+  let notes = "";
+
+  if (matchedRow) {
+    const minNumeric = PIPE_SIZE_NUMERIC_MAP[minAllowedVentSizeByHalfRule];
+    const candidateSizes = (
+      Object.keys(
+        matchedRow.maxDevelopedLengthFtByVentSize
+      ) as StandardDrainPipeSizeInches[]
+    )
+      .filter((sz) => PIPE_SIZE_NUMERIC_MAP[sz] >= minNumeric)
+      .sort((a, b) => PIPE_SIZE_NUMERIC_MAP[a] - PIPE_SIZE_NUMERIC_MAP[b]);
+
+    let foundSize = false;
+    for (const sz of candidateSizes) {
+      const maxLen = matchedRow.maxDevelopedLengthFtByVentSize[sz] || 0;
+      if (maxLen >= developedLengthFt) {
+        recommendedVentSizeInches = sz;
+        maxAllowedDevelopedLengthFt = maxLen;
+        foundSize = true;
+        break;
+      }
+    }
+
+    if (!foundSize) {
+      const largestSize =
+        candidateSizes[candidateSizes.length - 1] || minAllowedVentSizeByHalfRule;
+      const nextIndex = STANDARD_DRAIN_PIPE_SIZES.indexOf(largestSize) + 1;
+      recommendedVentSizeInches =
+        nextIndex < STANDARD_DRAIN_PIPE_SIZES.length
+          ? STANDARD_DRAIN_PIPE_SIZES[nextIndex]
+          : largestSize;
+      maxAllowedDevelopedLengthFt = 9999;
+      notes = `Developed length (${developedLengthFt} ft) exceeds IPC Table 906.1 limits for standard vent sizes. Upsized to ${recommendedVentSizeInches}\" to prevent excessive pneumatic pressure drop.`;
+    } else {
+      notes = `Complies with IPC Table 906.1 for ${soilStackSizeInches}\" stack carrying ${totalDfu} DFU up to ${maxAllowedDevelopedLengthFt} ft developed length.`;
+    }
+  } else {
+    recommendedVentSizeInches = minAllowedVentSizeByHalfRule;
+    maxAllowedDevelopedLengthFt = 200;
+    notes = `Sized by IPC Section 906.1 general rule: 1/2 drain diameter floor (${minAllowedVentSizeByHalfRule}\" minimum).`;
+  }
+
+  return {
+    soilStackSizeInches,
+    totalDfu,
+    developedLengthFt,
+    minAllowedVentSizeByHalfRule,
+    recommendedVentSizeInches,
+    maxAllowedDevelopedLengthFt,
+    governingTable: "IPC Table 906.1",
+    notes,
+  };
+}
 
 /**
  * Pure deterministic calculation engine for Plumbing Drainage Fixture Unit (DFU) & Pipe Sizing per IPC and UPC.
@@ -224,11 +320,25 @@ export function calculatePlumbingDfu(input: PlumbingDfuInput): PlumbingDfuResult
     });
   }
 
-  // Technical Disclaimer
-  warnings.push({
-    code: "PLUMBING_CODE_DISCLAIMER",
-    message: `Calculated per ${codeStandard} sanitary drainage standards. Plumbing codes and local amendments vary significantly by municipality. This calculator is an engineering estimation aid and does not substitute for on-site verification, official isometric plan submittals, or licensed master plumber sign-off.`,
-  });
+  let ventStackSizing: VentStackSizingResult | undefined;
+  if (input.includeVentStackSizing || systemType === "vertical_stack") {
+    const developedLen =
+      input.ventDevelopedLengthFt && input.ventDevelopedLengthFt > 0
+        ? input.ventDevelopedLengthFt
+        : 40;
+    ventStackSizing = calculateVentStackSize({
+      soilStackSizeInches: recommendedPipeSizeInches,
+      totalDfu: totalCalculatedDfu,
+      developedLengthFt: developedLen,
+    });
+
+    steps.push({
+      label: "Vent Stack Sizing (IPC Table 906.1)",
+      formula: "Vent Size = f(Soil Stack Diameter, Total DFU, Developed Length)",
+      values: `${recommendedPipeSizeInches}\" Soil Stack with ${totalCalculatedDfu} DFU and ${developedLen} ft Developed Length`,
+      result: `${ventStackSizing.recommendedVentSizeInches}\" Vent Stack (${ventStackSizing.notes})`,
+    });
+  }
 
   return {
     codeStandard,
@@ -245,6 +355,7 @@ export function calculatePlumbingDfu(input: PlumbingDfuInput): PlumbingDfuResult
     containsWaterCloset,
     waterClosetCount,
     fixtureBreakdown,
+    ventStackSizing,
     warnings,
     steps,
   };

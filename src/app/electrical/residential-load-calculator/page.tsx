@@ -26,9 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Residential Load Calculator - NEC 220 Sizing",
+  title: "Residential Electrical Load Calculator - NEC 220.82 & Permit Worksheet",
   description:
-    "Calculate home electrical service load in Amps and kVA per NEC 220.82. Size 100A, 200A, or 400A panels for EV chargers, heat pumps, and home additions.",
+    "Calculate dwelling service load in Amps & kVA per NEC Article 220.82. Size 100A, 200A, or 400A service for EV chargers and heat pumps with printable permit worksheet.",
   path: "/electrical/residential-load-calculator",
   keywords: [
     "electrical load calculator",

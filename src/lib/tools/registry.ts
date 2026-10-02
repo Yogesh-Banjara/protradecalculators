@@ -357,13 +357,13 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     id: "roof-pitch-calculator",
     slug: "roof-pitch-calculator",
     categoryId: "construction",
-    title: "Roof Pitch & Rafter Calculator",
-    shortTitle: "Roof Pitch & Rafters",
+    title: "Roof Pitch & Slope Calculator",
+    shortTitle: "Roof Pitch & Slope",
     description:
-      "Calculate roof pitch (X/12, angle, grade), common rafter line length, overhang, ridge height, birdsmouth seat cuts, roof surface area, and roofing squares.",
-    searchIntent: "Calculate roof pitch slope angle, common rafter length, birdsmouth cuts, and roofing squares",
+      "Calculate roof pitch (X/12, angle, grade), slope factor, roof surface area, and roofing squares with shingle bundle counts.",
+    searchIntent: "Calculate roof pitch slope angle, rise per foot, roof surface area, and roofing squares",
     status: "active",
-    relatedToolSlugs: ["framing-calculator"],
+    relatedToolSlugs: ["rafter-calculator", "framing-calculator"],
     inputs: [
       {
         id: "buildingWidthFt",
@@ -388,9 +388,9 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     outputs: [
       {
-        id: "rafterLineLengthFormatted",
-        label: "Common Rafter Line Length",
-        unit: "ft/in",
+        id: "roofPitchAngleFormatted",
+        label: "Roof Pitch Angle",
+        unit: "deg",
         isPrimary: true,
       },
       {
@@ -408,20 +408,99 @@ export const REGISTERED_TOOLS: readonly ToolDefinition[] = [
     ],
     calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
     seo: {
-      title: "Roof Pitch & Rafter Calculator - Length, Angles & Squares",
+      title: "Roof Pitch Calculator - Pitch Angles, Slope Factor & Squares",
       description:
-        "Free roof pitch and rafter calculator to calculate pitch angles, common rafter lengths, birdsmouth cuts, roof surface area, and shingle squares.",
+        "Free roof pitch calculator to calculate slope angle, roof grade percentage, pitch multiplier, roof surface area, and roofing squares.",
       keywords: [
         "roof pitch calculator",
-        "rafter calculator",
         "roof slope calculator",
-        "calculate rafter length",
-        "birdsmouth cut calculator",
+        "roof angle calculator",
+        "calculate roof slope",
+        "roof grade percentage",
         "roofing squares calculator",
         "how many bundles of shingles",
       ],
     },
     lastModified: "2026-09-01",
+  },
+  {
+    id: "rafter-calculator",
+    slug: "rafter-calculator",
+    categoryId: "construction",
+    title: "Roof Rafter Length & Cut Calculator",
+    shortTitle: "Rafter Length & Cut",
+    description:
+      "Calculate common rafter length, theoretical line length, ridge deduction, eave overhang, birdsmouth seat/plumb cuts, and IRC R802.7.1 notching limits.",
+    searchIntent: "Calculate common rafter length, birdsmouth cuts, ridge deduction, and rafter cut schedule",
+    status: "active",
+    relatedToolSlugs: ["roof-pitch-calculator", "framing-calculator"],
+    inputs: [
+      {
+        id: "buildingSpanFt",
+        label: "Building Span",
+        type: "number",
+        required: true,
+        defaultUnit: "foot",
+      },
+      {
+        id: "pitchIn12",
+        label: "Roof Pitch (X/12)",
+        type: "number",
+        required: true,
+      },
+      {
+        id: "eaveOverhangInches",
+        label: "Eave Overhang",
+        type: "number",
+        defaultUnit: "inch",
+      },
+      {
+        id: "seatCutBearingInches",
+        label: "Top Plate Bearing",
+        type: "number",
+        defaultUnit: "inch",
+      },
+    ],
+    outputs: [
+      {
+        id: "totalCutRafterLengthFt",
+        label: "Total Rafter Cut Length",
+        unit: "ft",
+        isPrimary: true,
+        precision: 2,
+      },
+      {
+        id: "rafterLineLengthInches",
+        label: "Line Length",
+        unit: "in",
+        precision: 2,
+      },
+      {
+        id: "birdsmouthPlumbCut",
+        label: "Birdsmouth Plumb Cut",
+        unit: "in",
+        precision: 2,
+      },
+    ],
+    calculate: (_input: Record<string, unknown>) => ({ values: {}, steps: [] }),
+    seo: {
+      title: "Rafter Calculator - Roof Rafter Length & Cut Schedule",
+      description:
+        "Free rafter calculator to calculate common rafter length, line length, ridge deduction, eave overhang, birdsmouth cuts, and IRC R802.7.1 notching limits.",
+      keywords: [
+        "rafter calculator",
+        "roof rafter length calculator",
+        "common rafter calculator",
+        "how to calculate rafter length",
+        "birdsmouth cut calculator",
+        "rafter pitch calculator",
+        "rafter angle calculator",
+        "framing square rafter table",
+        "IRC rafter notch limits",
+        "roof framing calculator",
+      ],
+    },
+    lastModified: "2026-10-02",
   },
   {
     id: "stair-calculator",

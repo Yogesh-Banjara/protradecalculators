@@ -255,6 +255,86 @@ export function ConcreteCalculatorForm() {
               />
             </div>
 
+            {/* Project Quick Mode Presets */}
+            <div className="flex flex-wrap items-center gap-1.5 pb-1">
+              <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">Quick Setup:</span>
+              <button
+                type="button"
+                onClick={() =>
+                  setSections([
+                    {
+                      id: "sec-1",
+                      name: "Main Slab",
+                      shape: "rectangular-slab",
+                      quantity: 1,
+                      length: 10,
+                      width: 10,
+                      depth: 4,
+                      lengthUnit: "foot",
+                      depthUnit: "inch",
+                    },
+                  ])
+                }
+                className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                  sections.length === 1 && sections[0].shape === "rectangular-slab"
+                    ? "bg-amber-500 text-slate-950 font-bold"
+                    : "bg-slate-800 text-slate-300 hover:text-white"
+                }`}
+              >
+                Slab / Patio
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setSections([
+                    {
+                      id: "sec-1",
+                      name: "Sonotube Pier Footings",
+                      shape: "round-column",
+                      quantity: 4,
+                      diameter: 12,
+                      depth: 48,
+                      lengthUnit: "inch",
+                      depthUnit: "inch",
+                      diameterUnit: "inch",
+                    },
+                  ])
+                }
+                className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                  sections.length === 1 && sections[0].shape === "round-column"
+                    ? "bg-amber-500 text-slate-950 font-bold"
+                    : "bg-slate-800 text-slate-300 hover:text-white"
+                }`}
+              >
+                Sonotube / Footings
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setSections([
+                    {
+                      id: "sec-1",
+                      name: "Grade Beam Footing",
+                      shape: "continuous-footing",
+                      quantity: 1,
+                      length: 40,
+                      width: 16,
+                      depth: 12,
+                      lengthUnit: "foot",
+                      depthUnit: "inch",
+                    },
+                  ])
+                }
+                className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                  sections.length === 1 && sections[0].shape === "continuous-footing"
+                    ? "bg-amber-500 text-slate-950 font-bold"
+                    : "bg-slate-800 text-slate-300 hover:text-white"
+                }`}
+              >
+                Continuous Footing
+              </button>
+            </div>
+
             {/* Section Rows */}
             <div className="space-y-3">
               {sections.map((section, idx) => (

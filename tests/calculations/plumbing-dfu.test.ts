@@ -777,4 +777,73 @@ describe("Plumbing DFU & Drainage Pipe Sizing Engine", () => {
     expect(resEighth.maxCapacityDfuForSelectedSize).toBe(180);
     expect(resEighth.capacityUtilizationPct).toBe(23.3);
   });
+
+  // 11. IPC Table 906.1 Vent Stack Sizing Engine Tests
+  describe("IPC Table 906.1 Vent Stack Sizing Engine", () => {
+    it("sizes 2\" vent for a 3\" stack with 21 DFU and 50ft developed length", () => {
+      const fixtures: FixtureScheduleItem[] = [
+        { id: "1", fixtureId: "water_closet_16", name: "WC", quantity: 7, dfuEach: 3.0, minTrapSizeInches: "3", isWaterCloset: true },
+      ];
+
+      const res = calculatePlumbingDfu({
+        codeStandard: "IPC",
+        systemType: "vertical_stack",
+        fixtures,
+        includeVentStackSizing: true,
+        ventDevelopedLengthFt: 50,
+      });
+
+      expect(res.recommendedPipeSizeInches).toBe("3");
+      expect(res.ventStackSizing).toBeDefined();
+      expect(res.ventStackSizing?.minAllowedVentSizeByHalfRule).toBe("1-1/2");
+      // 1-1/2" allows 32 ft; 50 ft requires 2" (allows up to 110 ft)
+      expect(res.ventStackSizing?.recommendedVentSizeInches).toBe("2");
+      expect(res.ventStackSizing?.maxAllowedDevelopedLengthFt).toBe(110);
+    });
+
+    it("sizes 3\" vent for a 4\" stack with 140 DFU and 150ft developed length", () => {
+      const fixtures: FixtureScheduleItem[] = [
+        { id: "1", fixtureId: "water_closet_16", name: "WC", quantity: 46, dfuEach: 3.0, minTrapSizeInches: "3", isWaterCloset: true },
+        { id: "2", fixtureId: "lavatory", name: "Lav", quantity: 2, dfuEach: 1.0, minTrapSizeInches: "1-1/4", isWaterCloset: false },
+      ];
+
+      const res = calculatePlumbingDfu({
+        codeStandard: "IPC",
+        systemType: "vertical_stack",
+        fixtures,
+        includeVentStackSizing: true,
+        ventDevelopedLengthFt: 150,
+      });
+
+      expect(res.totalCalculatedDfu).toBe(140.0);
+      expect(res.recommendedPipeSizeInches).toBe("4");
+      expect(res.ventStackSizing).toBeDefined();
+      expect(res.ventStackSizing?.minAllowedVentSizeByHalfRule).toBe("2");
+      // 2" allows 27 ft, 2-1/2" allows 65 ft, 3" allows 200 ft -> 3" required for 150 ft
+      expect(res.ventStackSizing?.recommendedVentSizeInches).toBe("3");
+      expect(res.ventStackSizing?.maxAllowedDevelopedLengthFt).toBe(200);
+    });
+
+    it("enforces half-diameter floor rule even when developed length is very short", () => {
+      const fixtures: FixtureScheduleItem[] = [
+        { id: "1", fixtureId: "water_closet_16", name: "WC", quantity: 3, dfuEach: 3.0, minTrapSizeInches: "3", isWaterCloset: true },
+      ];
+
+      const res = calculatePlumbingDfu({
+        codeStandard: "IPC",
+        systemType: "vertical_stack",
+        fixtures,
+        includeVentStackSizing: true,
+        ventDevelopedLengthFt: 10,
+      });
+
+      // 3" stack, 9 DFU: 1-1/2" vent allows 42 ft.
+      // Even if 1-1/4" allowed 30 ft, 1/2 of 3" requires minimum 1-1/2" vent!
+      expect(res.recommendedPipeSizeInches).toBe("3");
+      expect(res.ventStackSizing?.minAllowedVentSizeByHalfRule).toBe("1-1/2");
+      expect(res.ventStackSizing?.recommendedVentSizeInches).toBe("1-1/2");
+      expect(res.ventStackSizing?.maxAllowedDevelopedLengthFt).toBe(42);
+    });
+  });
 });
+

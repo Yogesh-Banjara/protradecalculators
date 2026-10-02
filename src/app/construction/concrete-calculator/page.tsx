@@ -26,15 +26,18 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Concrete Calculator - Slabs & Footings",
+  title: "Concrete Calculator - Slabs, Sonotubes & Footings in Yards",
   description:
-    "Free concrete calculator to calculate cubic yards, cubic feet, and bags for slabs, footings, and round piers with multi-section takeoff and waste factors.",
+    "Free concrete calculator for slabs, Sonotubes, cylindrical piers, and footings. Calculate cubic yards, cubic feet, and 60lb/80lb bag counts with multi-section takeoff.",
   path: "/construction/concrete-calculator",
   keywords: [
     "concrete calculator",
-    "concrete slab calculator",
+    "calculator for concrete footings",
     "concrete footing calculator",
-    "calculate cubic yards concrete",
+    "sonotube concrete calculator",
+    "concrete yardage for sonotube",
+    "sonotube yardage calculator",
+    "concrete slab calculator",
     "how many bags of concrete",
     "concrete yardage calculator",
     "concrete weight calculator",
@@ -272,11 +275,118 @@ export default function ConcreteCalculatorPage() {
               </div>
             </section>
 
-            {/* Section 5: Measuring Irregular Shapes */}
+            {/* Section 5: Sonotube & Cylindrical Footing Reference Table */}
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <Layers className="h-6 w-6 text-amber-600" />
+                5. Sonotube &amp; Cylindrical Footing Yardage Chart (Per Tube)
+              </h2>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Use this reference table to quickly determine the exact volume in cubic feet, cubic yards, and 80lb/60lb premixed bags required per Sonotube or drilled pier footing across standard frost-line depths ($V = \pi \times r^2 \times h$):
+              </p>
+              <div className="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead className="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Tube Diameter</th>
+                      <th className="p-3">Depth (Frost Line)</th>
+                      <th className="p-3 font-mono">Volume (Cu Ft)</th>
+                      <th className="p-3 font-mono">Volume (Cu Yd)</th>
+                      <th className="p-3 font-mono">80 lb Bags</th>
+                      <th className="p-3 font-mono">60 lb Bags</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    <tr>
+                      <td className="p-3 font-bold">8″ (0.67 ft)</td>
+                      <td className="p-3">36″ (3.0 ft)</td>
+                      <td className="p-3 font-mono">1.05 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.039 yd³</td>
+                      <td className="p-3 font-mono">2 bags</td>
+                      <td className="p-3 font-mono">3 bags</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold">8″ (0.67 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">1.40 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.052 yd³</td>
+                      <td className="p-3 font-mono">3 bags</td>
+                      <td className="p-3 font-mono">4 bags</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold text-slate-900">10″ (0.83 ft)</td>
+                      <td className="p-3">36″ (3.0 ft)</td>
+                      <td className="p-3 font-mono">1.64 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.061 yd³</td>
+                      <td className="p-3 font-mono">3 bags</td>
+                      <td className="p-3 font-mono">4 bags</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold text-slate-900">10″ (0.83 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">2.18 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.081 yd³</td>
+                      <td className="p-3 font-mono">4 bags</td>
+                      <td className="p-3 font-mono">5 bags</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-amber-900">12″ (1.00 ft)</td>
+                      <td className="p-3">36″ (3.0 ft)</td>
+                      <td className="p-3 font-mono">2.36 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.087 yd³</td>
+                      <td className="p-3 font-mono">4 bags</td>
+                      <td className="p-3 font-mono">6 bags</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-amber-900">12″ (1.00 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">3.14 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.116 yd³</td>
+                      <td className="p-3 font-mono">6 bags</td>
+                      <td className="p-3 font-mono">7 bags</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold">14″ (1.17 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">4.28 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.158 yd³</td>
+                      <td className="p-3 font-mono">8 bags</td>
+                      <td className="p-3 font-mono">10 bags</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold">16″ (1.33 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">5.59 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.207 yd³</td>
+                      <td className="p-3 font-mono">10 bags</td>
+                      <td className="p-3 font-mono">13 bags</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold">18″ (1.50 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">7.07 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.262 yd³</td>
+                      <td className="p-3 font-mono">12 bags</td>
+                      <td className="p-3 font-mono">16 bags</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold">24″ (2.00 ft)</td>
+                      <td className="p-3">48″ (4.0 ft)</td>
+                      <td className="p-3 font-mono">12.57 cu ft</td>
+                      <td className="p-3 font-mono font-bold text-amber-700">0.465 yd³</td>
+                      <td className="p-3 font-mono">21 bags</td>
+                      <td className="p-3 font-mono">28 bags</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Section 6: Measuring Irregular Shapes */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <CheckCircle2 className="h-6 w-6 text-amber-600" />
-                5. How to Measure an Irregular Project Layout
+                6. How to Measure an Irregular Project Layout
               </h2>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 If your patio or driveway is L-shaped, T-shaped, or curved:
@@ -294,11 +404,11 @@ export default function ConcreteCalculatorPage() {
               </ul>
             </section>
 
-            {/* Section 6: Common Measurement Mistakes */}
+            {/* Section 7: Common Measurement Mistakes */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <AlertTriangle className="h-6 w-6 text-amber-600" />
-                6. Common Concrete Takeoff Mistakes
+                7. Common Concrete Takeoff Mistakes
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
                 <div className="p-4 rounded-lg bg-red-50 border border-red-200 space-y-1">
@@ -324,11 +434,11 @@ export default function ConcreteCalculatorPage() {
               </div>
             </section>
 
-            {/* Section 7: Ready-Mix vs Bagged Concrete */}
+            {/* Section 8: Ready-Mix vs Bagged Concrete */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <Truck className="h-6 w-6 text-amber-600" />
-                7. Ready-Mix Truck Delivery vs. Bagged Concrete Mix
+                8. Ready-Mix Truck Delivery vs. Bagged Concrete Mix
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card>

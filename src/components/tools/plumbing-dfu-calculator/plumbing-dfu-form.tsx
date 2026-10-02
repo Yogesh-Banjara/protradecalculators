@@ -107,6 +107,8 @@ export function PlumbingDfuForm() {
   ]);
 
   const [selectedAddFixtureId, setSelectedAddFixtureId] = useState<string>("shower_stall");
+  const [includeVentStackSizing, setIncludeVentStackSizing] = useState<boolean>(true);
+  const [ventDevelopedLengthFt, setVentDevelopedLengthFt] = useState<number>(40);
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(false);
@@ -118,8 +120,18 @@ export function PlumbingDfuForm() {
       pipeSlope,
       fixtures,
       continuousPumpGpm: continuousPumpGpm > 0 ? continuousPumpGpm : undefined,
+      includeVentStackSizing,
+      ventDevelopedLengthFt,
     }),
-    [codeStandard, systemType, pipeSlope, fixtures, continuousPumpGpm]
+    [
+      codeStandard,
+      systemType,
+      pipeSlope,
+      fixtures,
+      continuousPumpGpm,
+      includeVentStackSizing,
+      ventDevelopedLengthFt,
+    ]
   );
 
   const result = useMemo(() => {
@@ -426,6 +438,48 @@ export function PlumbingDfuForm() {
                     />
                   </div>
                 </div>
+
+                {/* IPC Table 906.1 Vent Stack Sizing Option */}
+                <div className="pt-2 border-t border-slate-800 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                      IPC Table 906.1 Vent Sizing:
+                    </span>
+                    <label className="flex items-center gap-1.5 text-xs text-cyan-400 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={includeVentStackSizing}
+                        onChange={(e) => setIncludeVentStackSizing(e.target.checked)}
+                        className="rounded border-slate-700 text-cyan-500"
+                      />
+                      Enable Vent Sizing
+                    </label>
+                  </div>
+                  {includeVentStackSizing && (
+                    <div className="grid grid-cols-2 gap-2 items-center">
+                      <div>
+                        <label className="text-[10px] text-slate-400 font-mono block">
+                          Vent Developed Length:
+                        </label>
+                        <div className="flex items-center gap-1">
+                          <input
+                            type="number"
+                            min="5"
+                            max="500"
+                            step="5"
+                            value={ventDevelopedLengthFt}
+                            onChange={(e) => setVentDevelopedLengthFt(parseFloat(e.target.value) || 0)}
+                            className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-white font-mono"
+                          />
+                          <span className="text-[10px] text-slate-400 font-mono">ft</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] text-slate-500 block leading-tight">
+                        Measured from lowest vent connection to outdoor terminal
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
@@ -464,6 +518,31 @@ export function PlumbingDfuForm() {
                     Total Load: {result.totalCalculatedDfu} DFU @ {pipeSlope === "1_2" ? "1/2" : pipeSlope === "1_8" ? "1/8" : "1/4"}″/ft Fall (Capacity: {result.maxCapacityDfuForSelectedSize} DFU)
                   </span>
                 </div>
+
+                {/* IPC Table 906.1 Vent Stack Sizing Result */}
+                {result.ventStackSizing && (
+                  <div className="bg-gradient-to-r from-cyan-950/50 via-slate-900/80 to-transparent border border-cyan-500/40 rounded-xl p-3.5 space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-bold uppercase text-cyan-400 tracking-wider">
+                        Vent Stack Sizing (IPC Table 906.1)
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-400">
+                        {result.ventStackSizing.developedLengthFt}′ Developed Length
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-2xl font-black text-white font-mono">
+                        {result.ventStackSizing.recommendedVentSizeInches}″
+                      </span>
+                      <span className="text-xs text-slate-300 font-sans">
+                        Vent Pipe Required
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-cyan-200/80 leading-relaxed font-sans">
+                      {result.ventStackSizing.notes} Minimum floor: {result.ventStackSizing.minAllowedVentSizeByHalfRule}″ (IPC 906.1 half-diameter rule). Maximum allowable developed length: {result.ventStackSizing.maxAllowedDevelopedLengthFt === 9999 ? "Exceeds standard table" : `${result.ventStackSizing.maxAllowedDevelopedLengthFt} ft`}.
+                    </p>
+                  </div>
+                )}
 
                 {/* Sizing Breakdown */}
                 <div className="space-y-2 pt-2 border-t border-slate-800 text-xs font-mono">

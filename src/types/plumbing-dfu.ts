@@ -35,6 +35,23 @@ export interface FixtureScheduleItem {
   readonly isWaterCloset?: boolean;
 }
 
+export interface VentStackSizingInput {
+  readonly soilStackSizeInches: StandardDrainPipeSizeInches;
+  readonly totalDfu: number;
+  readonly developedLengthFt: number;
+}
+
+export interface VentStackSizingResult {
+  readonly soilStackSizeInches: StandardDrainPipeSizeInches;
+  readonly totalDfu: number;
+  readonly developedLengthFt: number;
+  readonly minAllowedVentSizeByHalfRule: StandardDrainPipeSizeInches;
+  readonly recommendedVentSizeInches: StandardDrainPipeSizeInches;
+  readonly maxAllowedDevelopedLengthFt: number;
+  readonly governingTable: string;
+  readonly notes: string;
+}
+
 export interface PlumbingDfuInput {
   readonly codeStandard: PlumbingCodeStandard;
   readonly systemType: DrainageSystemType;
@@ -42,6 +59,8 @@ export interface PlumbingDfuInput {
   readonly stackBranchIntervalsCount?: number; // For vertical stacks (Default: 1 to 3 stories)
   readonly fixtures: readonly FixtureScheduleItem[];
   readonly continuousPumpGpm?: number; // Continuous flow pumps (1 GPM = 2 DFU)
+  readonly includeVentStackSizing?: boolean;
+  readonly ventDevelopedLengthFt?: number;
 }
 
 export interface FixtureCalculationSubtotal {
@@ -69,6 +88,8 @@ export interface PlumbingDfuResult {
   readonly containsWaterCloset: boolean;
   readonly waterClosetCount: number;
   readonly fixtureBreakdown: readonly FixtureCalculationSubtotal[];
+  readonly ventStackSizing?: VentStackSizingResult;
   readonly warnings: readonly CalculationWarning[];
   readonly steps: readonly CalculationStep[];
 }
+

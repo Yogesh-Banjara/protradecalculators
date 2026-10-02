@@ -25,9 +25,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Stair Calculator - Rise & Run Layout",
+  title: "Stair Calculator - Stringer Cut Layout & 2D Framing Diagram",
   description:
-    "Free stair calculator to calculate exact riser height, tread depth, total run, stringer cut layout, bottom riser drop, headroom, and IRC code rules.",
+    "Free stair calculator with 2D stringer cut diagram. Calculate exact riser height, tread depth, stringer board length, bottom riser drop deduction, and IRC limits.",
   path: "/construction/stair-calculator",
   keywords: [
     "stair calculator",

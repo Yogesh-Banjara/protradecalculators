@@ -346,4 +346,35 @@ describe("Concrete Calculation Engine (TASK 002 Accuracy Suite)", () => {
     expect(resInches.volumeCuFt).toBe(100);
     expect(resFeet.volumeCuYd).toBeCloseTo(resInches.volumeCuYd, 4);
   });
+
+  // Test Case 13: Sonotube Pier Footing (12-inch diameter, 48-inch depth, 4 tubes)
+  it("accurately calculates 4 Sonotubes of 12-inch diameter at 48-inch depth", () => {
+    const sonotubeSection: ConcreteSectionInput = {
+      id: "sono-1",
+      name: "Sonotube Deck Piers",
+      shape: "round-column",
+      quantity: 4,
+      diameter: 12,
+      depth: 48,
+      lengthUnit: "inch",
+      depthUnit: "inch",
+      diameterUnit: "inch",
+    };
+
+    const sectionRes = calculateConcreteSection(sonotubeSection);
+    // 4 tubes * (pi * 0.5^2 * 4) = 4 * 3.14159 = 12.566 cu ft -> 12.566 / 27 = 0.4654 cu yd
+    expect(sectionRes.volumeCuFt).toBeCloseTo(12.566, 2);
+    expect(sectionRes.volumeCuYd).toBeCloseTo(0.4654, 3);
+
+    const project: ConcreteProjectInput = {
+      sections: [sonotubeSection],
+      wastePercent: 10,
+    };
+    const projectRes = calculateConcreteProject(project);
+    // Total with 10% waste: 12.566 * 1.10 = 13.823 cu ft -> 0.512 cu yd
+    expect(projectRes.totalVolumeCuFt).toBeCloseTo(13.82, 1);
+    // 80lb bags (0.60 cu ft): 13.82 / 0.60 = 23.03 -> 24 bags
+    const bag80 = projectRes.bagEstimates.find((b) => b.bagWeightLbs === 80);
+    expect(bag80?.bagsRequired).toBe(24);
+  });
 });

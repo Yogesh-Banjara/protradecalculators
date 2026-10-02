@@ -341,3 +341,116 @@ export const UPC_DRAIN_CAPACITIES = {
     },
   } as Record<PipeSlope, Record<StandardDrainPipeSizeInches, number>>,
 } as const;
+
+export interface IpcVentStackRow {
+  readonly soilStackSizeInches: StandardDrainPipeSizeInches;
+  readonly maxDfu: number;
+  readonly maxDevelopedLengthFtByVentSize: Partial<Record<StandardDrainPipeSizeInches, number>>;
+}
+
+/**
+ * IPC Table 906.1: Size and Maximum Developed Length of Stack Vents and Vent Stacks.
+ */
+export const IPC_TABLE_906_1_VENT_STACK_SIZING: readonly IpcVentStackRow[] = [
+  {
+    soilStackSizeInches: "1-1/4",
+    maxDfu: 2,
+    maxDevelopedLengthFtByVentSize: { "1-1/4": 30 },
+  },
+  {
+    soilStackSizeInches: "1-1/2",
+    maxDfu: 8,
+    maxDevelopedLengthFtByVentSize: { "1-1/4": 50, "1-1/2": 150 },
+  },
+  {
+    soilStackSizeInches: "1-1/2",
+    maxDfu: 10,
+    maxDevelopedLengthFtByVentSize: { "1-1/4": 30, "1-1/2": 100 },
+  },
+  {
+    soilStackSizeInches: "2",
+    maxDfu: 12,
+    maxDevelopedLengthFtByVentSize: { "1-1/4": 30, "1-1/2": 75, "2": 200 },
+  },
+  {
+    soilStackSizeInches: "2",
+    maxDfu: 24,
+    maxDevelopedLengthFtByVentSize: { "1-1/4": 26, "1-1/2": 50, "2": 150 },
+  },
+  {
+    soilStackSizeInches: "2-1/2",
+    maxDfu: 42,
+    maxDevelopedLengthFtByVentSize: { "1-1/2": 30, "2": 100, "2-1/2": 300 },
+  },
+  {
+    soilStackSizeInches: "3",
+    maxDfu: 10,
+    maxDevelopedLengthFtByVentSize: { "1-1/2": 42, "2": 150, "2-1/2": 360, "3": 1040 },
+  },
+  {
+    soilStackSizeInches: "3",
+    maxDfu: 21,
+    maxDevelopedLengthFtByVentSize: { "1-1/2": 32, "2": 110, "2-1/2": 270, "3": 810 },
+  },
+  {
+    soilStackSizeInches: "3",
+    maxDfu: 53,
+    maxDevelopedLengthFtByVentSize: { "1-1/2": 27, "2": 94, "2-1/2": 230, "3": 680 },
+  },
+  {
+    soilStackSizeInches: "3",
+    maxDfu: 102,
+    maxDevelopedLengthFtByVentSize: { "1-1/2": 25, "2": 86, "2-1/2": 210, "3": 620 },
+  },
+  {
+    soilStackSizeInches: "4",
+    maxDfu: 43,
+    maxDevelopedLengthFtByVentSize: { "2": 35, "2-1/2": 85, "3": 250, "4": 980 },
+  },
+  {
+    soilStackSizeInches: "4",
+    maxDfu: 140,
+    maxDevelopedLengthFtByVentSize: { "2": 27, "2-1/2": 65, "3": 200, "4": 750 },
+  },
+  {
+    soilStackSizeInches: "4",
+    maxDfu: 320,
+    maxDevelopedLengthFtByVentSize: { "2": 23, "2-1/2": 55, "3": 170, "4": 640 },
+  },
+  {
+    soilStackSizeInches: "4",
+    maxDfu: 530,
+    maxDevelopedLengthFtByVentSize: { "2": 21, "2-1/2": 50, "3": 150, "4": 580 },
+  },
+  {
+    soilStackSizeInches: "5",
+    maxDfu: 320,
+    maxDevelopedLengthFtByVentSize: { "2-1/2": 28, "3": 82, "4": 320, "5": 990 },
+  },
+  {
+    soilStackSizeInches: "5",
+    maxDfu: 1000,
+    maxDevelopedLengthFtByVentSize: { "2-1/2": 20, "3": 60, "4": 240, "5": 750 },
+  },
+  {
+    soilStackSizeInches: "6",
+    maxDfu: 500,
+    maxDevelopedLengthFtByVentSize: { "3": 33, "4": 130, "5": 400, "6": 1000 },
+  },
+  {
+    soilStackSizeInches: "6",
+    maxDfu: 2000,
+    maxDevelopedLengthFtByVentSize: { "3": 22, "4": 87, "5": 270, "6": 700 },
+  },
+  {
+    soilStackSizeInches: "8",
+    maxDfu: 1200,
+    maxDevelopedLengthFtByVentSize: { "4": 31, "5": 95, "6": 240, "8": 940 },
+  },
+  {
+    soilStackSizeInches: "8",
+    maxDfu: 4000,
+    maxDevelopedLengthFtByVentSize: { "4": 18, "5": 56, "6": 140, "8": 560 },
+  },
+] as const;
+

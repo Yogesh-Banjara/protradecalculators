@@ -243,4 +243,29 @@ describe("Electrical Wire Sizing & Voltage Drop Engine (TASK 011 Accuracy Suite)
       res.warnings.some((w) => w.code === "ELECTRICAL_ENGINEERING_DISCLAIMER")
     ).toBe(true);
   });
+
+  // Test Case 15: 12V DC Marine / Solar Circuit Sizing
+  it("accurately calculates 12V DC circuit voltage drop and sizes conductor for 3% critical limit", () => {
+    // 12V DC, 20A load, 25 ft run, 10 AWG copper (10,380 CM)
+    // VD = (2 * 12.9 * 20 * 25) / 10380 = 1.2427V -> 1.24V (10.36% drop)
+    const raw = calculateVoltageDrop(12, 20, 25, 10380, "copper", "dc");
+    expect(raw.voltageDropVolts).toBeCloseTo(1.24, 2);
+    expect(raw.voltageDropPercent).toBeCloseTo(10.36, 1);
+    expect(raw.voltageAtLoad).toBeCloseTo(10.76, 2);
+
+    // Full project: target 3% drop on 12V (<= 0.36V drop)
+    // 4 AWG (41,740 CM): VD = 12,900 / 41,740 = 0.309V -> 2.58% drop (PASS <= 3%)
+    const res = calculateVoltageDropProject({
+      voltage: 12,
+      phase: "dc",
+      loadCurrentAmps: 20,
+      distanceFt: 25,
+      material: "copper",
+      targetMaxVoltageDropPercent: 3.0,
+    });
+
+    expect(res.recommendedSize).toBe("4 AWG");
+    expect(res.voltageDropPercent).toBeLessThanOrEqual(3.0);
+    expect(res.is3PctCompliant).toBe(true);
+  });
 });

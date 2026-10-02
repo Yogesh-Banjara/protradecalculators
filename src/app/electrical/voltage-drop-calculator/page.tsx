@@ -27,12 +27,15 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Voltage Drop Calculator - NEC Wire Sizing",
+  title: "Voltage Drop Calculator - AC & 12V/24V DC Wire Sizing",
   description:
-    "Calculate single-phase, 3-phase, and DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and copper vs aluminum.",
+    "Calculate single-phase, 3-phase, and 12V/24V DC voltage drop, percent loss, and recommended AWG wire size. Sized for NEC 3% branch limits and ABYC low-voltage marine/solar.",
   path: "/electrical/voltage-drop-calculator",
   keywords: [
     "voltage drop calculator",
+    "voltage drop calculator 12v",
+    "dc voltage drop calculator",
+    "12v wire size chart distance",
     "wire size calculator",
     "wire gauge calculator",
     "electrical wire size calculator",
@@ -444,11 +447,97 @@ export default function VoltageDropCalculatorPage() {
               </div>
             </section>
 
-            {/* Section 6: Subpanel & Long Feeder Runs */}
+            {/* Section 6: 12V & 24V DC Wire Gauge Distance Chart */}
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <Layers className="h-6 w-6 text-amber-600" />
+                6. 12V &amp; 24V DC Wire Gauge Distance Chart (Marine, Solar &amp; RV)
+              </h2>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                In low-voltage DC systems, voltage drop occurs much faster than in 120V/240V AC systems because system voltage is low. Per <strong>ABYC E-11 standards</strong> and <strong>NEC 690 (Solar PV)</strong>, critical electronics and battery charging circuits must maintain &le; 3% drop (0.36V on 12V), while general lighting and bilge circuits permit &le; 10% drop (1.20V on 12V).
+              </p>
+              <div className="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
+                <table className="w-full text-left text-xs sm:text-sm text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Copper Wire Gauge</th>
+                      <th className="p-3">Circular Mils</th>
+                      <th className="p-3 font-mono">10A Load (3% Drop)</th>
+                      <th className="p-3 font-mono">10A Load (10% Drop)</th>
+                      <th className="p-3 font-mono">20A Load (3% Drop)</th>
+                      <th className="p-3 font-mono">20A Load (10% Drop)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">14 AWG</td>
+                      <td className="p-3 text-slate-600">4,110 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">5.7 ft</td>
+                      <td className="p-3 text-slate-700">19.1 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">2.9 ft</td>
+                      <td className="p-3 text-slate-700">9.6 ft</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold text-slate-900">12 AWG</td>
+                      <td className="p-3 text-slate-600">6,530 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">9.1 ft</td>
+                      <td className="p-3 text-slate-700">30.4 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">4.6 ft</td>
+                      <td className="p-3 text-slate-700">15.2 ft</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">10 AWG</td>
+                      <td className="p-3 text-slate-600">10,380 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">14.5 ft</td>
+                      <td className="p-3 text-slate-700">48.3 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">7.2 ft</td>
+                      <td className="p-3 text-slate-700">24.1 ft</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold text-amber-900">8 AWG</td>
+                      <td className="p-3 text-slate-600">16,510 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">23.0 ft</td>
+                      <td className="p-3 text-slate-700">76.8 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">11.5 ft</td>
+                      <td className="p-3 text-slate-700">38.4 ft</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-amber-900">6 AWG</td>
+                      <td className="p-3 text-slate-600">26,240 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">36.6 ft</td>
+                      <td className="p-3 text-slate-700">122.0 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">18.3 ft</td>
+                      <td className="p-3 text-slate-700">61.0 ft</td>
+                    </tr>
+                    <tr className="bg-slate-50/50">
+                      <td className="p-3 font-bold text-slate-900">4 AWG</td>
+                      <td className="p-3 text-slate-600">41,740 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">58.2 ft</td>
+                      <td className="p-3 text-slate-700">194.1 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">29.1 ft</td>
+                      <td className="p-3 text-slate-700">97.1 ft</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">2 AWG</td>
+                      <td className="p-3 text-slate-600">66,360 CM</td>
+                      <td className="p-3 text-amber-800 font-bold">92.6 ft</td>
+                      <td className="p-3 text-slate-700">308.7 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">46.3 ft</td>
+                      <td className="p-3 text-slate-700">154.3 ft</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500 font-mono">
+                * Distances represent one-way cable run length in feet. For 24V DC systems, double the maximum allowed run distance.
+              </p>
+            </section>
+
+            {/* Section 7: Subpanel & Long Feeder Runs */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <CheckCircle2 className="h-6 w-6 text-amber-600" />
-                6. Sizing 100A &amp; 200A Subpanel Feeders for Workshops &amp; Garages
+                7. Sizing 100A &amp; 200A Subpanel Feeders for Workshops &amp; Garages
               </h2>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 When running electrical subpanels to detached garages, workshops, or outbuildings over distances of 100 to 300 feet, voltage drop almost always dictates conductor sizing before thermal ampacity:
@@ -461,11 +550,11 @@ export default function VoltageDropCalculatorPage() {
               </ul>
             </section>
 
-            {/* Section 7: Common Wire Sizing Mistakes */}
+            {/* Section 8: Common Wire Sizing Mistakes */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <AlertTriangle className="h-6 w-6 text-amber-600" />
-                7. Common Electrical Wire Sizing Mistakes to Avoid
+                8. Common Electrical Wire Sizing Mistakes to Avoid
               </h2>
               <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg text-xs sm:text-sm text-amber-950 space-y-2">
                 <p className="font-bold text-amber-900">
@@ -479,7 +568,7 @@ export default function VoltageDropCalculatorPage() {
               </div>
             </section>
 
-            {/* Section 8: Contextual Related Electrical Calculators */}
+            {/* Section 9: Contextual Related Electrical Calculators */}
             <section className="space-y-4 bg-slate-900 text-slate-100 p-6 rounded-xl border border-slate-800">
               <div className="space-y-4">
                 <div>
@@ -579,11 +668,11 @@ export default function VoltageDropCalculatorPage() {
               </Link>
             </div>
 
-            {/* Section 8: Real-World NEC Calculation Scenarios */}
+            {/* Section 10: Real-World NEC Calculation Scenarios */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <BookOpen className="h-6 w-6 text-amber-600" />
-                8. Real-World NEC Calculation Scenarios
+                10. Real-World NEC Calculation Scenarios
               </h2>
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 Step-by-step mathematical solutions and code citations for wire sizing and voltage drop problems:

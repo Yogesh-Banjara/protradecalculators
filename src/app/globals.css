@@ -111,4 +111,20 @@
   .state-pill-default {
     @apply bg-white text-slate-700 font-medium border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 shadow-2xs;
   }
+
+  /* AdSense Compliance & CLS Prevention */
+  .ad-slot-container {
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    clear: both;
+    overflow: hidden;
+  }
+
+  /* Accidental Ad-Click Prevention (Safe Touch Clearance) */
+  .ad-safety-buffer {
+    padding-bottom: env(safe-area-inset-bottom, 24px);
+  }
 }
