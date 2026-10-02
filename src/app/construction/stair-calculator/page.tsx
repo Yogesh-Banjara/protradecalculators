@@ -236,6 +236,108 @@ export default function StairCalculatorPage() {
               </div>
             </section>
 
+            {/* Quick Reference Table: Common Ceiling & Deck Heights */}
+            <section className="space-y-4 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-800">
+                  <Ruler className="h-4 w-4 text-amber-600" />
+                  <span>Jobsite Layout Quick Reference</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  Common Ceiling &amp; Deck Height Stair Stringer Table
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Pre-calculated stringer cut specifications, riser counts, tread runs, and 2x12 lumber lengths for standard residential floor and outdoor deck heights:
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Application / Floor Height</th>
+                      <th className="p-3">Total Rise</th>
+                      <th className="p-3">Riser Count</th>
+                      <th className="p-3">Riser Height</th>
+                      <th className="p-3">Tread Depth</th>
+                      <th className="p-3">Treads (Run Steps)</th>
+                      <th className="p-3">Total Run</th>
+                      <th className="p-3">2x12 Stringer Stock</th>
+                      <th className="p-3">IRC Code Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">3 ft Porch / Low Deck</td>
+                      <td className="p-3">36.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">5 Risers</td>
+                      <td className="p-3">7.20&quot; (7-3/16&quot;)</td>
+                      <td className="p-3">10.5&quot;</td>
+                      <td className="p-3">4 Treads</td>
+                      <td className="p-3">42.0&quot; (3&apos; 6&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">6 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&le; 7-3/4&quot;)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">4 ft Deck / Landing</td>
+                      <td className="p-3">48.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">7 Risers</td>
+                      <td className="p-3">6.86&quot; (6-7/8&quot;)</td>
+                      <td className="p-3">10.5&quot;</td>
+                      <td className="p-3">6 Treads</td>
+                      <td className="p-3">63.0&quot; (5&apos; 3&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">8 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&le; 7-3/4&quot;)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">5 ft Elevated Deck</td>
+                      <td className="p-3">60.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">8 Risers</td>
+                      <td className="p-3">7.50&quot; (7-1/2&quot;)</td>
+                      <td className="p-3">10.5&quot;</td>
+                      <td className="p-3">7 Treads</td>
+                      <td className="p-3">73.5&quot; (6&apos; 1-1/2&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">10 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&le; 7-3/4&quot;)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">8 ft Ceiling (Standard Story)</td>
+                      <td className="p-3">108.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">14 Risers</td>
+                      <td className="p-3">7.71&quot; (7-11/16&quot;)</td>
+                      <td className="p-3">10.0&quot;</td>
+                      <td className="p-3">13 Treads</td>
+                      <td className="p-3">130.0&quot; (10&apos; 10&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">16 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&le; 7-3/4&quot;)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">9 ft Modern Ceiling</td>
+                      <td className="p-3">120.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">16 Risers</td>
+                      <td className="p-3">7.50&quot; (7-1/2&quot;)</td>
+                      <td className="p-3">10.5&quot;</td>
+                      <td className="p-3">15 Treads</td>
+                      <td className="p-3">157.5&quot; (13&apos; 1-1/2&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">18 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (Optimal Comfort)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">10 ft Tall Ceiling</td>
+                      <td className="p-3">132.0&quot;</td>
+                      <td className="p-3 text-amber-800 font-bold">18 Risers</td>
+                      <td className="p-3">7.33&quot; (7-5/16&quot;)</td>
+                      <td className="p-3">10.5&quot;</td>
+                      <td className="p-3">17 Treads</td>
+                      <td className="p-3">178.5&quot; (14&apos; 10-1/2&quot;)</td>
+                      <td className="p-3 font-sans text-slate-700">20 ft 2x12</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (Optimal Comfort)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* Section 3: Why Cut the Bottom of the Stringer */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">

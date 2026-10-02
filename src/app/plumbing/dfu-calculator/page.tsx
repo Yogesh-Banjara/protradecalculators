@@ -320,6 +320,101 @@ export default function PlumbingDfuCalculatorPage() {
               </Card>
             </div>
 
+            {/* Master DFU Code Sizing Matrix (IPC Table 710.1(2) & UPC Table 703.2) */}
+            <section className="space-y-4 rounded-2xl border border-cyan-200 bg-white p-6 shadow-sm">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-800">
+                  <Layers className="h-4 w-4 text-cyan-600" />
+                  <span>National Plumbing Code Master Reference</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  Sanitary Drainage Pipe Sizing Matrix: IPC Table 710.1(2) &amp; UPC Table 703.2
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Maximum permitted Drainage Fixture Units (DFU) for horizontal fixture branches, vertical soil/waste stacks, and building drains across standard slope gradients:
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Pipe Size</th>
+                      <th className="p-3">Horizontal Branch (IPC)</th>
+                      <th className="p-3">Building Drain (1/8&quot; / ft)</th>
+                      <th className="p-3">Building Drain (1/4&quot; / ft)</th>
+                      <th className="p-3">Building Drain (1/2&quot; / ft)</th>
+                      <th className="p-3">Stack (&le; 3 Stories)</th>
+                      <th className="p-3">Stack (&gt; 3 Stories)</th>
+                      <th className="p-3">Code Provisions &amp; Water Closet Limits</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">1-1/2&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">3 DFU</td>
+                      <td className="p-3 text-slate-400">N/A</td>
+                      <td className="p-3">1 DFU</td>
+                      <td className="p-3">1 DFU</td>
+                      <td className="p-3">4 DFU</td>
+                      <td className="p-3">8 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Sinks, lavatories, tubs. No water closets permitted.</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">2&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">6 DFU</td>
+                      <td className="p-3 text-slate-400">N/A</td>
+                      <td className="p-3">21 DFU</td>
+                      <td className="p-3">26 DFU</td>
+                      <td className="p-3">10 DFU</td>
+                      <td className="p-3">24 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Kitchen sinks, laundry trays, shower stalls. No water closets.</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">2-1/2&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">12 DFU</td>
+                      <td className="p-3 text-slate-400">N/A</td>
+                      <td className="p-3">24 DFU</td>
+                      <td className="p-3">31 DFU</td>
+                      <td className="p-3">20 DFU</td>
+                      <td className="p-3">42 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Commercial fixtures and floor drains. No water closets.</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">3&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">20 DFU</td>
+                      <td className="p-3 text-amber-800 font-bold">36 DFU (IPC)</td>
+                      <td className="p-3 text-cyan-900 font-bold">42 DFU</td>
+                      <td className="p-3">50 DFU</td>
+                      <td className="p-3">48 DFU</td>
+                      <td className="p-3">72 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Minimum size for water closets. Max 2 WCs (IPC) or 3 WCs (UPC) on branch.</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">4&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">160 DFU</td>
+                      <td className="p-3 text-cyan-900 font-bold">180 DFU</td>
+                      <td className="p-3 text-cyan-900 font-bold">216 DFU</td>
+                      <td className="p-3">250 DFU</td>
+                      <td className="p-3">240 DFU</td>
+                      <td className="p-3">500 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Standard residential main building drain. Unlimited water closets.</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-slate-900">6&quot;</td>
+                      <td className="p-3 text-cyan-900 font-bold">620 DFU</td>
+                      <td className="p-3 text-cyan-900 font-bold">700 DFU</td>
+                      <td className="p-3 text-cyan-900 font-bold">840 DFU</td>
+                      <td className="p-3">1,000 DFU</td>
+                      <td className="p-3">960 DFU</td>
+                      <td className="p-3">1,900 DFU</td>
+                      <td className="p-3 font-sans text-slate-600">Commercial building sewer mains and multi-family branches.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* Reciprocal Trade Ecosystem Cross-Links */}
             <Card className="border-amber-200/80 bg-gradient-to-br from-amber-500/10 via-white to-amber-500/5">
               <CardHeader>

@@ -232,6 +232,130 @@ export default function VoltageDropCalculatorPage() {
               </div>
             </section>
 
+            {/* Quick Reference Table: 100A & 200A Subpanel Feeder Sizing */}
+            <section className="space-y-4 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-800">
+                  <Zap className="h-4 w-4 text-amber-600" />
+                  <span>Electrician Feeder Quick Reference</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  100A &amp; 200A Subpanel Feeder Wire Sizing &amp; Voltage Drop Table
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Pre-calculated wire gauge selections, voltage drops, and percentage losses for standard 240V residential subpanels and outbuilding feeders (50 to 300 feet) under the NEC 3% recommendation:
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Feeder Rating &amp; Voltage</th>
+                      <th className="p-3">One-Way Run</th>
+                      <th className="p-3">Copper Wire Gauge (75&deg;C)</th>
+                      <th className="p-3">Copper Drop &amp; Loss</th>
+                      <th className="p-3">Aluminum Wire Gauge (75&deg;C)</th>
+                      <th className="p-3">Aluminum Drop &amp; Loss</th>
+                      <th className="p-3">NEC 3% Feeder Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">50 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">#4 AWG Cu</td>
+                      <td className="p-3">1.29V (0.54%)</td>
+                      <td className="p-3 text-slate-700 font-bold">#2 AWG Al</td>
+                      <td className="p-3">1.33V (0.55%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">100 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">#3 AWG Cu</td>
+                      <td className="p-3">2.46V (1.03%)</td>
+                      <td className="p-3 text-slate-700 font-bold">#1 AWG Al</td>
+                      <td className="p-3">2.53V (1.05%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">150 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">#2 AWG Cu</td>
+                      <td className="p-3">3.69V (1.54%)</td>
+                      <td className="p-3 text-slate-700 font-bold">1/0 AWG Al</td>
+                      <td className="p-3">3.78V (1.58%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">200 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">#1 AWG Cu</td>
+                      <td className="p-3">4.93V (2.05%)</td>
+                      <td className="p-3 text-slate-700 font-bold">2/0 AWG Al</td>
+                      <td className="p-3">4.99V (2.08%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">250 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">1/0 AWG Cu</td>
+                      <td className="p-3">6.16V (2.57%)</td>
+                      <td className="p-3 text-slate-700 font-bold">3/0 AWG Al</td>
+                      <td className="p-3">6.28V (2.62%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">100A Subpanel (240V)</td>
+                      <td className="p-3">300 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">3/0 AWG Cu</td>
+                      <td className="p-3">5.82V (2.43%)</td>
+                      <td className="p-3 text-slate-700 font-bold">250 kcmil Al</td>
+                      <td className="p-3">5.98V (2.49%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Upsized for &lt; 3%</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">200A Service (240V)</td>
+                      <td className="p-3">50 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">2/0 AWG Cu</td>
+                      <td className="p-3">1.23V (0.51%)</td>
+                      <td className="p-3 text-slate-700 font-bold">4/0 AWG Al</td>
+                      <td className="p-3">1.24V (0.52%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">200A Service (240V)</td>
+                      <td className="p-3">100 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">3/0 AWG Cu</td>
+                      <td className="p-3">2.46V (1.03%)</td>
+                      <td className="p-3 text-slate-700 font-bold">250 kcmil Al</td>
+                      <td className="p-3">2.53V (1.05%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">200A Service (240V)</td>
+                      <td className="p-3">150 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">4/0 AWG Cu</td>
+                      <td className="p-3">3.69V (1.54%)</td>
+                      <td className="p-3 text-slate-700 font-bold">350 kcmil Al</td>
+                      <td className="p-3">3.72V (1.55%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">200A Service (240V)</td>
+                      <td className="p-3">200 ft</td>
+                      <td className="p-3 text-amber-800 font-bold">250 kcmil Cu</td>
+                      <td className="p-3">4.92V (2.05%)</td>
+                      <td className="p-3 text-slate-700 font-bold">500 kcmil Al</td>
+                      <td className="p-3">4.96V (2.07%)</td>
+                      <td className="p-3 font-sans text-emerald-700 font-bold">Compliant (&lt; 3%)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* Section 3: 120V vs 240V Voltage Drop Sensitivity */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">

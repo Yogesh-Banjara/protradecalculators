@@ -196,6 +196,94 @@ export default function DeckCalculatorPage() {
               </p>
             </section>
 
+            {/* Quick Reference Table: Standard Deck Sizes Takeoff */}
+            <section className="space-y-4 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-800">
+                  <Layers className="h-4 w-4 text-amber-600" />
+                  <span>Builder Bill of Materials (BOM) Quick Reference</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+                  Standard Deck Sizes Material Takeoff Matrix
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Pre-calculated material estimates for standard residential deck dimensions, including surface boards, 16&quot; OC joists, support beams, concrete sonotube footings, and structural fasteners:
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs text-slate-800">
+                  <thead className="bg-slate-100 font-bold text-slate-900 border-b border-slate-200">
+                    <tr>
+                      <th className="p-3">Deck Dimensions</th>
+                      <th className="p-3">Area</th>
+                      <th className="p-3">Deck Boards (5.5&quot; + 10% Waste)</th>
+                      <th className="p-3">Field Joists (16&quot; OC)</th>
+                      <th className="p-3">Beam Plies</th>
+                      <th className="p-3">Concrete Footings</th>
+                      <th className="p-3">Fasteners &amp; Hardware</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">10&apos; &times; 10&apos; Deck</td>
+                      <td className="p-3">100 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">24 10ft or 15 16ft boards</td>
+                      <td className="p-3">9 2x8 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x8 beam</td>
+                      <td className="p-3">4 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~350 face screws or 1 clip box</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">12&apos; &times; 12&apos; Deck</td>
+                      <td className="p-3">144 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">29 12ft or 22 16ft boards</td>
+                      <td className="p-3">10 2x8 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x8 beam</td>
+                      <td className="p-3">4 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~500 face screws or 2 clip boxes</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">12&apos; &times; 16&apos; Deck</td>
+                      <td className="p-3">192 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">39 12ft or 29 16ft boards</td>
+                      <td className="p-3">13 2x8 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x10 beam</td>
+                      <td className="p-3">6 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~700 face screws or 2 clip boxes</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">14&apos; &times; 20&apos; Deck</td>
+                      <td className="p-3">280 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">47 14ft or 42 16ft boards</td>
+                      <td className="p-3">16 2x10 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x10 beam</td>
+                      <td className="p-3">6 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~950 face screws or 3 clip boxes</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">16&apos; &times; 20&apos; Deck</td>
+                      <td className="p-3">320 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">53 16ft or 44 20ft boards</td>
+                      <td className="p-3">16 2x10 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x12 beam</td>
+                      <td className="p-3">8 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~1,100 face screws or 4 clip boxes</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold font-sans text-slate-900">16&apos; &times; 24&apos; Deck</td>
+                      <td className="p-3">384 sq ft</td>
+                      <td className="p-3 text-amber-800 font-bold">64 16ft or 52 20ft boards</td>
+                      <td className="p-3">19 2x10 joists</td>
+                      <td className="p-3 font-sans text-slate-700">Double 2x12 beam</td>
+                      <td className="p-3">8 Sonotubes (12&quot;)</td>
+                      <td className="p-3 font-sans text-slate-600">~1,350 face screws or 4 clip boxes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* Section 2: Joist Spacing Table */}
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
