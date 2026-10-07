@@ -1,7 +1,11 @@
-﻿/*
+/*
   X-DNS-Prefetch-Control: on
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/ads.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
